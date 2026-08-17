@@ -1,0 +1,13 @@
+---
+description: Job listing prototype must use teamio-prototype-starter only (no local UI/theme)
+alwaysApply: true
+---
+
+# Teamio prototype app rules
+
+- Import UI only from `@teamio/starter/*` (Vite alias to `../teamio-prototype-starter/src`).
+- Import styles via `@teamio/starter/styles/global.css` only — no new CSS modules or local design tokens.
+- Keep Tailwind on starter theme (`tm-` prefix); do not invent a parallel theme.
+- Do not add reusable UI components here — add them in `teamio-prototype-starter`, then import.
+- Keep structure as `src/pages/`, `src/router/`, `src/data/` for screens, routing, and fixtures.
+- Prefer composing starter primitives (`PageTemplate`, `Typography`, forms, table, etc.) over custom markup styled from scratch.
