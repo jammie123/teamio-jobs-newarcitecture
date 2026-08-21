@@ -1,5 +1,5 @@
 [build]
-  command = "git clone --depth 1 https://github.com/jammie123/teamio-prototype-starter.git teamio-prototype-starter && npm ci && npm run build"
+  command = "git clone --depth 1 https://github.com/jammie123/teamio-prototype-starter.git teamio-prototype-starter && npm run build"
   publish = "dist"
 
 [build.environment]
