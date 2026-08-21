@@ -1,13 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 import path from 'node:path'
-import { pathToFileURL } from 'node:url'
+import { createRequire } from 'node:module'
 import { starterRoot } from './starterRoot.js'
 
-const starterConfig = (await import(pathToFileURL(path.join(starterRoot, 'tailwind.config.js')).href))
-  .default
+const require = createRequire(import.meta.url)
+const load = require('jiti')(import.meta.url)
+const starterConfig = load(path.join(starterRoot, 'tailwind.config.js'))
 
 export default {
-  ...starterConfig,
+  ...(starterConfig.default ?? starterConfig),
   content: [
     './index.html',
     './src/**/*.{js,jsx,ts,tsx,mdx}',
