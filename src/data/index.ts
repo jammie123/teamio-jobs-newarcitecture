@@ -36,3 +36,9 @@ export {
 } from './adStatus'
 
 export { toJobCard } from './toJobCard'
+
+export {
+  EMPTY_JOBS_FILTER,
+  filterOptionsFromJobs,
+  jobMatchesFilter,
+} from './jobsFilter'

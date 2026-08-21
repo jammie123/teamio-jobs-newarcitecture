@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import {
   JobCard,
+  JobsFilter,
   Option,
   PageHeader,
   PageTemplate,
@@ -9,9 +11,18 @@ import {
   TabsList,
   TabsTrigger,
   Typography,
+  type JobsFilterValue,
   type LeftMenuItemData,
 } from '@teamio/starter/components'
-import { jobs, jobsForTab, toJobCard, type JobListingTab } from '../data'
+import {
+  EMPTY_JOBS_FILTER,
+  filterOptionsFromJobs,
+  jobMatchesFilter,
+  jobs,
+  jobsForTab,
+  toJobCard,
+  type JobListingTab,
+} from '../data'
 
 const leftMenuItems: LeftMenuItemData[] = [
   { id: 'prehled', label: 'Přehled', icon: 'home', href: '#prehled' },
@@ -26,6 +37,8 @@ const TABS: Array<{ value: JobListingTab; label: string }> = [
   { value: 'draft', label: 'Rozpracovaný' },
   { value: 'archived', label: 'Archivní' },
 ]
+
+const filterOptions = filterOptionsFromJobs(jobs)
 
 const noop = () => undefined
 
@@ -45,8 +58,8 @@ const jobCardNoops = {
   onRestoreFromArchive: noop,
 }
 
-function JobCardList({ tab }: { tab: JobListingTab }) {
-  const items = jobsForTab(jobs, tab)
+function JobCardList({ tab, filter }: { tab: JobListingTab; filter: JobsFilterValue }) {
+  const items = jobsForTab(jobs, tab).filter((job) => jobMatchesFilter(job, filter))
 
   if (items.length === 0) {
     return (
@@ -66,6 +79,8 @@ function JobCardList({ tab }: { tab: JobListingTab }) {
 }
 
 export function JobListingPage() {
+  const [filter, setFilter] = useState<JobsFilterValue>(EMPTY_JOBS_FILTER)
+
   return (
     <Tabs defaultValue="published" className="tm-contents">
       <PageTemplate
@@ -99,10 +114,17 @@ export function JobListingPage() {
           />
         }
       >
-        <div className="tm-mx-auto tm-w-full tm-max-w-[1000px]">
+        <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1200px] tm-flex-col tm-gap-4">
+          <JobsFilter
+            value={filter}
+            onChange={setFilter}
+            recruiters={filterOptions.recruiters}
+            managers={filterOptions.managers}
+            departments={filterOptions.departments}
+          />
           {TABS.map((tab) => (
             <TabsContent key={tab.value} value={tab.value} className="tm-mt-0">
-              <JobCardList tab={tab.value} />
+              <JobCardList tab={tab.value} filter={filter} />
             </TabsContent>
           ))}
         </div>
