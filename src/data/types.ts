@@ -1,4 +1,6 @@
-export type JobStatus = 'open' | 'closed'
+export type JobStatus = 'open' | 'archive'
+
+export type AdStatus = 'published' | 'unpublished'
 
 export type PortalId =
   | 'jobs_cz'
@@ -23,13 +25,35 @@ export type Placement = {
 export type Ad = {
   id: string
   title: string
+  status: AdStatus
   placements: Placement[]
 }
+
+export type JobCandidates = {
+  new?: number
+  unassessed: number
+  inProgress: number
+  total: number
+}
+
+/** `0` or omitted = no branch on the card / in filters. A string is the branch name. */
+export type JobDepartment = 0 | string
 
 export type Job = {
   id: string
   title: string
   recruiter: string
+  department?: JobDepartment
+  hiringManagers?: string[]
   status: JobStatus
+  candidates?: JobCandidates
   ads: Ad[]
+}
+
+export function visibleDepartment(department?: JobDepartment): string | undefined {
+  if (department == null || department === 0) {
+    return undefined
+  }
+
+  return department
 }

@@ -5,12 +5,17 @@ export const jobs = jobsJson as Job[]
 
 export type {
   Ad,
+  AdStatus,
   Job,
+  JobCandidates,
+  JobDepartment,
   JobStatus,
   Placement,
   PlacementStats,
   PortalId,
 } from './types'
+
+export { visibleDepartment } from './types'
 
 export {
   statsForAd,
@@ -20,3 +25,14 @@ export {
 } from './aggregateStats'
 
 export { PORTAL_LABELS, portalLabel } from './portals'
+
+export {
+  computeAdStatus,
+  formatCzechDate,
+  jobsForTab,
+  listingTab,
+  todayIso,
+  type JobListingTab,
+} from './adStatus'
+
+export { toJobCard } from './toJobCard'

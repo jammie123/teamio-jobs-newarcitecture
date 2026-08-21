@@ -3,7 +3,17 @@
     "id": "job-001",
     "title": "Řidič/ka sk. C ČB turnusový režim PO–NE",
     "recruiter": "Martina Nováková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 5,
+      "unassessed": 18,
+      "inProgress": 9,
+      "total": 57
+    },
     "ads": [
       {
         "id": "ad-001-1",
@@ -13,21 +23,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 1840, "clicks": 276, "applications": 34 }
+            "stats": {
+              "views": 1840,
+              "clicks": 276,
+              "applications": 34
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 920, "clicks": 118, "applications": 15 }
+            "stats": {
+              "views": 920,
+              "clicks": 118,
+              "applications": 15
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-05-15",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 410, "clicks": 62, "applications": 8 }
+            "stats": {
+              "views": 410,
+              "clicks": 62,
+              "applications": 8
+            }
           }
-        ]
+        ],
+        "status": "published"
       },
       {
         "id": "ad-001-2",
@@ -37,15 +60,24 @@
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-09-15",
-            "stats": { "views": 560, "clicks": 84, "applications": 11 }
+            "stats": {
+              "views": 560,
+              "clicks": 84,
+              "applications": 11
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-09-15",
-            "stats": { "views": 190, "clicks": 28, "applications": 3 }
+            "stats": {
+              "views": 190,
+              "clicks": 28,
+              "applications": 3
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -53,7 +85,17 @@
     "id": "job-002",
     "title": "Řidič/ka sk. C ČB PO–PÁ",
     "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 0,
+      "unassessed": 7,
+      "inProgress": 11,
+      "total": 44
+    },
     "ads": [
       {
         "id": "ad-002-1",
@@ -63,21 +105,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-10",
             "publishedTo": "2026-10-10",
-            "stats": { "views": 1520, "clicks": 210, "applications": 27 }
+            "stats": {
+              "views": 1520,
+              "clicks": 210,
+              "applications": 27
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-06-10",
             "publishedTo": "2026-10-10",
-            "stats": { "views": 780, "clicks": 95, "applications": 12 }
+            "stats": {
+              "views": 780,
+              "clicks": 95,
+              "applications": 12
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 320, "clicks": 41, "applications": 5 }
+            "stats": {
+              "views": 320,
+              "clicks": 41,
+              "applications": 5
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -85,7 +140,18 @@
     "id": "job-003",
     "title": "Marketingový servis a komunikace",
     "recruiter": "Jana Dvořáková",
+    "department": 0,
+    "hiringManagers": [
+      "Klára Benešová",
+      "Michal Král"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 12,
+      "unassessed": 23,
+      "inProgress": 4,
+      "total": 81
+    },
     "ads": [
       {
         "id": "ad-003-1",
@@ -95,27 +161,44 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-05-20",
             "publishedTo": "2026-08-31",
-            "stats": { "views": 2100, "clicks": 340, "applications": 42 }
+            "stats": {
+              "views": 2100,
+              "clicks": 340,
+              "applications": 42
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-05-20",
             "publishedTo": "2026-08-31",
-            "stats": { "views": 980, "clicks": 145, "applications": 18 }
+            "stats": {
+              "views": 980,
+              "clicks": 145,
+              "applications": 18
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-08-31",
-            "stats": { "views": 430, "clicks": 72, "applications": 9 }
+            "stats": {
+              "views": 430,
+              "clicks": 72,
+              "applications": 9
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-05-01",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 260, "clicks": 38, "applications": 6 }
+            "stats": {
+              "views": 260,
+              "clicks": 38,
+              "applications": 6
+            }
           }
-        ]
+        ],
+        "status": "published"
       },
       {
         "id": "ad-003-2",
@@ -125,9 +208,14 @@
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-05",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 640, "clicks": 98, "applications": 14 }
+            "stats": {
+              "views": 640,
+              "clicks": 98,
+              "applications": 14
+            }
           }
-        ]
+        ],
+        "status": "published"
       },
       {
         "id": "ad-003-3",
@@ -137,15 +225,24 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-08-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 310, "clicks": 44, "applications": 4 }
+            "stats": {
+              "views": 310,
+              "clicks": 44,
+              "applications": 4
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-08-01",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 95, "clicks": 12, "applications": 1 }
+            "stats": {
+              "views": 95,
+              "clicks": 12,
+              "applications": 1
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -153,7 +250,16 @@
     "id": "job-004",
     "title": "Provozní elektrikář ČK II.",
     "recruiter": "Petr Svoboda",
+    "department": "Český Krumlov",
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
     "status": "open",
+    "candidates": {
+      "unassessed": 3,
+      "inProgress": 14,
+      "total": 36
+    },
     "ads": [
       {
         "id": "ad-004-1",
@@ -163,21 +269,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 890, "clicks": 112, "applications": 16 }
+            "stats": {
+              "views": 890,
+              "clicks": 112,
+              "applications": 16
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 540, "clicks": 68, "applications": 9 }
+            "stats": {
+              "views": 540,
+              "clicks": 68,
+              "applications": 9
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-06-15",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 180, "clicks": 22, "applications": 3 }
+            "stats": {
+              "views": 180,
+              "clicks": 22,
+              "applications": 3
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -185,7 +304,16 @@
     "id": "job-005",
     "title": "Obchodní zástupce/zástupkyně - severovýchodní  Čechy",
     "recruiter": "Eva Černá",
-    "status": "closed",
+    "hiringManagers": [
+      "Alena Pokorná"
+    ],
+    "status": "archive",
+    "candidates": {
+      "new": 0,
+      "unassessed": 2,
+      "inProgress": 1,
+      "total": 29
+    },
     "ads": [
       {
         "id": "ad-005-1",
@@ -195,33 +323,54 @@
             "portal": "jobs_cz",
             "publishedFrom": "2025-11-01",
             "publishedTo": "2026-02-28",
-            "stats": { "views": 2450, "clicks": 380, "applications": 51 }
+            "stats": {
+              "views": 2450,
+              "clicks": 380,
+              "applications": 51
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2025-11-01",
             "publishedTo": "2026-02-28",
-            "stats": { "views": 1320, "clicks": 198, "applications": 24 }
+            "stats": {
+              "views": 1320,
+              "clicks": 198,
+              "applications": 24
+            }
           },
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2025-12-01",
             "publishedTo": "2026-02-15",
-            "stats": { "views": 670, "clicks": 91, "applications": 10 }
+            "stats": {
+              "views": 670,
+              "clicks": 91,
+              "applications": 10
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2025-12-01",
             "publishedTo": "2026-02-15",
-            "stats": { "views": 290, "clicks": 41, "applications": 5 }
+            "stats": {
+              "views": 290,
+              "clicks": 41,
+              "applications": 5
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2025-10-15",
             "publishedTo": "2026-02-28",
-            "stats": { "views": 150, "clicks": 19, "applications": 2 }
+            "stats": {
+              "views": 150,
+              "clicks": 19,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       },
       {
         "id": "ad-005-2",
@@ -231,9 +380,14 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-01-10",
             "publishedTo": "2026-03-31",
-            "stats": { "views": 480, "clicks": 62, "applications": 7 }
+            "stats": {
+              "views": 480,
+              "clicks": 62,
+              "applications": 7
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -241,7 +395,17 @@
     "id": "job-006",
     "title": "Specialista plánování výroby II.",
     "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 3,
+      "unassessed": 11,
+      "inProgress": 6,
+      "total": 22
+    },
     "ads": [
       {
         "id": "ad-006-1",
@@ -250,16 +414,25 @@
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-15",
-            "publishedTo": "2026-09-30",
-            "stats": { "views": 1120, "clicks": 156, "applications": 19 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 1120,
+              "clicks": 156,
+              "applications": 19
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-12-31",
-            "stats": { "views": 210, "clicks": 31, "applications": 4 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 210,
+              "clicks": 31,
+              "applications": 4
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       },
       {
         "id": "ad-006-2",
@@ -268,16 +441,25 @@
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-07-10",
-            "publishedTo": "2026-10-10",
-            "stats": { "views": 640, "clicks": 88, "applications": 11 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 640,
+              "clicks": 88,
+              "applications": 11
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-07-10",
-            "publishedTo": "2026-10-10",
-            "stats": { "views": 175, "clicks": 24, "applications": 2 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 175,
+              "clicks": 24,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -285,7 +467,17 @@
     "id": "job-007",
     "title": "Expedient mlékárenských výrobků JH",
     "recruiter": "Petr Svoboda",
+    "department": "Jindřichův Hradec",
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 0,
+      "unassessed": 0,
+      "inProgress": 8,
+      "total": 19
+    },
     "ads": [
       {
         "id": "ad-007-1",
@@ -295,21 +487,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 760, "clicks": 98, "applications": 14 }
+            "stats": {
+              "views": 760,
+              "clicks": 98,
+              "applications": 14
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 510, "clicks": 65, "applications": 8 }
+            "stats": {
+              "views": 510,
+              "clicks": 65,
+              "applications": 8
+            }
           },
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-15",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 340, "clicks": 48, "applications": 6 }
+            "stats": {
+              "views": 340,
+              "clicks": 48,
+              "applications": 6
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -317,7 +522,17 @@
     "id": "job-008",
     "title": "Expedient mlékárenských výrobků JH",
     "recruiter": "Petr Svoboda",
-    "status": "closed",
+    "department": 0,
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "archive",
+    "candidates": {
+      "new": 0,
+      "unassessed": 1,
+      "inProgress": 0,
+      "total": 12
+    },
     "ads": [
       {
         "id": "ad-008-1",
@@ -327,15 +542,24 @@
             "portal": "jobs_cz",
             "publishedFrom": "2025-09-01",
             "publishedTo": "2025-12-15",
-            "stats": { "views": 980, "clicks": 124, "applications": 18 }
+            "stats": {
+              "views": 980,
+              "clicks": 124,
+              "applications": 18
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2025-09-01",
             "publishedTo": "2025-12-15",
-            "stats": { "views": 140, "clicks": 18, "applications": 2 }
+            "stats": {
+              "views": 140,
+              "clicks": 18,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -343,7 +567,17 @@
     "id": "job-009",
     "title": "Seřizovač výrobního zařízení JH",
     "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 8,
+      "unassessed": 15,
+      "inProgress": 7,
+      "total": 48
+    },
     "ads": [
       {
         "id": "ad-009-1",
@@ -353,21 +587,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-20",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 1050, "clicks": 142, "applications": 17 }
+            "stats": {
+              "views": 1050,
+              "clicks": 142,
+              "applications": 17
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-06-20",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 620, "clicks": 81, "applications": 10 }
+            "stats": {
+              "views": 620,
+              "clicks": 81,
+              "applications": 10
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 195, "clicks": 25, "applications": 3 }
+            "stats": {
+              "views": 195,
+              "clicks": 25,
+              "applications": 3
+            }
           }
-        ]
+        ],
+        "status": "published"
       },
       {
         "id": "ad-009-2",
@@ -377,15 +624,24 @@
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-08-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 280, "clicks": 39, "applications": 5 }
+            "stats": {
+              "views": 280,
+              "clicks": 39,
+              "applications": 5
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-08-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 110, "clicks": 15, "applications": 1 }
+            "stats": {
+              "views": 110,
+              "clicks": 15,
+              "applications": 1
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -393,7 +649,17 @@
     "id": "job-010",
     "title": "KUCHAŘ/KA",
     "recruiter": "Jana Dvořáková",
+    "department": 0,
+    "hiringManagers": [
+      "Hana Veselá"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 2,
+      "unassessed": 9,
+      "inProgress": 13,
+      "total": 63
+    },
     "ads": [
       {
         "id": "ad-010-1",
@@ -403,27 +669,44 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-07-15",
             "publishedTo": "2026-10-15",
-            "stats": { "views": 1320, "clicks": 198, "applications": 28 }
+            "stats": {
+              "views": 1320,
+              "clicks": 198,
+              "applications": 28
+            }
           },
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-15",
             "publishedTo": "2026-10-15",
-            "stats": { "views": 890, "clicks": 142, "applications": 22 }
+            "stats": {
+              "views": 890,
+              "clicks": 142,
+              "applications": 22
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-07-20",
             "publishedTo": "2026-10-15",
-            "stats": { "views": 540, "clicks": 76, "applications": 11 }
+            "stats": {
+              "views": 540,
+              "clicks": 76,
+              "applications": 11
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 160, "clicks": 21, "applications": 3 }
+            "stats": {
+              "views": 160,
+              "clicks": 21,
+              "applications": 3
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -431,7 +714,16 @@
     "id": "job-011",
     "title": "Údržbář – elektrikář JE (pouze ranní směna)",
     "recruiter": "Petr Svoboda",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
     "status": "open",
+    "candidates": {
+      "unassessed": 4,
+      "inProgress": 2,
+      "total": 8
+    },
     "ads": [
       {
         "id": "ad-011-1",
@@ -440,16 +732,25 @@
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-09-30",
-            "stats": { "views": 720, "clicks": 94, "applications": 12 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 720,
+              "clicks": 94,
+              "applications": 12
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-05-20",
-            "publishedTo": "2026-12-31",
-            "stats": { "views": 130, "clicks": 16, "applications": 2 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 130,
+              "clicks": 16,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -457,7 +758,17 @@
     "id": "job-012",
     "title": "Provozní elektrikář ČK",
     "recruiter": "Petr Svoboda",
-    "status": "closed",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "archive",
+    "candidates": {
+      "new": 0,
+      "unassessed": 0,
+      "inProgress": 0,
+      "total": 17
+    },
     "ads": [
       {
         "id": "ad-012-1",
@@ -467,21 +778,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2025-10-01",
             "publishedTo": "2026-01-31",
-            "stats": { "views": 1180, "clicks": 152, "applications": 21 }
+            "stats": {
+              "views": 1180,
+              "clicks": 152,
+              "applications": 21
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2025-10-01",
             "publishedTo": "2026-01-31",
-            "stats": { "views": 690, "clicks": 88, "applications": 11 }
+            "stats": {
+              "views": 690,
+              "clicks": 88,
+              "applications": 11
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2025-11-01",
             "publishedTo": "2026-01-15",
-            "stats": { "views": 220, "clicks": 30, "applications": 3 }
+            "stats": {
+              "views": 220,
+              "clicks": 30,
+              "applications": 3
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -489,7 +813,17 @@
     "id": "job-013",
     "title": "Příjem mléka JH",
     "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 1,
+      "unassessed": 6,
+      "inProgress": 5,
+      "total": 21
+    },
     "ads": [
       {
         "id": "ad-013-1",
@@ -499,21 +833,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 580, "clicks": 72, "applications": 9 }
+            "stats": {
+              "views": 580,
+              "clicks": 72,
+              "applications": 9
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 410, "clicks": 51, "applications": 7 }
+            "stats": {
+              "views": 410,
+              "clicks": 51,
+              "applications": 7
+            }
           },
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-10",
             "publishedTo": "2026-09-30",
-            "stats": { "views": 290, "clicks": 38, "applications": 5 }
+            "stats": {
+              "views": 290,
+              "clicks": 38,
+              "applications": 5
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -521,7 +868,18 @@
     "id": "job-014",
     "title": "Mistr/Mistrová výrobního střediska",
     "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek",
+      "Hana Veselá"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 4,
+      "unassessed": 12,
+      "inProgress": 16,
+      "total": 59
+    },
     "ads": [
       {
         "id": "ad-014-1",
@@ -531,21 +889,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-05-15",
             "publishedTo": "2026-09-15",
-            "stats": { "views": 1680, "clicks": 248, "applications": 31 }
+            "stats": {
+              "views": 1680,
+              "clicks": 248,
+              "applications": 31
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-05-15",
             "publishedTo": "2026-09-15",
-            "stats": { "views": 920, "clicks": 128, "applications": 15 }
+            "stats": {
+              "views": 920,
+              "clicks": 128,
+              "applications": 15
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-05-01",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 340, "clicks": 48, "applications": 6 }
+            "stats": {
+              "views": 340,
+              "clicks": 48,
+              "applications": 6
+            }
           }
-        ]
+        ],
+        "status": "published"
       },
       {
         "id": "ad-014-2",
@@ -555,15 +926,24 @@
             "portal": "atmoskop",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-09-15",
-            "stats": { "views": 380, "clicks": 55, "applications": 7 }
+            "stats": {
+              "views": 380,
+              "clicks": 55,
+              "applications": 7
+            }
           },
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-06-01",
             "publishedTo": "2026-09-15",
-            "stats": { "views": 450, "clicks": 62, "applications": 8 }
+            "stats": {
+              "views": 450,
+              "clicks": 62,
+              "applications": 8
+            }
           }
-        ]
+        ],
+        "status": "published"
       },
       {
         "id": "ad-014-3",
@@ -573,9 +953,14 @@
             "portal": "career_pages",
             "publishedFrom": "2026-08-01",
             "publishedTo": "2026-11-30",
-            "stats": { "views": 85, "clicks": 11, "applications": 2 }
+            "stats": {
+              "views": 85,
+              "clicks": 11,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -583,7 +968,17 @@
     "id": "job-015",
     "title": "Provozní elektrikář JH",
     "recruiter": "Petr Svoboda",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 0,
+      "unassessed": 5,
+      "inProgress": 3,
+      "total": 14
+    },
     "ads": [
       {
         "id": "ad-015-1",
@@ -593,15 +988,24 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-07-05",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 810, "clicks": 105, "applications": 13 }
+            "stats": {
+              "views": 810,
+              "clicks": 105,
+              "applications": 13
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-07-05",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 490, "clicks": 61, "applications": 8 }
+            "stats": {
+              "views": 490,
+              "clicks": 61,
+              "applications": 8
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -609,7 +1013,17 @@
     "id": "job-016",
     "title": "Dělník /dělnice porcovny – Český Krumlov",
     "recruiter": "Eva Černá",
+    "department": "Český Krumlov",
+    "hiringManagers": [
+      "Alena Pokorná"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 0,
+      "unassessed": 8,
+      "inProgress": 1,
+      "total": 10
+    },
     "ads": [
       {
         "id": "ad-016-1",
@@ -618,28 +1032,45 @@
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-10",
-            "publishedTo": "2026-09-30",
-            "stats": { "views": 1420, "clicks": 210, "applications": 36 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 1420,
+              "clicks": 210,
+              "applications": 36
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-06-10",
-            "publishedTo": "2026-09-30",
-            "stats": { "views": 980, "clicks": 148, "applications": 24 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 980,
+              "clicks": 148,
+              "applications": 24
+            }
           },
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-06-20",
-            "publishedTo": "2026-09-15",
-            "stats": { "views": 720, "clicks": 110, "applications": 19 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 720,
+              "clicks": 110,
+              "applications": 19
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-12-31",
-            "stats": { "views": 200, "clicks": 28, "applications": 4 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 200,
+              "clicks": 28,
+              "applications": 4
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       },
       {
         "id": "ad-016-2",
@@ -648,10 +1079,15 @@
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-07-01",
-            "publishedTo": "2026-09-30",
-            "stats": { "views": 260, "clicks": 36, "applications": 5 }
+            "publishedTo": "2026-07-31",
+            "stats": {
+              "views": 260,
+              "clicks": 36,
+              "applications": 5
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -659,7 +1095,17 @@
     "id": "job-017",
     "title": "Expedient mlékárenských výrobků (PE)",
     "recruiter": "Martina Nováková",
-    "status": "closed",
+    "department": 0,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
+    "status": "archive",
+    "candidates": {
+      "new": 0,
+      "unassessed": 0,
+      "inProgress": 2,
+      "total": 25
+    },
     "ads": [
       {
         "id": "ad-017-1",
@@ -669,21 +1115,34 @@
             "portal": "jobs_cz",
             "publishedFrom": "2025-08-01",
             "publishedTo": "2025-11-30",
-            "stats": { "views": 860, "clicks": 108, "applications": 14 }
+            "stats": {
+              "views": 860,
+              "clicks": 108,
+              "applications": 14
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2025-08-01",
             "publishedTo": "2025-11-30",
-            "stats": { "views": 520, "clicks": 64, "applications": 8 }
+            "stats": {
+              "views": 520,
+              "clicks": 64,
+              "applications": 8
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2025-08-01",
             "publishedTo": "2025-11-30",
-            "stats": { "views": 110, "clicks": 14, "applications": 1 }
+            "stats": {
+              "views": 110,
+              "clicks": 14,
+              "applications": 1
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -691,7 +1150,17 @@
     "id": "job-018",
     "title": "Operátor/ka přepisu „stazek\" záznamů o provozu vozidel (zkrácený úvazek) JE",
     "recruiter": "Jana Dvořáková",
+    "department": 0,
+    "hiringManagers": [
+      "Klára Benešová"
+    ],
     "status": "open",
+    "candidates": {
+      "new": 7,
+      "unassessed": 21,
+      "inProgress": 10,
+      "total": 72
+    },
     "ads": [
       {
         "id": "ad-018-1",
@@ -701,15 +1170,24 @@
             "portal": "jobs_cz",
             "publishedFrom": "2026-07-01",
             "publishedTo": "2026-10-31",
-            "stats": { "views": 640, "clicks": 82, "applications": 11 }
+            "stats": {
+              "views": 640,
+              "clicks": 82,
+              "applications": 11
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-06-15",
             "publishedTo": "2026-12-31",
-            "stats": { "views": 95, "clicks": 12, "applications": 2 }
+            "stats": {
+              "views": 95,
+              "clicks": 12,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "published"
       }
     ]
   },
@@ -717,7 +1195,17 @@
     "id": "job-019",
     "title": "Průmyslový programátor II.",
     "recruiter": "Tomáš Horák",
-    "status": "closed",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
+    "status": "archive",
+    "candidates": {
+      "new": 0,
+      "unassessed": 3,
+      "inProgress": 0,
+      "total": 41
+    },
     "ads": [
       {
         "id": "ad-019-1",
@@ -727,27 +1215,44 @@
             "portal": "jobs_cz",
             "publishedFrom": "2025-12-01",
             "publishedTo": "2026-03-31",
-            "stats": { "views": 1920, "clicks": 286, "applications": 29 }
+            "stats": {
+              "views": 1920,
+              "clicks": 286,
+              "applications": 29
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2025-12-01",
             "publishedTo": "2026-03-31",
-            "stats": { "views": 1040, "clicks": 152, "applications": 16 }
+            "stats": {
+              "views": 1040,
+              "clicks": 152,
+              "applications": 16
+            }
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-01-05",
             "publishedTo": "2026-03-15",
-            "stats": { "views": 410, "clicks": 58, "applications": 6 }
+            "stats": {
+              "views": 410,
+              "clicks": 58,
+              "applications": 6
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2025-11-15",
             "publishedTo": "2026-03-31",
-            "stats": { "views": 280, "clicks": 36, "applications": 4 }
+            "stats": {
+              "views": 280,
+              "clicks": 36,
+              "applications": 4
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       },
       {
         "id": "ad-019-2",
@@ -757,9 +1262,14 @@
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-01-15",
             "publishedTo": "2026-03-31",
-            "stats": { "views": 320, "clicks": 42, "applications": 3 }
+            "stats": {
+              "views": 320,
+              "clicks": 42,
+              "applications": 3
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
   },
@@ -767,7 +1277,17 @@
     "id": "job-020",
     "title": "Provozní elektrikář JH",
     "recruiter": "Eva Černá",
-    "status": "closed",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "archive",
+    "candidates": {
+      "new": 0,
+      "unassessed": 1,
+      "inProgress": 4,
+      "total": 33
+    },
     "ads": [
       {
         "id": "ad-020-1",
@@ -777,22 +1297,67 @@
             "portal": "jobs_cz",
             "publishedFrom": "2025-07-01",
             "publishedTo": "2025-10-31",
-            "stats": { "views": 940, "clicks": 118, "applications": 15 }
+            "stats": {
+              "views": 940,
+              "clicks": 118,
+              "applications": 15
+            }
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2025-07-01",
             "publishedTo": "2025-10-31",
-            "stats": { "views": 560, "clicks": 71, "applications": 9 }
+            "stats": {
+              "views": 560,
+              "clicks": 71,
+              "applications": 9
+            }
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2025-07-01",
             "publishedTo": "2025-10-31",
-            "stats": { "views": 125, "clicks": 16, "applications": 2 }
+            "stats": {
+              "views": 125,
+              "clicks": 16,
+              "applications": 2
+            }
           }
-        ]
+        ],
+        "status": "unpublished"
       }
     ]
+  },
+  {
+    "id": "job-021",
+    "title": "Operátor výroby – noční směna ČB",
+    "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
+    "status": "open",
+    "ads": []
+  },
+  {
+    "id": "job-022",
+    "title": "Personalista/ka – zkrácený úvazek",
+    "recruiter": "Eva Černá",
+    "hiringManagers": [
+      "Alena Pokorná"
+    ],
+    "status": "open",
+    "ads": []
+  },
+  {
+    "id": "job-023",
+    "title": "Technik údržby – rozpracovaný nábor",
+    "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
+    "status": "open",
+    "ads": []
   }
 ]
