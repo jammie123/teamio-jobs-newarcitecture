@@ -8,6 +8,7 @@
       "Lukáš Procházka"
     ],
     "status": "open",
+    "createdAt": "2026-05-01",
     "candidates": {
       "new": 5,
       "unassessed": 18,
@@ -90,6 +91,7 @@
       "Lukáš Procházka"
     ],
     "status": "open",
+    "createdAt": "2026-05-18",
     "candidates": {
       "new": 0,
       "unassessed": 7,
@@ -146,6 +148,7 @@
       "Michal Král"
     ],
     "status": "open",
+    "createdAt": "2026-04-17",
     "candidates": {
       "new": 12,
       "unassessed": 23,
@@ -211,6 +214,7 @@
       "Jiří Malý"
     ],
     "status": "open",
+    "createdAt": "2026-06-01",
     "candidates": {
       "unassessed": 3,
       "inProgress": 14,
@@ -264,6 +268,7 @@
       "Alena Pokorná"
     ],
     "status": "archive",
+    "createdAt": "2025-10-01",
     "candidates": {
       "new": 0,
       "unassessed": 2,
@@ -339,6 +344,7 @@
       "Martin Šimek"
     ],
     "status": "open",
+    "createdAt": "2026-06-01",
     "candidates": {
       "new": 3,
       "unassessed": 11,
@@ -411,6 +417,7 @@
       "Pavel Růžička"
     ],
     "status": "open",
+    "createdAt": "2026-06-17",
     "candidates": {
       "new": 0,
       "unassessed": 0,
@@ -466,6 +473,7 @@
       "Pavel Růžička"
     ],
     "status": "archive",
+    "createdAt": "2025-08-18",
     "candidates": {
       "new": 0,
       "unassessed": 1,
@@ -511,6 +519,7 @@
       "Martin Šimek"
     ],
     "status": "open",
+    "createdAt": "2026-05-18",
     "candidates": {
       "new": 8,
       "unassessed": 15,
@@ -566,6 +575,7 @@
       "Hana Veselá"
     ],
     "status": "open",
+    "createdAt": "2026-06-17",
     "candidates": {
       "new": 2,
       "unassessed": 9,
@@ -579,7 +589,7 @@
         "placements": [
           {
             "portal": "jobs_cz",
-            "publishedFrom": "2026-07-15",
+            "publishedFrom": "2026-08-23",
             "publishedTo": "2026-10-31",
             "stats": {
               "views": 1320,
@@ -631,6 +641,7 @@
       "Jiří Malý"
     ],
     "status": "open",
+    "createdAt": "2026-05-18",
     "candidates": {
       "unassessed": 4,
       "inProgress": 2,
@@ -675,6 +686,7 @@
       "Jiří Malý"
     ],
     "status": "archive",
+    "createdAt": "2025-09-17",
     "candidates": {
       "new": 0,
       "unassessed": 0,
@@ -730,6 +742,7 @@
       "Pavel Růžička"
     ],
     "status": "open",
+    "createdAt": "2026-06-17",
     "candidates": {
       "new": 1,
       "unassessed": 6,
@@ -786,6 +799,7 @@
       "Hana Veselá"
     ],
     "status": "open",
+    "createdAt": "2026-04-17",
     "candidates": {
       "new": 4,
       "unassessed": 12,
@@ -841,6 +855,7 @@
       "Jiří Malý"
     ],
     "status": "open",
+    "createdAt": "2026-06-21",
     "candidates": {
       "new": 0,
       "unassessed": 5,
@@ -886,6 +901,7 @@
       "Alena Pokorná"
     ],
     "status": "open",
+    "createdAt": "2026-05-18",
     "candidates": {
       "new": 0,
       "unassessed": 8,
@@ -951,6 +967,7 @@
       "Lukáš Procházka"
     ],
     "status": "archive",
+    "createdAt": "2025-07-18",
     "candidates": {
       "new": 0,
       "unassessed": 0,
@@ -1006,6 +1023,7 @@
       "Klára Benešová"
     ],
     "status": "open",
+    "createdAt": "2026-06-01",
     "candidates": {
       "new": 7,
       "unassessed": 21,
@@ -1051,6 +1069,7 @@
       "Martin Šimek"
     ],
     "status": "archive",
+    "createdAt": "2025-11-01",
     "candidates": {
       "new": 0,
       "unassessed": 3,
@@ -1116,6 +1135,7 @@
       "Jiří Malý"
     ],
     "status": "archive",
+    "createdAt": "2025-06-17",
     "candidates": {
       "new": 0,
       "unassessed": 1,
@@ -1170,7 +1190,8 @@
     "hiringManagers": [
       "Lukáš Procházka"
     ],
-    "status": "open",
+    "status": "draft",
+    "createdAt": "2026-08-22",
     "ads": []
   },
   {
@@ -1180,7 +1201,8 @@
     "hiringManagers": [
       "Alena Pokorná"
     ],
-    "status": "open",
+    "status": "draft",
+    "createdAt": "2026-08-19",
     "ads": []
   },
   {
@@ -1191,7 +1213,8 @@
     "hiringManagers": [
       "Martin Šimek"
     ],
-    "status": "open",
+    "status": "draft",
+    "createdAt": "2026-08-12",
     "ads": []
   }
 ]

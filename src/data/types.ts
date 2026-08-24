@@ -1,4 +1,4 @@
-export type JobStatus = 'open' | 'archive'
+export type JobStatus = 'open' | 'draft' | 'archive'
 
 export type AdStatus = 'published' | 'unpublished'
 
@@ -46,6 +46,7 @@ export type Job = {
   department?: JobDepartment
   hiringManagers?: string[]
   status: JobStatus
+  createdAt: string
   candidates?: JobCandidates
   ads: Ad[]
 }

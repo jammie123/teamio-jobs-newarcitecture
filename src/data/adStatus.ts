@@ -1,6 +1,9 @@
 import type { Ad, AdStatus, Job } from './types'
 
-export type JobListingTab = 'published' | 'unpublished' | 'draft' | 'archived'
+export type JobListingTab = 'active' | 'published' | 'unpublished' | 'draft' | 'archived'
+
+/** Exclusive card/list bucket. Active is a wider Open-job filter, not a card status. */
+export type JobCardListingStatus = Exclude<JobListingTab, 'active'>
 
 export function todayIso(now = new Date()): string {
   const year = now.getFullYear()
@@ -19,12 +22,12 @@ export function computeAdStatus(ad: Ad, today = todayIso()): AdStatus {
   return anyLive ? 'published' : 'unpublished'
 }
 
-export function listingTab(job: Job, today = todayIso()): JobListingTab {
+export function listingTab(job: Job, today = todayIso()): JobCardListingStatus {
   if (job.status === 'archive') {
     return 'archived'
   }
 
-  if (job.ads.length === 0) {
+  if (job.status === 'draft' || job.ads.length === 0) {
     return 'draft'
   }
 
@@ -35,6 +38,14 @@ export function listingTab(job: Job, today = todayIso()): JobListingTab {
   return 'unpublished'
 }
 
+export function jobBelongsToTab(job: Job, tab: JobListingTab, today = todayIso()): boolean {
+  if (tab === 'active') {
+    return job.status === 'open'
+  }
+
+  return listingTab(job, today) === tab
+}
+
 export function jobsForTab(jobs: Job[], tab: JobListingTab, today = todayIso()): Job[] {
-  return jobs.filter((job) => listingTab(job, today) === tab)
+  return jobs.filter((job) => jobBelongsToTab(job, tab, today))
 }
