@@ -15,11 +15,23 @@ export type PlacementStats = {
   applications: number
 }
 
+/** Portal-specific paid highlight. `top` is only valid on jobs.cz and prace.cz. */
+export type HighlightType = 'jobstip' | 'supermax' | 'pzr_highlight' | 'top'
+
+export type Highlight = {
+  type: HighlightType
+  publishedFrom: string
+  publishedTo: string
+  stats: PlacementStats
+}
+
 export type Placement = {
   portal: PortalId
   publishedFrom: string
   publishedTo: string
   stats: PlacementStats
+  /** Paid highlights on this vystavení. Omitted when the ad is only published. */
+  highlights?: Highlight[]
 }
 
 export type Ad = {
@@ -36,6 +48,14 @@ export type JobCandidates = {
   total: number
 }
 
+/** Recruiter note on a nábor: start date, replacement, or salary. */
+export type NoteType = 'start' | 'replacement' | 'salary'
+
+export type Note = {
+  type: NoteType
+  text: string
+}
+
 /** `0` or omitted = no branch on the card / in filters. A string is the branch name. */
 export type JobDepartment = 0 | string
 
@@ -47,6 +67,7 @@ export type Job = {
   hiringManagers?: string[]
   status: JobStatus
   createdAt: string
+  note?: Note
   candidates?: JobCandidates
   ads: Ad[]
 }
