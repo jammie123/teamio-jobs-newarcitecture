@@ -1324,5 +1324,71 @@
     "status": "draft",
     "createdAt": "2026-08-12",
     "ads": []
+  },
+  {
+    "id": "job-024",
+    "title": "Disponent dopravy – ČB",
+    "recruiter": "Jana Dvořáková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-08-18",
+    "candidates": {
+      "new": 4,
+      "unassessed": 9,
+      "inProgress": 3,
+      "total": 22
+    },
+    "ads": [
+      {
+        "id": "ad-024-1",
+        "title": "Disponent dopravy – České Budějovice",
+        "placements": [
+          {
+            "portal": "jobs_cz",
+            "publishedFrom": "2026-08-20",
+            "publishedTo": "2026-08-31",
+            "stats": {
+              "views": 410,
+              "clicks": 58,
+              "applications": 7
+            }
+          },
+          {
+            "portal": "prace_cz",
+            "publishedFrom": "2026-08-20",
+            "publishedTo": "2026-10-31",
+            "stats": {
+              "views": 260,
+              "clicks": 34,
+              "applications": 4
+            }
+          },
+          {
+            "portal": "career_pages",
+            "publishedFrom": "2026-06-02",
+            "publishedTo": "2026-08-10",
+            "stats": {
+              "views": 95,
+              "clicks": 12,
+              "applications": 1
+            }
+          },
+          {
+            "portal": "atmoskop",
+            "publishedFrom": "2026-06-02",
+            "publishedTo": "2026-08-10",
+            "stats": {
+              "views": 48,
+              "clicks": 6,
+              "applications": 0
+            }
+          }
+        ],
+        "status": "published"
+      }
+    ]
   }
 ]
