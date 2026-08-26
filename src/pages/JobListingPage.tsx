@@ -35,10 +35,22 @@ const leftMenuItems: LeftMenuItemData[] = [
   { id: 'reporty', label: 'Reporty', icon: 'bar-chart', href: '#reporty' },
 ]
 
-const TABS: Array<{ value: JobListingTab; label: string }> = [
-  { value: 'active', label: 'Aktivní' },
-  { value: 'published', label: 'Zveřejněný' },
-  { value: 'unpublished', label: 'Nezveřejněný' },
+const TABS: Array<{ value: JobListingTab; label: string; info?: string }> = [
+  {
+    value: 'active',
+    label: 'Aktivní',
+    info: 'Aktivní nábor, který mohou a nemusí mít inzeráty',
+  },
+  {
+    value: 'published',
+    label: 'Zveřejněný',
+    info: 'Aktivní nábor, na kterém běží vystavená inzerce',
+  },
+  {
+    value: 'unpublished',
+    label: 'Nezveřejněný',
+    info: 'Aktivní nábor s ukončenou nebo vypršelou inzercí',
+  },
   { value: 'draft', label: 'Rozpracovaný' },
   { value: 'archived', label: 'Archivní' },
 ]
@@ -60,7 +72,9 @@ const jobCardNoops = {
   onEditAdvertisement: noop,
   onExtendAndRepublish: noop,
   onEndPublication: noop,
+  onHighlightAndTop: noop,
   onCreateAdvertisement: noop,
+  onAddNote: noop,
   onCandidatesClick: noop,
   onStatusChange: noop,
   onCompleteDraft: noop,
@@ -139,6 +153,7 @@ export function JobListingPage() {
                     key={item.value}
                     value={item.value}
                     count={jobsOnTab(item.value, filter).length}
+                    info={item.info}
                   >
                     {item.label}
                   </TabsTrigger>

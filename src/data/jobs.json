@@ -33,7 +33,7 @@
               {
                 "type": "jobstip",
                 "publishedFrom": "2026-06-08",
-                "publishedTo": "2026-07-23",
+                "publishedTo": "2026-09-30",
                 "stats": {
                   "views": 699,
                   "clicks": 105,
@@ -43,7 +43,7 @@
               {
                 "type": "top",
                 "publishedFrom": "2026-06-22",
-                "publishedTo": "2026-07-06",
+                "publishedTo": "2026-09-30",
                 "stats": {
                   "views": 331,
                   "clicks": 50,
@@ -65,7 +65,7 @@
               {
                 "type": "supermax",
                 "publishedFrom": "2026-06-08",
-                "publishedTo": "2026-07-18",
+                "publishedTo": "2026-09-30",
                 "stats": {
                   "views": 331,
                   "clicks": 42,
@@ -104,7 +104,7 @@
               {
                 "type": "pzr_highlight",
                 "publishedFrom": "2026-07-04",
-                "publishedTo": "2026-07-25",
+                "publishedTo": "2026-09-30",
                 "stats": {
                   "views": 157,
                   "clicks": 24,
@@ -162,7 +162,7 @@
               {
                 "type": "jobstip",
                 "publishedFrom": "2026-06-15",
-                "publishedTo": "2026-07-15",
+                "publishedTo": "2026-10-31",
                 "stats": {
                   "views": 486,
                   "clicks": 67,
@@ -184,7 +184,7 @@
               {
                 "type": "supermax",
                 "publishedFrom": "2026-06-14",
-                "publishedTo": "2026-07-12",
+                "publishedTo": "2026-10-31",
                 "stats": {
                   "views": 265,
                   "clicks": 32,
@@ -194,7 +194,7 @@
               {
                 "type": "top",
                 "publishedFrom": "2026-06-28",
-                "publishedTo": "2026-07-12",
+                "publishedTo": "2026-10-31",
                 "stats": {
                   "views": 133,
                   "clicks": 16,
