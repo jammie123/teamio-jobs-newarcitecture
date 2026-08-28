@@ -1,17 +1,29 @@
-import type { JobAdvertisement, JobPublication, JobPublicationHighlight } from '@teamio/starter/components'
+import type { JobAdvertisement, JobCardNewProps, JobPublication } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
-import { highlightLabel, portalLabel } from './portals'
-import type { Ad, Highlight, Job, Placement } from './types'
+import { portalLabel } from './portals'
+import type { Ad, Job, Placement } from './types'
 
-export function toJobCard(job: Job, today = todayIso()) {
+type JobCardNewData = Pick<
+  JobCardNewProps,
+  'title' | 'owner' | 'hiringManagers' | 'status' | 'candidates' | 'advertisements'
+>
+
+type JobCardNewStatus = NonNullable<JobCardNewProps['status']>
+
+export function toJobCard(job: Job, today = todayIso()): JobCardNewData {
   return {
     title: job.title,
     owner: job.recruiter,
     hiringManagers: job.hiringManagers,
-    status: listingTab(job, today),
+    status: toJobCardStatus(job, today),
     candidates: job.candidates,
     advertisements: job.ads.map((ad) => toAdvertisement(ad, today)),
   }
+}
+
+function toJobCardStatus(job: Job, today: string): JobCardNewStatus {
+  const tab = listingTab(job, today)
+  return tab === 'draft' ? 'active' : tab
 }
 
 function toAdvertisement(ad: Ad, today: string): JobAdvertisement {
@@ -22,23 +34,6 @@ function toAdvertisement(ad: Ad, today: string): JobAdvertisement {
   }
 }
 
-function toHighlight(adId: string, portal: Placement['portal'], highlight: Highlight, today: string): JobPublicationHighlight {
-  const mapped: JobPublicationHighlight = {
-    id: `${adId}-${portal}-${highlight.type}-${highlight.publishedFrom}`,
-    name: highlightLabel(highlight.type),
-    startDate: formatCzechDate(highlight.publishedFrom),
-    endDate: formatCzechDate(highlight.publishedTo),
-    viewCount: highlight.stats.views,
-    reactionCount: highlight.stats.applications,
-  }
-
-  if (highlight.publishedTo < today) {
-    mapped.status = 'expired'
-  }
-
-  return mapped
-}
-
 function toPublication(adId: string, placement: Placement, today: string): JobPublication {
   const publication: JobPublication = {
     id: `${adId}-${placement.portal}`,
@@ -47,12 +42,6 @@ function toPublication(adId: string, placement: Placement, today: string): JobPu
     endDate: formatCzechDate(placement.publishedTo),
     viewCount: placement.stats.views,
     reactionCount: placement.stats.applications,
-  }
-
-  if (placement.highlights?.length) {
-    publication.highlights = placement.highlights.map((highlight) =>
-      toHighlight(adId, placement.portal, highlight, today),
-    )
   }
 
   if (placement.publishedTo < today) {

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  JobCardOld,
+  JobCardNew,
   JobsFilter,
   Option,
   PageHeader,
@@ -72,14 +72,15 @@ const jobCardNoops = {
   onEditAdvertisement: noop,
   onExtendAndRepublish: noop,
   onEndPublication: noop,
-  onHighlightAndTop: noop,
   onCreateAdvertisement: noop,
-  onAddNote: noop,
   onCandidatesClick: noop,
   onStatusChange: noop,
   onCompleteDraft: noop,
   onGoToPublish: noop,
   onRestoreFromArchive: noop,
+  onViewStatisticsClick: noop,
+  onPreviewPublication: noop,
+  onExtendPublication: noop,
 }
 
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
@@ -108,7 +109,7 @@ function JobCardList({
   return (
     <div className="tm-flex tm-flex-col tm-gap-4">
       {items.map((job) => (
-        <JobCardOld key={job.id} {...toJobCard(job)} {...jobCardNoops} />
+        <JobCardNew key={job.id} {...toJobCard(job)} {...jobCardNoops} />
       ))}
     </div>
   )
