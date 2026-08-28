@@ -28,7 +28,29 @@
               "views": 1840,
               "clicks": 276,
               "applications": 34
-            }
+            },
+            "highlights": [
+              {
+                "type": "jobstip",
+                "publishedFrom": "2026-06-08",
+                "publishedTo": "2026-09-30",
+                "stats": {
+                  "views": 699,
+                  "clicks": 105,
+                  "applications": 13
+                }
+              },
+              {
+                "type": "top",
+                "publishedFrom": "2026-06-22",
+                "publishedTo": "2026-09-30",
+                "stats": {
+                  "views": 331,
+                  "clicks": 50,
+                  "applications": 6
+                }
+              }
+            ]
           },
           {
             "portal": "prace_cz",
@@ -38,7 +60,19 @@
               "views": 920,
               "clicks": 118,
               "applications": 15
-            }
+            },
+            "highlights": [
+              {
+                "type": "supermax",
+                "publishedFrom": "2026-06-08",
+                "publishedTo": "2026-09-30",
+                "stats": {
+                  "views": 331,
+                  "clicks": 42,
+                  "applications": 5
+                }
+              }
+            ]
           },
           {
             "portal": "career_pages",
@@ -65,7 +99,19 @@
               "views": 560,
               "clicks": 84,
               "applications": 11
-            }
+            },
+            "highlights": [
+              {
+                "type": "pzr_highlight",
+                "publishedFrom": "2026-07-04",
+                "publishedTo": "2026-09-30",
+                "stats": {
+                  "views": 157,
+                  "clicks": 24,
+                  "applications": 3
+                }
+              }
+            ]
           },
           {
             "portal": "atmoskop",
@@ -111,7 +157,19 @@
               "views": 1520,
               "clicks": 210,
               "applications": 27
-            }
+            },
+            "highlights": [
+              {
+                "type": "jobstip",
+                "publishedFrom": "2026-06-15",
+                "publishedTo": "2026-10-31",
+                "stats": {
+                  "views": 486,
+                  "clicks": 67,
+                  "applications": 9
+                }
+              }
+            ]
           },
           {
             "portal": "prace_cz",
@@ -121,7 +179,29 @@
               "views": 780,
               "clicks": 95,
               "applications": 12
-            }
+            },
+            "highlights": [
+              {
+                "type": "supermax",
+                "publishedFrom": "2026-06-14",
+                "publishedTo": "2026-10-31",
+                "stats": {
+                  "views": 265,
+                  "clicks": 32,
+                  "applications": 4
+                }
+              },
+              {
+                "type": "top",
+                "publishedFrom": "2026-06-28",
+                "publishedTo": "2026-10-31",
+                "stats": {
+                  "views": 133,
+                  "clicks": 16,
+                  "applications": 2
+                }
+              }
+            ]
           },
           {
             "portal": "career_pages",
@@ -149,6 +229,10 @@
     ],
     "status": "open",
     "createdAt": "2026-04-17",
+    "note": {
+      "type": "start",
+      "text": "Nástup ideálně od 1. 9. 2026, po zaškolení kolegyně."
+    },
     "candidates": {
       "new": 12,
       "unassessed": 23,
@@ -345,6 +429,10 @@
     ],
     "status": "open",
     "createdAt": "2026-06-01",
+    "note": {
+      "type": "replacement",
+      "text": "Náhrada za Martina Šimka – odchází k 31. 8. 2026."
+    },
     "candidates": {
       "new": 3,
       "unassessed": 11,
@@ -520,6 +608,10 @@
     ],
     "status": "open",
     "createdAt": "2026-05-18",
+    "note": {
+      "type": "salary",
+      "text": "Nabízíme 38–42 000 Kč hrubého + směnné příplatky."
+    },
     "candidates": {
       "new": 8,
       "unassessed": 15,
@@ -687,6 +779,10 @@
     ],
     "status": "archive",
     "createdAt": "2025-09-17",
+    "note": {
+      "type": "start",
+      "text": "Nástup byl plánovaný na leden 2026, nábor je uzavřený."
+    },
     "candidates": {
       "new": 0,
       "unassessed": 0,
@@ -856,6 +952,10 @@
     ],
     "status": "open",
     "createdAt": "2026-06-21",
+    "note": {
+      "type": "replacement",
+      "text": "Náhrada za odcházejícího elektrikáře na směně v JH."
+    },
     "candidates": {
       "new": 0,
       "unassessed": 5,
@@ -1024,6 +1124,10 @@
     ],
     "status": "open",
     "createdAt": "2026-06-01",
+    "note": {
+      "type": "salary",
+      "text": "Zkrácený úvazek 0,5, nabízíme 22 000 Kč hrubého."
+    },
     "candidates": {
       "new": 7,
       "unassessed": 21,
@@ -1192,6 +1296,10 @@
     ],
     "status": "draft",
     "createdAt": "2026-08-22",
+    "note": {
+      "type": "start",
+      "text": "Nástup na noční směnu od října 2026, mzdu ještě doladit s vedoucím."
+    },
     "ads": []
   },
   {
@@ -1216,5 +1324,71 @@
     "status": "draft",
     "createdAt": "2026-08-12",
     "ads": []
+  },
+  {
+    "id": "job-024",
+    "title": "Disponent dopravy – ČB",
+    "recruiter": "Jana Dvořáková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-08-18",
+    "candidates": {
+      "new": 4,
+      "unassessed": 9,
+      "inProgress": 3,
+      "total": 22
+    },
+    "ads": [
+      {
+        "id": "ad-024-1",
+        "title": "Disponent dopravy – České Budějovice",
+        "placements": [
+          {
+            "portal": "jobs_cz",
+            "publishedFrom": "2026-08-20",
+            "publishedTo": "2026-08-31",
+            "stats": {
+              "views": 410,
+              "clicks": 58,
+              "applications": 7
+            }
+          },
+          {
+            "portal": "prace_cz",
+            "publishedFrom": "2026-08-20",
+            "publishedTo": "2026-10-31",
+            "stats": {
+              "views": 260,
+              "clicks": 34,
+              "applications": 4
+            }
+          },
+          {
+            "portal": "career_pages",
+            "publishedFrom": "2026-06-02",
+            "publishedTo": "2026-08-10",
+            "stats": {
+              "views": 95,
+              "clicks": 12,
+              "applications": 1
+            }
+          },
+          {
+            "portal": "atmoskop",
+            "publishedFrom": "2026-06-02",
+            "publishedTo": "2026-08-10",
+            "stats": {
+              "views": 48,
+              "clicks": 6,
+              "applications": 0
+            }
+          }
+        ],
+        "status": "published"
+      }
+    ]
   }
 ]

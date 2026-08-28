@@ -1,17 +1,29 @@
-import type { JobAdvertisement, JobPublication } from '@teamio/starter/components'
+import type { JobAdvertisement, JobCardNewProps, JobPublication } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { portalLabel } from './portals'
 import type { Ad, Job, Placement } from './types'
 
-export function toJobCard(job: Job, today = todayIso()) {
+type JobCardNewData = Pick<
+  JobCardNewProps,
+  'title' | 'owner' | 'hiringManagers' | 'status' | 'candidates' | 'advertisements'
+>
+
+type JobCardNewStatus = NonNullable<JobCardNewProps['status']>
+
+export function toJobCard(job: Job, today = todayIso()): JobCardNewData {
   return {
     title: job.title,
     owner: job.recruiter,
     hiringManagers: job.hiringManagers,
-    status: listingTab(job, today),
+    status: toJobCardStatus(job, today),
     candidates: job.candidates,
     advertisements: job.ads.map((ad) => toAdvertisement(ad, today)),
   }
+}
+
+function toJobCardStatus(job: Job, today: string): JobCardNewStatus {
+  const tab = listingTab(job, today)
+  return tab === 'draft' ? 'active' : tab
 }
 
 function toAdvertisement(ad: Ad, today: string): JobAdvertisement {
@@ -29,6 +41,7 @@ function toPublication(adId: string, placement: Placement, today: string): JobPu
     startDate: formatCzechDate(placement.publishedFrom),
     endDate: formatCzechDate(placement.publishedTo),
     viewCount: placement.stats.views,
+    reactionCount: placement.stats.applications,
   }
 
   if (placement.publishedTo < today) {
