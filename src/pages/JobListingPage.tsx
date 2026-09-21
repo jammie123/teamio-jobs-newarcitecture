@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  JobCardSynteza,
+  JobCardSyntezaAds,
   JobsFilter,
   Option,
   PageHeader,
@@ -37,19 +37,24 @@ const leftMenuItems: LeftMenuItemData[] = [
 
 const TABS: Array<{ value: JobListingTab; label: string; info?: string }> = [
   {
-    value: 'active',
-    label: 'Aktivní',
-    info: 'Aktivní nábor, který mohou a nemusí mít inzeráty',
+    value: 'open',
+    label: 'Otevřený',
+    info: 'Otevřený nábor, který může i nemusí mít inzeráty',
   },
   {
     value: 'published',
     label: 'Zveřejněný',
-    info: 'Aktivní nábor, na kterém běží vystavená inzerce',
+    info: 'Otevřený nábor, na kterém běží vystavená inzerce',
   },
   {
     value: 'unpublished',
     label: 'Nezveřejněný',
-    info: 'Aktivní nábor s ukončenou nebo vypršelou inzercí',
+    info: 'Otevřený nábor s ukončenou nebo vypršelou inzercí',
+  },
+  {
+    value: 'endingSoon',
+    label: 'Brzy končí',
+    info: 'Otevřený nábor s inzercí, která končí do 7 dní',
   },
   { value: 'draft', label: 'Rozpracovaný' },
   { value: 'archived', label: 'Archivní' },
@@ -77,8 +82,10 @@ const jobCardNoops = {
   onActivityClick: noop,
   onExpandNote: noop,
   onViewStatisticsClick: noop,
+  onPreviewAdvertisement: noop,
   onPreviewPublication: noop,
   onExtendPublication: noop,
+  onCompleteAdvertisement: noop,
 }
 
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
@@ -107,7 +114,7 @@ function JobCardList({
   return (
     <div className="tm-flex tm-flex-col tm-gap-4">
       {items.map((job) => (
-        <JobCardSynteza key={job.id} {...toJobCard(job)} {...jobCardNoops} />
+        <JobCardSyntezaAds key={job.id} {...toJobCard(job)} {...jobCardNoops} />
       ))}
     </div>
   )

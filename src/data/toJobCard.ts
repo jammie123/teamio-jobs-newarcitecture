@@ -1,16 +1,16 @@
-import type { JobAdvertisement, JobCardSyntezaProps, JobPublication } from '@teamio/starter/components'
+import type { JobAdvertisement, JobCardSyntezaAdsProps, JobPublication } from '@teamio/starter/components'
 import { formatCzechDate, todayIso } from './adStatus'
 import { portalLabel } from './portals'
 import type { Ad, Job, JobCandidates, Placement } from './types'
 
-type JobCardSyntezaData = Pick<
-  JobCardSyntezaProps,
+type JobCardSyntezaAdsData = Pick<
+  JobCardSyntezaAdsProps,
   'title' | 'owner' | 'hiringManagers' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSyntezaCandidates = NonNullable<JobCardSyntezaProps['candidates']>
+type JobCardSyntezaCandidates = NonNullable<JobCardSyntezaAdsProps['candidates']>
 
-export function toJobCard(job: Job, today = todayIso()): JobCardSyntezaData {
+export function toJobCard(job: Job, today = todayIso()): JobCardSyntezaAdsData {
   return {
     title: job.title,
     owner: job.recruiter,
@@ -48,7 +48,7 @@ function toSyntezaCandidates(candidates?: JobCandidates): JobCardSyntezaCandidat
   }
 }
 
-function toNote(job: Job): JobCardSyntezaProps['note'] {
+function toNote(job: Job): JobCardSyntezaAdsProps['note'] {
   if (!job.note) {
     return undefined
   }

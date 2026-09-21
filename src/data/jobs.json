@@ -23,7 +23,7 @@
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 1840,
               "clicks": 276,
@@ -33,7 +33,7 @@
               {
                 "type": "jobstip",
                 "publishedFrom": "2026-06-08",
-                "publishedTo": "2026-09-30",
+                "publishedTo": "2026-09-25",
                 "stats": {
                   "views": 699,
                   "clicks": 105,
@@ -43,7 +43,7 @@
               {
                 "type": "top",
                 "publishedFrom": "2026-06-22",
-                "publishedTo": "2026-09-30",
+                "publishedTo": "2026-09-25",
                 "stats": {
                   "views": 331,
                   "clicks": 50,
@@ -55,7 +55,7 @@
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 920,
               "clicks": 118,
@@ -65,7 +65,7 @@
               {
                 "type": "supermax",
                 "publishedFrom": "2026-06-08",
-                "publishedTo": "2026-09-30",
+                "publishedTo": "2026-09-25",
                 "stats": {
                   "views": 331,
                   "clicks": 42,
@@ -77,7 +77,7 @@
           {
             "portal": "career_pages",
             "publishedFrom": "2026-05-15",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 410,
               "clicks": 62,
@@ -94,7 +94,7 @@
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 560,
               "clicks": 84,
@@ -104,7 +104,7 @@
               {
                 "type": "pzr_highlight",
                 "publishedFrom": "2026-07-04",
-                "publishedTo": "2026-09-30",
+                "publishedTo": "2026-09-25",
                 "stats": {
                   "views": 157,
                   "clicks": 24,
@@ -116,7 +116,7 @@
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-07-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 190,
               "clicks": 28,
@@ -152,7 +152,7 @@
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-10",
-            "publishedTo": "2026-10-31",
+            "publishedTo": "2026-09-27",
             "stats": {
               "views": 1520,
               "clicks": 210,
@@ -162,7 +162,7 @@
               {
                 "type": "jobstip",
                 "publishedFrom": "2026-06-15",
-                "publishedTo": "2026-10-31",
+                "publishedTo": "2026-09-27",
                 "stats": {
                   "views": 486,
                   "clicks": 67,
@@ -1359,7 +1359,7 @@
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-08-20",
-            "publishedTo": "2026-10-31",
+            "publishedTo": "2026-09-24",
             "stats": {
               "views": 260,
               "clicks": 34,
