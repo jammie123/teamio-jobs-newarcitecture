@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  JobCardNew,
+  JobCardSynteza,
   JobsFilter,
   Option,
   PageHeader,
@@ -74,10 +74,8 @@ const jobCardNoops = {
   onEndPublication: noop,
   onCreateAdvertisement: noop,
   onCandidatesClick: noop,
-  onStatusChange: noop,
-  onCompleteDraft: noop,
-  onGoToPublish: noop,
-  onRestoreFromArchive: noop,
+  onActivityClick: noop,
+  onExpandNote: noop,
   onViewStatisticsClick: noop,
   onPreviewPublication: noop,
   onExtendPublication: noop,
@@ -109,7 +107,7 @@ function JobCardList({
   return (
     <div className="tm-flex tm-flex-col tm-gap-4">
       {items.map((job) => (
-        <JobCardNew key={job.id} {...toJobCard(job)} {...jobCardNoops} />
+        <JobCardSynteza key={job.id} {...toJobCard(job)} {...jobCardNoops} />
       ))}
     </div>
   )

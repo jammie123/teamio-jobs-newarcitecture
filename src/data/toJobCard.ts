@@ -1,29 +1,63 @@
-import type { JobAdvertisement, JobCardNewProps, JobPublication } from '@teamio/starter/components'
-import { formatCzechDate, listingTab, todayIso } from './adStatus'
+import type { JobAdvertisement, JobCardSyntezaProps, JobPublication } from '@teamio/starter/components'
+import { formatCzechDate, todayIso } from './adStatus'
 import { portalLabel } from './portals'
-import type { Ad, Job, Placement } from './types'
+import type { Ad, Job, JobCandidates, Placement } from './types'
 
-type JobCardNewData = Pick<
-  JobCardNewProps,
-  'title' | 'owner' | 'hiringManagers' | 'status' | 'candidates' | 'advertisements'
+type JobCardSyntezaData = Pick<
+  JobCardSyntezaProps,
+  'title' | 'owner' | 'hiringManagers' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardNewStatus = NonNullable<JobCardNewProps['status']>
+type JobCardSyntezaCandidates = NonNullable<JobCardSyntezaProps['candidates']>
 
-export function toJobCard(job: Job, today = todayIso()): JobCardNewData {
+export function toJobCard(job: Job, today = todayIso()): JobCardSyntezaData {
   return {
     title: job.title,
     owner: job.recruiter,
     hiringManagers: job.hiringManagers,
-    status: toJobCardStatus(job, today),
-    candidates: job.candidates,
+    candidates: toSyntezaCandidates(job.candidates),
     advertisements: job.ads.map((ad) => toAdvertisement(ad, today)),
+    note: toNote(job),
   }
 }
 
-function toJobCardStatus(job: Job, today: string): JobCardNewStatus {
-  const tab = listingTab(job, today)
-  return tab === 'draft' ? 'active' : tab
+function toSyntezaCandidates(candidates?: JobCandidates): JobCardSyntezaCandidates | undefined {
+  if (!candidates) {
+    return undefined
+  }
+
+  const inProgress = candidates.inProgress
+  const preselected = Math.ceil(inProgress / 2)
+  const remaining = inProgress - preselected
+  const opalcovani = Math.ceil(remaining / 2)
+  const invited = remaining - opalcovani
+  const leftover = Math.max(
+    0,
+    candidates.total - (candidates.new ?? 0) - candidates.unassessed - inProgress,
+  )
+  const hired =
+    leftover === 0 ? 0 : Math.min(leftover, Math.max(1, Math.round(leftover * 0.08)))
+
+  return {
+    new: candidates.new ?? 0,
+    unassessed: candidates.unassessed,
+    preselected,
+    opalcovani,
+    invited,
+    hired,
+  }
+}
+
+function toNote(job: Job): JobCardSyntezaProps['note'] {
+  if (!job.note) {
+    return undefined
+  }
+
+  return {
+    author: job.recruiter,
+    text: job.note.text,
+    addedAt: formatCzechDate(job.createdAt),
+  }
 }
 
 function toAdvertisement(ad: Ad, today: string): JobAdvertisement {
