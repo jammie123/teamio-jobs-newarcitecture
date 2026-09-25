@@ -6,10 +6,14 @@ export const jobs = jobsJson as Job[]
 export type {
   Ad,
   AdStatus,
+  Highlight,
+  HighlightType,
   Job,
   JobCandidates,
   JobDepartment,
   JobStatus,
+  Note,
+  NoteType,
   Placement,
   PlacementStats,
   PortalId,
@@ -24,7 +28,15 @@ export {
   sumStats,
 } from './aggregateStats'
 
-export { PORTAL_LABELS, portalLabel } from './portals'
+export {
+  HIGHLIGHTS_BY_PORTAL,
+  HIGHLIGHT_LABELS,
+  highlightLabel,
+  PORTAL_LABELS,
+  portalLabel,
+} from './portals'
+
+export { NOTE_LABELS, noteLabel } from './notes'
 
 export {
   computeAdStatus,
@@ -38,6 +50,14 @@ export {
 } from './adStatus'
 
 export { toJobCard } from './toJobCard'
+
+export {
+  toModalAdvertisements,
+  toModalPlaces,
+  toModalPlacesForAction,
+  toTopPlaces,
+  type JobAdAction,
+} from './toJobModal'
 
 export {
   EMPTY_JOBS_FILTER,
