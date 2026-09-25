@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import {
   JobCardSyntezaAds,
+  JobModalChooseAds,
+  JobModalProlong,
+  JobModalTop,
+  JobModalUnpublish,
   JobsFilter,
   Option,
   PageHeader,
@@ -24,6 +28,10 @@ import {
   jobsForTab,
   sortJobs,
   toJobCard,
+  toModalAdvertisements,
+  toModalPlacesForAction,
+  type Job,
+  type JobAdAction,
   type JobListingTab,
   type JobSortKey,
 } from '../data'
@@ -75,8 +83,6 @@ const jobCardNoops = {
   onTransferJob: noop,
   onArchiveJob: noop,
   onEditAdvertisement: noop,
-  onExtendAndRepublish: noop,
-  onEndPublication: noop,
   onCreateAdvertisement: noop,
   onCandidatesClick: noop,
   onActivityClick: noop,
@@ -88,18 +94,41 @@ const jobCardNoops = {
   onCompleteAdvertisement: noop,
 }
 
+type JobModalStep = 'chooseAd' | 'places'
+
+type JobModalState = {
+  job: Job
+  action: JobAdAction
+  step: JobModalStep
+  advertisementId?: string
+}
+
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
   return jobsForTab(jobs, tab).filter((job) => jobMatchesFilter(job, filter))
+}
+
+function openAdAction(job: Job, action: JobAdAction): JobModalState | null {
+  if (job.ads.length === 0) {
+    return null
+  }
+
+  if (job.ads.length === 1) {
+    return { job, action, step: 'places', advertisementId: job.ads[0].id }
+  }
+
+  return { job, action, step: 'chooseAd' }
 }
 
 function JobCardList({
   tab,
   filter,
   sort,
+  onAdAction,
 }: {
   tab: JobListingTab
   filter: JobsFilterValue
   sort: JobSortKey
+  onAdAction: (job: Job, action: JobAdAction) => void
 }) {
   const items = sortJobs(jobsOnTab(tab, filter), sort)
 
@@ -114,9 +143,88 @@ function JobCardList({
   return (
     <div className="tm-flex tm-flex-col tm-gap-4">
       {items.map((job) => (
-        <JobCardSyntezaAds key={job.id} {...toJobCard(job)} {...jobCardNoops} />
+        <JobCardSyntezaAds
+          key={job.id}
+          {...toJobCard(job)}
+          {...jobCardNoops}
+          {...(job.ads.length > 0
+            ? {
+                onExtendAndRepublish: () => onAdAction(job, 'prolong'),
+                onEndPublication: () => onAdAction(job, 'unpublish'),
+                onTopAdvertisement: () => onAdAction(job, 'top'),
+              }
+            : {})}
+        />
       ))}
     </div>
+  )
+}
+
+function JobListingAdModals({
+  modal,
+  onClose,
+  onDismissChooseAd,
+  onSelectAd,
+}: {
+  modal: JobModalState | null
+  onClose: () => void
+  onDismissChooseAd: () => void
+  onSelectAd: (advertisementId: string) => void
+}) {
+  const selectedAd =
+    modal?.advertisementId != null
+      ? modal.job.ads.find((ad) => ad.id === modal.advertisementId)
+      : undefined
+  const places =
+    modal && selectedAd ? toModalPlacesForAction(selectedAd, modal.action) : []
+  const placesKey = `${modal?.action ?? ''}-${modal?.advertisementId ?? ''}`
+
+  return (
+    <>
+      <JobModalChooseAds
+        open={modal?.step === 'chooseAd'}
+        advertisements={modal ? toModalAdvertisements(modal.job) : []}
+        onOpenChange={(open) => {
+          if (!open) {
+            onDismissChooseAd()
+          }
+        }}
+        onConfirm={onSelectAd}
+      />
+      <JobModalUnpublish
+        key={`unpublish-${placesKey}`}
+        open={modal?.step === 'places' && modal.action === 'unpublish'}
+        places={places}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose()
+          }
+        }}
+        onConfirm={onClose}
+      />
+      <JobModalProlong
+        key={`prolong-${placesKey}`}
+        open={modal?.step === 'places' && modal.action === 'prolong'}
+        places={places}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose()
+          }
+        }}
+        onConfirm={onClose}
+      />
+      <JobModalTop
+        key={`top-${placesKey}`}
+        open={modal?.step === 'places' && modal.action === 'top'}
+        places={places}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose()
+          }
+        }}
+        onConfirm={onClose}
+      />
+    </>
   )
 }
 
@@ -124,76 +232,108 @@ export function JobListingPage() {
   const [filter, setFilter] = useState<JobsFilterValue>(EMPTY_JOBS_FILTER)
   const [sort, setSort] = useState<JobSortKey>(DEFAULT_JOB_SORT)
   const [tab, setTab] = useState<JobListingTab>('published')
+  const [modal, setModal] = useState<JobModalState | null>(null)
   const visibleCount = jobsOnTab(tab, filter).length
 
+  function handleAdAction(job: Job, action: JobAdAction) {
+    setModal(openAdAction(job, action))
+  }
+
+  function closeModal() {
+    setModal(null)
+  }
+
+  function selectAdvertisement(advertisementId: string) {
+    setModal((current) =>
+      current ? { ...current, step: 'places', advertisementId } : null,
+    )
+  }
+
+  function dismissChooseAd() {
+    setModal((current) => (current?.step === 'chooseAd' ? null : current))
+  }
+
   return (
-    <Tabs
-      value={tab}
-      onValueChange={(value) => setTab(value as JobListingTab)}
-      className="tm-contents"
-    >
-      <PageTemplate
-        leftMenu={{
-          items: leftMenuItems,
-          activeItemId: 'nabory',
-        }}
-        headerTop={{
-          user: {
-            name: 'Jan Fuxa',
-            company: 'LMCTEST_Teamio s.r.o.',
-          },
-        }}
-        pageHeader={
-          <PageHeader
-            title={
-              <>
-                Nábory{' '}
-                <span className="tm-font-normal tm-text-secondary-default">({visibleCount})</span>
-              </>
-            }
-            aria-label="Nábory"
-            tabs={
-              <TabsList aria-label="Filtry náborů">
-                {TABS.map((item) => (
-                  <TabsTrigger
-                    key={item.value}
-                    value={item.value}
-                    count={jobsOnTab(item.value, filter).length}
-                    info={item.info}
-                  >
-                    {item.label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            }
-            actions={
-              <SplitButton label="Přidat nábor" menuLabel="Další možnosti přidání">
-                <Option>Přidat brigádu</Option>
-              </SplitButton>
-            }
-          />
-        }
+    <>
+      <Tabs
+        value={tab}
+        onValueChange={(value) => setTab(value as JobListingTab)}
+        className="tm-contents"
       >
-        <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
-          <JobsFilter
-            value={filter}
-            onChange={setFilter}
-            recruiters={filterOptions.recruiters}
-            managers={filterOptions.managers}
-            departments={filterOptions.departments}
-            sortValue={sort}
-            sortOptions={sortOptions}
-            onSortChange={(next) => setSort(next as JobSortKey)}
-          />
-        </div>
-        <div className="tm-flex tm-w-full tm-flex-col tm-gap-4 tm-pt-6">
-          {TABS.map((item) => (
-            <TabsContent key={item.value} value={item.value} className="tm-mt-0">
-              <JobCardList tab={item.value} filter={filter} sort={sort} />
-            </TabsContent>
-          ))}
-        </div>
-      </PageTemplate>
-    </Tabs>
+        <PageTemplate
+          leftMenu={{
+            items: leftMenuItems,
+            activeItemId: 'nabory',
+          }}
+          headerTop={{
+            user: {
+              name: 'Jan Fuxa',
+              company: 'LMCTEST_Teamio s.r.o.',
+            },
+          }}
+          pageHeader={
+            <PageHeader
+              title={
+                <>
+                  Nábory{' '}
+                  <span className="tm-font-normal tm-text-secondary-default">({visibleCount})</span>
+                </>
+              }
+              aria-label="Nábory"
+              tabs={
+                <TabsList aria-label="Filtry náborů">
+                  {TABS.map((item) => (
+                    <TabsTrigger
+                      key={item.value}
+                      value={item.value}
+                      count={jobsOnTab(item.value, filter).length}
+                      info={item.info}
+                    >
+                      {item.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              }
+              actions={
+                <SplitButton label="Přidat nábor" menuLabel="Další možnosti přidání">
+                  <Option>Přidat brigádu</Option>
+                </SplitButton>
+              }
+            />
+          }
+        >
+          <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
+            <JobsFilter
+              value={filter}
+              onChange={setFilter}
+              recruiters={filterOptions.recruiters}
+              managers={filterOptions.managers}
+              departments={filterOptions.departments}
+              sortValue={sort}
+              sortOptions={sortOptions}
+              onSortChange={(next) => setSort(next as JobSortKey)}
+            />
+          </div>
+          <div className="tm-flex tm-w-full tm-flex-col tm-gap-4 tm-pt-6">
+            {TABS.map((item) => (
+              <TabsContent key={item.value} value={item.value} className="tm-mt-0">
+                <JobCardList
+                  tab={item.value}
+                  filter={filter}
+                  sort={sort}
+                  onAdAction={handleAdAction}
+                />
+              </TabsContent>
+            ))}
+          </div>
+        </PageTemplate>
+      </Tabs>
+      <JobListingAdModals
+        modal={modal}
+        onClose={closeModal}
+        onDismissChooseAd={dismissChooseAd}
+        onSelectAd={selectAdvertisement}
+      />
+    </>
   )
 }

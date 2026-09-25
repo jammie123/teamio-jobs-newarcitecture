@@ -52,6 +52,14 @@ export {
 export { toJobCard } from './toJobCard'
 
 export {
+  toModalAdvertisements,
+  toModalPlaces,
+  toModalPlacesForAction,
+  toTopPlaces,
+  type JobAdAction,
+} from './toJobModal'
+
+export {
   EMPTY_JOBS_FILTER,
   filterOptionsFromJobs,
   jobMatchesFilter,

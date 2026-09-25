@@ -1,5 +1,5 @@
-import type { JobAdvertisement, JobCardSyntezaAdsProps, JobPublication } from '@teamio/starter/components'
-import { formatCzechDate, todayIso } from './adStatus'
+import type { JobCardSyntezaAdsProps } from '@teamio/starter/components'
+import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { portalLabel } from './portals'
 import type { Ad, Job, JobCandidates, Placement } from './types'
 
@@ -9,14 +9,30 @@ type JobCardSyntezaAdsData = Pick<
 >
 
 type JobCardSyntezaCandidates = NonNullable<JobCardSyntezaAdsProps['candidates']>
+type JobCardSyntezaAdvertisement = NonNullable<JobCardSyntezaAdsProps['advertisements']>[number]
+type JobCardSyntezaPublication = NonNullable<JobCardSyntezaAdvertisement['publications']>[number]
+
+const EMPTY_CANDIDATES: JobCardSyntezaCandidates = {
+  new: 0,
+  unassessed: 0,
+  preselected: 0,
+  opalcovani: 0,
+  invited: 0,
+  hired: 0,
+}
 
 export function toJobCard(job: Job, today = todayIso()): JobCardSyntezaAdsData {
+  const tab = listingTab(job, today)
+
   return {
     title: job.title,
     owner: job.recruiter,
     hiringManagers: job.hiringManagers,
-    candidates: toSyntezaCandidates(job.candidates),
-    advertisements: job.ads.map((ad) => toAdvertisement(ad, today)),
+    candidates: toSyntezaCandidates(job.candidates) ?? (tab === 'draft' ? EMPTY_CANDIDATES : undefined),
+    advertisements:
+      tab === 'draft'
+        ? toDraftAdvertisements(job)
+        : job.ads.map((ad) => toAdvertisement(ad, today)),
     note: toNote(job),
   }
 }
@@ -60,7 +76,19 @@ function toNote(job: Job): JobCardSyntezaAdsProps['note'] {
   }
 }
 
-function toAdvertisement(ad: Ad, today: string): JobAdvertisement {
+function toDraftAdvertisements(job: Job): JobCardSyntezaAdvertisement[] {
+  if (job.ads.length === 0) {
+    return [{ id: `${job.id}-draft`, title: job.title, status: 'draft' }]
+  }
+
+  return job.ads.map((ad) => ({
+    id: ad.id,
+    title: ad.title,
+    status: 'draft',
+  }))
+}
+
+function toAdvertisement(ad: Ad, today: string): JobCardSyntezaAdvertisement {
   return {
     id: ad.id,
     title: ad.title,
@@ -68,8 +96,8 @@ function toAdvertisement(ad: Ad, today: string): JobAdvertisement {
   }
 }
 
-function toPublication(adId: string, placement: Placement, today: string): JobPublication {
-  const publication: JobPublication = {
+function toPublication(adId: string, placement: Placement, today: string): JobCardSyntezaPublication {
+  const publication: JobCardSyntezaPublication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
     startDate: formatCzechDate(placement.publishedFrom),
