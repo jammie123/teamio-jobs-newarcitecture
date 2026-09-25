@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  JobCardSyntezaAds,
+  JobCardSimplify2,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -26,6 +26,8 @@ import {
   jobMatchesFilter,
   jobs,
   jobsForTab,
+  partitionUnpublishedByEndedAge,
+  shouldGroupUnpublishedByEndedAge,
   sortJobs,
   toJobCard,
   toModalAdvertisements,
@@ -85,7 +87,6 @@ const jobCardNoops = {
   onEditAdvertisement: noop,
   onCreateAdvertisement: noop,
   onCandidatesClick: noop,
-  onActivityClick: noop,
   onExpandNote: noop,
   onViewStatisticsClick: noop,
   onPreviewAdvertisement: noop,
@@ -140,24 +141,49 @@ function JobCardList({
     )
   }
 
-  return (
-    <div className="tm-flex tm-flex-col tm-gap-4">
-      {items.map((job) => (
-        <JobCardSyntezaAds
-          key={job.id}
-          {...toJobCard(job)}
-          {...jobCardNoops}
-          {...(job.ads.length > 0
-            ? {
-                onExtendAndRepublish: () => onAdAction(job, 'prolong'),
-                onEndPublication: () => onAdAction(job, 'unpublish'),
-                onTopAdvertisement: () => onAdAction(job, 'top'),
-              }
-            : {})}
-        />
-      ))}
-    </div>
-  )
+  function renderCard(job: Job) {
+    return (
+      <JobCardSimplify2
+        key={job.id}
+        {...toJobCard(job)}
+        {...jobCardNoops}
+        {...(job.ads.length > 0
+          ? {
+              onExtendAndRepublish: () => onAdAction(job, 'prolong'),
+              onEndPublication: () => onAdAction(job, 'unpublish'),
+              onTopAdvertisement: () => onAdAction(job, 'top'),
+            }
+          : {})}
+      />
+    )
+  }
+
+  if (shouldGroupUnpublishedByEndedAge(tab, sort)) {
+    const { recent, older } = partitionUnpublishedByEndedAge(items)
+
+    return (
+      <div className="tm-flex tm-flex-col tm-gap-6">
+        {recent.length > 0 ? (
+          <section className="tm-flex tm-flex-col tm-gap-4">
+            <Typography as="h2" variant="h4">
+              Nedávno ukončené
+            </Typography>
+            {recent.map(renderCard)}
+          </section>
+        ) : null}
+        {older.length > 0 ? (
+          <section className="tm-flex tm-flex-col tm-gap-4">
+            <Typography as="h2" variant="h4">
+              Starší než 30 dnů
+            </Typography>
+            {older.map(renderCard)}
+          </section>
+        ) : null}
+      </div>
+    )
+  }
+
+  return <div className="tm-flex tm-flex-col tm-gap-4">{items.map(renderCard)}</div>
 }
 
 function JobListingAdModals({

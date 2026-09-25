@@ -1,18 +1,18 @@
-import type { JobCardSyntezaAdsProps } from '@teamio/starter/components'
+import type { JobCardSimplify2Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { portalLabel } from './portals'
 import type { Ad, Job, JobCandidates, Placement } from './types'
 
-type JobCardSyntezaAdsData = Pick<
-  JobCardSyntezaAdsProps,
+type JobCardSimplify2Data = Pick<
+  JobCardSimplify2Props,
   'title' | 'owner' | 'hiringManagers' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSyntezaCandidates = NonNullable<JobCardSyntezaAdsProps['candidates']>
-type JobCardSyntezaAdvertisement = NonNullable<JobCardSyntezaAdsProps['advertisements']>[number]
-type JobCardSyntezaPublication = NonNullable<JobCardSyntezaAdvertisement['publications']>[number]
+type JobCardSimplify2Candidates = NonNullable<JobCardSimplify2Props['candidates']>
+type JobCardSimplify2Advertisement = NonNullable<JobCardSimplify2Props['advertisements']>[number]
+type JobCardSimplify2Publication = NonNullable<JobCardSimplify2Advertisement['publications']>[number]
 
-const EMPTY_CANDIDATES: JobCardSyntezaCandidates = {
+const EMPTY_CANDIDATES: JobCardSimplify2Candidates = {
   new: 0,
   unassessed: 0,
   preselected: 0,
@@ -21,7 +21,7 @@ const EMPTY_CANDIDATES: JobCardSyntezaCandidates = {
   hired: 0,
 }
 
-export function toJobCard(job: Job, today = todayIso()): JobCardSyntezaAdsData {
+export function toJobCard(job: Job, today = todayIso()): JobCardSimplify2Data {
   const tab = listingTab(job, today)
 
   return {
@@ -37,7 +37,7 @@ export function toJobCard(job: Job, today = todayIso()): JobCardSyntezaAdsData {
   }
 }
 
-function toSyntezaCandidates(candidates?: JobCandidates): JobCardSyntezaCandidates | undefined {
+function toSyntezaCandidates(candidates?: JobCandidates): JobCardSimplify2Candidates | undefined {
   if (!candidates) {
     return undefined
   }
@@ -64,7 +64,7 @@ function toSyntezaCandidates(candidates?: JobCandidates): JobCardSyntezaCandidat
   }
 }
 
-function toNote(job: Job): JobCardSyntezaAdsProps['note'] {
+function toNote(job: Job): JobCardSimplify2Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -76,7 +76,7 @@ function toNote(job: Job): JobCardSyntezaAdsProps['note'] {
   }
 }
 
-function toDraftAdvertisements(job: Job): JobCardSyntezaAdvertisement[] {
+function toDraftAdvertisements(job: Job): JobCardSimplify2Advertisement[] {
   if (job.ads.length === 0) {
     return [{ id: `${job.id}-draft`, title: job.title, status: 'draft' }]
   }
@@ -88,7 +88,7 @@ function toDraftAdvertisements(job: Job): JobCardSyntezaAdvertisement[] {
   }))
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardSyntezaAdvertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardSimplify2Advertisement {
   return {
     id: ad.id,
     title: ad.title,
@@ -96,8 +96,8 @@ function toAdvertisement(ad: Ad, today: string): JobCardSyntezaAdvertisement {
   }
 }
 
-function toPublication(adId: string, placement: Placement, today: string): JobCardSyntezaPublication {
-  const publication: JobCardSyntezaPublication = {
+function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify2Publication {
+  const publication: JobCardSimplify2Publication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
     startDate: formatCzechDate(placement.publishedFrom),

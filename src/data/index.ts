@@ -39,6 +39,7 @@ export {
 export { NOTE_LABELS, noteLabel } from './notes'
 
 export {
+  addDaysIso,
   computeAdStatus,
   formatCzechDate,
   jobBelongsToTab,
@@ -48,6 +49,14 @@ export {
   type JobCardListingStatus,
   type JobListingTab,
 } from './adStatus'
+
+export {
+  RECENTLY_ENDED_MAX_DAYS,
+  isRecentlyEnded,
+  latestEndedAt,
+  partitionUnpublishedByEndedAge,
+  shouldGroupUnpublishedByEndedAge,
+} from './unpublishedGroups'
 
 export { toJobCard } from './toJobCard'
 
