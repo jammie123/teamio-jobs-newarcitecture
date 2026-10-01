@@ -34,11 +34,16 @@ export type Placement = {
   highlights?: Highlight[]
 }
 
+/** `0`, `null`, or omitted = no branch on the card / in filters. A string is the branch name. */
+export type JobDepartment = 0 | string | null
+
 export type Ad = {
   id: string
   title: string
   status: AdStatus
   placements: Placement[]
+  /** Branch for this advertisement. `0`, `null`, or omitted = no branch. */
+  department?: JobDepartment
 }
 
 export type JobCandidates = {
@@ -55,9 +60,6 @@ export type Note = {
   type: NoteType
   text: string
 }
-
-/** `0` or omitted = no branch on the card / in filters. A string is the branch name. */
-export type JobDepartment = 0 | string
 
 export type Job = {
   id: string
@@ -78,4 +80,22 @@ export function visibleDepartment(department?: JobDepartment): string | undefine
   }
 
   return department
+}
+
+/** Unique branch names from ads first; otherwise the job-level department. */
+export function departmentsOf(job: Job): string[] {
+  const fromAds = [
+    ...new Set(
+      job.ads.flatMap((ad) => {
+        const name = visibleDepartment(ad.department)
+        return name ? [name] : []
+      }),
+    ),
+  ]
+  if (fromAds.length > 0) {
+    return fromAds
+  }
+
+  const fromJob = visibleDepartment(job.department)
+  return fromJob ? [fromJob] : []
 }

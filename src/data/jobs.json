@@ -3,7 +3,7 @@
     "id": "job-001",
     "title": "Řidič/ka sk. C ČB turnusový režim PO–NE",
     "recruiter": "Martina Nováková",
-    "department": "České Budějovice",
+    "department": null,
     "hiringManagers": [
       "Lukáš Procházka"
     ],
@@ -19,6 +19,7 @@
       {
         "id": "ad-001-1",
         "title": "Řidič/ka sk. C – České Budějovice, turnus PO–NE",
+        "department": "České Budějovice",
         "placements": [
           {
             "portal": "jobs_cz",
@@ -89,7 +90,8 @@
       },
       {
         "id": "ad-001-2",
-        "title": "Hledáme řidiče sk. C na turnusy – ČB",
+        "title": "Hledáme řidiče sk. C na turnusy – Český Krumlov",
+        "department": "Český Krumlov",
         "placements": [
           {
             "portal": "prace_za_rohem",

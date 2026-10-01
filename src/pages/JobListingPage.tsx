@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  JobCardSimplify2,
+  JobCardSimplify3,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -74,6 +74,7 @@ const filterOptions = filterOptionsFromJobs(jobs)
 const sortOptions = JOB_SORT_OPTIONS.map((option) => ({
   value: option.key,
   label: option.label,
+  description: option.description,
 }))
 
 const noop = () => undefined
@@ -101,7 +102,7 @@ type JobModalState = {
   job: Job
   action: JobAdAction
   step: JobModalStep
-  advertisementId?: string
+  advertisementIds?: string[]
 }
 
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
@@ -114,7 +115,7 @@ function openAdAction(job: Job, action: JobAdAction): JobModalState | null {
   }
 
   if (job.ads.length === 1) {
-    return { job, action, step: 'places', advertisementId: job.ads[0].id }
+    return { job, action, step: 'places', advertisementIds: [job.ads[0].id] }
   }
 
   return { job, action, step: 'chooseAd' }
@@ -143,7 +144,7 @@ function JobCardList({
 
   function renderCard(job: Job) {
     return (
-      <JobCardSimplify2
+      <JobCardSimplify3
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
@@ -195,15 +196,17 @@ function JobListingAdModals({
   modal: JobModalState | null
   onClose: () => void
   onDismissChooseAd: () => void
-  onSelectAd: (advertisementId: string) => void
+  onSelectAd: (advertisementIds: string[]) => void
 }) {
-  const selectedAd =
-    modal?.advertisementId != null
-      ? modal.job.ads.find((ad) => ad.id === modal.advertisementId)
-      : undefined
-  const places =
-    modal && selectedAd ? toModalPlacesForAction(selectedAd, modal.action) : []
-  const placesKey = `${modal?.action ?? ''}-${modal?.advertisementId ?? ''}`
+  const selectedAds =
+    modal?.advertisementIds?.flatMap((advertisementId) => {
+      const ad = modal.job.ads.find((item) => item.id === advertisementId)
+      return ad ? [ad] : []
+    }) ?? []
+  const places = modal
+    ? selectedAds.flatMap((ad) => toModalPlacesForAction(ad, modal.action))
+    : []
+  const placesKey = `${modal?.action ?? ''}-${modal?.advertisementIds?.join(',') ?? ''}`
 
   return (
     <>
@@ -269,9 +272,9 @@ export function JobListingPage() {
     setModal(null)
   }
 
-  function selectAdvertisement(advertisementId: string) {
+  function selectAdvertisement(advertisementIds: string[]) {
     setModal((current) =>
-      current ? { ...current, step: 'places', advertisementId } : null,
+      current ? { ...current, step: 'places', advertisementIds } : null,
     )
   }
 

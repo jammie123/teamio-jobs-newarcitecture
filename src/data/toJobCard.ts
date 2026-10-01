@@ -1,18 +1,18 @@
-import type { JobCardSimplify2Props } from '@teamio/starter/components'
+import type { JobCardSimplify3Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { portalLabel } from './portals'
-import type { Ad, Job, JobCandidates, Placement } from './types'
+import { departmentsOf, type Ad, type Job, type JobCandidates, type Placement } from './types'
 
-type JobCardSimplify2Data = Pick<
-  JobCardSimplify2Props,
-  'title' | 'owner' | 'hiringManagers' | 'candidates' | 'advertisements' | 'note'
+type JobCardSimplify3Data = Pick<
+  JobCardSimplify3Props,
+  'title' | 'owner' | 'hiringManagers' | 'branches' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSimplify2Candidates = NonNullable<JobCardSimplify2Props['candidates']>
-type JobCardSimplify2Advertisement = NonNullable<JobCardSimplify2Props['advertisements']>[number]
-type JobCardSimplify2Publication = NonNullable<JobCardSimplify2Advertisement['publications']>[number]
+type JobCardSimplify3Candidates = NonNullable<JobCardSimplify3Props['candidates']>
+type JobCardSimplify3Advertisement = NonNullable<JobCardSimplify3Props['advertisements']>[number]
+type JobCardSimplify3Publication = NonNullable<JobCardSimplify3Advertisement['publications']>[number]
 
-const EMPTY_CANDIDATES: JobCardSimplify2Candidates = {
+const EMPTY_CANDIDATES: JobCardSimplify3Candidates = {
   new: 0,
   unassessed: 0,
   preselected: 0,
@@ -21,13 +21,17 @@ const EMPTY_CANDIDATES: JobCardSimplify2Candidates = {
   hired: 0,
 }
 
-export function toJobCard(job: Job, today = todayIso()): JobCardSimplify2Data {
+export function toJobCard(job: Job, today = todayIso()): JobCardSimplify3Data {
   const tab = listingTab(job, today)
 
   return {
     title: job.title,
     owner: job.recruiter,
     hiringManagers: job.hiringManagers,
+    branches: departmentsOf(job).map((name) => ({
+      id: name,
+      name,
+    })),
     candidates: toSyntezaCandidates(job.candidates) ?? (tab === 'draft' ? EMPTY_CANDIDATES : undefined),
     advertisements:
       tab === 'draft'
@@ -37,7 +41,7 @@ export function toJobCard(job: Job, today = todayIso()): JobCardSimplify2Data {
   }
 }
 
-function toSyntezaCandidates(candidates?: JobCandidates): JobCardSimplify2Candidates | undefined {
+function toSyntezaCandidates(candidates?: JobCandidates): JobCardSimplify3Candidates | undefined {
   if (!candidates) {
     return undefined
   }
@@ -64,7 +68,7 @@ function toSyntezaCandidates(candidates?: JobCandidates): JobCardSimplify2Candid
   }
 }
 
-function toNote(job: Job): JobCardSimplify2Props['note'] {
+function toNote(job: Job): JobCardSimplify3Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -76,7 +80,7 @@ function toNote(job: Job): JobCardSimplify2Props['note'] {
   }
 }
 
-function toDraftAdvertisements(job: Job): JobCardSimplify2Advertisement[] {
+function toDraftAdvertisements(job: Job): JobCardSimplify3Advertisement[] {
   if (job.ads.length === 0) {
     return [{ id: `${job.id}-draft`, title: job.title, status: 'draft' }]
   }
@@ -88,7 +92,7 @@ function toDraftAdvertisements(job: Job): JobCardSimplify2Advertisement[] {
   }))
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardSimplify2Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardSimplify3Advertisement {
   return {
     id: ad.id,
     title: ad.title,
@@ -96,8 +100,8 @@ function toAdvertisement(ad: Ad, today: string): JobCardSimplify2Advertisement {
   }
 }
 
-function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify2Publication {
-  const publication: JobCardSimplify2Publication = {
+function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify3Publication {
+  const publication: JobCardSimplify3Publication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
     startDate: formatCzechDate(placement.publishedFrom),

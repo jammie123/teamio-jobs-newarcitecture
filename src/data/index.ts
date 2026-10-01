@@ -19,7 +19,7 @@ export type {
   PortalId,
 } from './types'
 
-export { visibleDepartment } from './types'
+export { departmentsOf, visibleDepartment } from './types'
 
 export {
   statsForAd,
