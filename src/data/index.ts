@@ -31,6 +31,7 @@ export {
 export {
   HIGHLIGHTS_BY_PORTAL,
   HIGHLIGHT_LABELS,
+  highlightDisplayName,
   highlightLabel,
   PORTAL_LABELS,
   portalLabel,
@@ -62,6 +63,7 @@ export { toJobCard } from './toJobCard'
 
 export {
   toModalAdvertisements,
+  toModalAdvertisementSections,
   toModalPlaces,
   toModalPlacesForAction,
   toTopPlaces,

@@ -11,6 +11,7 @@
     "createdAt": "2026-05-01",
     "candidates": {
       "new": 5,
+      "newOpalcovani": 2,
       "unassessed": 18,
       "inProgress": 9,
       "total": 57
@@ -154,7 +155,7 @@
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-10",
-            "publishedTo": "2026-09-27",
+            "publishedTo": "2026-10-31",
             "stats": {
               "views": 1520,
               "clicks": 210,
@@ -164,7 +165,7 @@
               {
                 "type": "jobstip",
                 "publishedFrom": "2026-06-15",
-                "publishedTo": "2026-09-27",
+                "publishedTo": "2026-10-31",
                 "stats": {
                   "views": 486,
                   "clicks": 67,
@@ -237,6 +238,7 @@
     },
     "candidates": {
       "new": 12,
+      "newOpalcovani": 1,
       "unassessed": 23,
       "inProgress": 4,
       "total": 81
@@ -302,6 +304,7 @@
     "status": "open",
     "createdAt": "2026-06-01",
     "candidates": {
+      "newOpalcovani": 2,
       "unassessed": 3,
       "inProgress": 14,
       "total": 36
@@ -510,6 +513,7 @@
     "createdAt": "2026-06-17",
     "candidates": {
       "new": 0,
+      "newOpalcovani": 1,
       "unassessed": 0,
       "inProgress": 8,
       "total": 19
@@ -616,6 +620,7 @@
     },
     "candidates": {
       "new": 8,
+      "newOpalcovani": 1,
       "unassessed": 15,
       "inProgress": 7,
       "total": 48
@@ -672,6 +677,7 @@
     "createdAt": "2026-06-17",
     "candidates": {
       "new": 2,
+      "newOpalcovani": 2,
       "unassessed": 9,
       "inProgress": 13,
       "total": 63
@@ -900,6 +906,7 @@
     "createdAt": "2026-04-17",
     "candidates": {
       "new": 4,
+      "newOpalcovani": 2,
       "unassessed": 12,
       "inProgress": 16,
       "total": 59
@@ -1132,6 +1139,7 @@
     },
     "candidates": {
       "new": 7,
+      "newOpalcovani": 2,
       "unassessed": 21,
       "inProgress": 10,
       "total": 72

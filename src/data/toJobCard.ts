@@ -1,7 +1,7 @@
 import type { JobCardSimplify3Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
-import { portalLabel } from './portals'
-import { departmentsOf, type Ad, type Job, type JobCandidates, type Placement } from './types'
+import { highlightDisplayName, portalLabel } from './portals'
+import { departmentsOf, type Ad, type Highlight, type Job, type JobCandidates, type Placement } from './types'
 
 type JobCardSimplify3Data = Pick<
   JobCardSimplify3Props,
@@ -57,14 +57,20 @@ function toSyntezaCandidates(candidates?: JobCandidates): JobCardSimplify3Candid
   )
   const hired =
     leftover === 0 ? 0 : Math.min(leftover, Math.max(1, Math.round(leftover * 0.08)))
+  const newOpalcovani =
+    candidates.newOpalcovani && opalcovani > 0
+      ? Math.min(candidates.newOpalcovani, opalcovani)
+      : undefined
 
   return {
     new: candidates.new ?? 0,
     unassessed: candidates.unassessed,
     preselected,
     opalcovani,
+    ...(newOpalcovani ? { newOpalcovani } : {}),
     invited,
     hired,
+    total: candidates.total,
   }
 }
 
@@ -101,6 +107,9 @@ function toAdvertisement(ad: Ad, today: string): JobCardSimplify3Advertisement {
 }
 
 function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify3Publication {
+  const highlights = (placement.highlights ?? []).map((highlight) =>
+    toHighlight(adId, placement, highlight, today),
+  )
   const publication: JobCardSimplify3Publication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
@@ -108,6 +117,7 @@ function toPublication(adId: string, placement: Placement, today: string): JobCa
     endDate: formatCzechDate(placement.publishedTo),
     viewCount: placement.stats.views,
     reactionCount: placement.stats.applications,
+    ...(highlights.length > 0 ? { highlights } : {}),
   }
 
   if (placement.publishedTo < today) {
@@ -115,4 +125,27 @@ function toPublication(adId: string, placement: Placement, today: string): JobCa
   }
 
   return publication
+}
+
+function toHighlight(
+  adId: string,
+  placement: Placement,
+  highlight: Highlight,
+  today: string,
+): NonNullable<JobCardSimplify3Publication['highlights']>[number] {
+  const mapped = {
+    id: `${adId}-${placement.portal}-${highlight.type}`,
+    name: highlightDisplayName(highlight.type, placement.portal),
+    kind: highlight.type,
+    startDate: formatCzechDate(highlight.publishedFrom),
+    endDate: formatCzechDate(highlight.publishedTo),
+    viewCount: highlight.stats.views,
+    reactionCount: highlight.stats.applications,
+  }
+
+  if (highlight.publishedTo < today) {
+    return { ...mapped, status: 'expired' as const }
+  }
+
+  return mapped
 }

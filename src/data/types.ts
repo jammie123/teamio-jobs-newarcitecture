@@ -48,6 +48,8 @@ export type Ad = {
 
 export type JobCandidates = {
   new?: number
+  /** Pink notification on Opalcovaný. */
+  newOpalcovani?: number
   unassessed: number
   inProgress: number
   total: number

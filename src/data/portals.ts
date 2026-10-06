@@ -30,3 +30,11 @@ export function portalLabel(portal: PortalId): string {
 export function highlightLabel(type: HighlightType): string {
   return HIGHLIGHT_LABELS[type]
 }
+
+export function highlightDisplayName(type: HighlightType, portal: PortalId): string {
+  if (type === 'top') {
+    return `Topováno na ${portalLabel(portal)}`
+  }
+
+  return highlightLabel(type)
+}

@@ -30,6 +30,7 @@ import {
   shouldGroupUnpublishedByEndedAge,
   sortJobs,
   toJobCard,
+  toModalAdvertisementSections,
   toModalAdvertisements,
   toModalPlacesForAction,
   type Job,
@@ -203,6 +204,10 @@ function JobListingAdModals({
       const ad = modal.job.ads.find((item) => item.id === advertisementId)
       return ad ? [ad] : []
     }) ?? []
+  const advertisementSections =
+    modal && selectedAds.length > 1
+      ? toModalAdvertisementSections(modal.job, selectedAds, modal.action)
+      : undefined
   const places = modal
     ? selectedAds.flatMap((ad) => toModalPlacesForAction(ad, modal.action))
     : []
@@ -224,6 +229,7 @@ function JobListingAdModals({
         key={`unpublish-${placesKey}`}
         open={modal?.step === 'places' && modal.action === 'unpublish'}
         places={places}
+        advertisementSections={advertisementSections}
         onOpenChange={(open) => {
           if (!open) {
             onClose()
@@ -235,6 +241,7 @@ function JobListingAdModals({
         key={`prolong-${placesKey}`}
         open={modal?.step === 'places' && modal.action === 'prolong'}
         places={places}
+        advertisementSections={advertisementSections}
         onOpenChange={(open) => {
           if (!open) {
             onClose()
@@ -246,6 +253,7 @@ function JobListingAdModals({
         key={`top-${placesKey}`}
         open={modal?.step === 'places' && modal.action === 'top'}
         places={places}
+        advertisementSections={advertisementSections}
         onOpenChange={(open) => {
           if (!open) {
             onClose()

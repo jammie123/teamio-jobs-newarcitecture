@@ -1,6 +1,7 @@
 import {
   jobPortalLogoTypeFromChannel,
   type JobModalAdvertisement,
+  type JobModalAdvertisementSection,
   type JobModalPublicationPlace,
 } from '@teamio/starter/components'
 import { formatCzechDate } from './adStatus'
@@ -34,6 +35,22 @@ export function toTopPlaces(ad: Ad): JobModalPublicationPlace[] {
 
 export function toModalPlacesForAction(ad: Ad, action: JobAdAction): JobModalPublicationPlace[] {
   return action === 'top' ? toTopPlaces(ad) : toModalPlaces(ad)
+}
+
+export function toModalAdvertisementSections(
+  job: Job,
+  ads: Ad[],
+  action: JobAdAction,
+): JobModalAdvertisementSection[] {
+  const createdAt = formatCzechDate(job.createdAt)
+  return ads.map((ad) => ({
+    advertisement: {
+      id: ad.id,
+      title: ad.title,
+      createdAt,
+    },
+    places: toModalPlacesForAction(ad, action),
+  }))
 }
 
 function toModalPlace(adId: string, placement: Placement): JobModalPublicationPlace {

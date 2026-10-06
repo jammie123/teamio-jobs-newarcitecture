@@ -23,7 +23,7 @@ export function isRecentlyEnded(job: Job, today = todayIso()): boolean {
 }
 
 export function shouldGroupUnpublishedByEndedAge(tab: JobListingTab, sort: JobSortKey): boolean {
-  return tab === 'unpublished' && (sort === 'latestAd' || sort === 'endingSoon')
+  return tab === 'unpublished' && (sort === 'latestAd' || sort === 'oldestAd')
 }
 
 export function partitionUnpublishedByEndedAge(
