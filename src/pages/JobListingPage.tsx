@@ -5,7 +5,7 @@ import {
   JobModalProlong,
   JobModalTop,
   JobModalUnpublish,
-  JobsFilter,
+  JobsFilterV2,
   Option,
   PageHeader,
   PageTemplate,
@@ -340,7 +340,7 @@ export function JobListingPage() {
           }
         >
           <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
-            <JobsFilter
+            <JobsFilterV2
               value={filter}
               onChange={setFilter}
               recruiters={filterOptions.recruiters}
