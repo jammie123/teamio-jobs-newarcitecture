@@ -86,6 +86,7 @@ const jobCardNoops = {
   onInviteColleagues: noop,
   onTransferJob: noop,
   onArchiveJob: noop,
+  onAddNote: noop,
   onEditAdvertisement: noop,
   onCreateAdvertisement: noop,
   onCandidatesClick: noop,
