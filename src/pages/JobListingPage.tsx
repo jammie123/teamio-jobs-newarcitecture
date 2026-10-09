@@ -50,7 +50,7 @@ const TABS: Array<{ value: JobListingTab; label: string; info?: string }> = [
   {
     value: 'open',
     label: 'Otevřený',
-    info: 'Otevřený nábor, který může i nemusí mít inzeráty',
+    info: 'Otevřený nábor, který má alespoň jeden inzerát',
   },
   {
     value: 'published',

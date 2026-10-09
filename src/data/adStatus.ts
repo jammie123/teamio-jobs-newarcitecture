@@ -64,7 +64,7 @@ function hasPlacementEndingSoon(job: Job, today: string): boolean {
 
 export function jobBelongsToTab(job: Job, tab: JobListingTab, today = todayIso()): boolean {
   if (tab === 'open') {
-    return job.status === 'open'
+    return job.status === 'open' && job.ads.length > 0
   }
 
   if (tab === 'endingSoon') {

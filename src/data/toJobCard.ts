@@ -34,7 +34,7 @@ export function toJobCard(job: Job, today = todayIso()): JobCardSimplify3Data {
     })),
     candidates: toSyntezaCandidates(job.candidates) ?? (tab === 'draft' ? EMPTY_CANDIDATES : undefined),
     advertisements:
-      tab === 'draft'
+      tab === 'draft' && (job.status === 'draft' || job.ads.length > 0)
         ? toDraftAdvertisements(job)
         : job.ads.map((ad) => toAdvertisement(ad, today)),
     note: toNote(job),

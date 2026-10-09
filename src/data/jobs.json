@@ -1400,5 +1400,51 @@
         "status": "published"
       }
     ]
+  },
+  {
+    "id": "job-025",
+    "title": "Skladník/skladnice – expediční sklad ČB",
+    "recruiter": "Martina Nováková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Lukáš Procházka",
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-14",
+    "note": {
+      "type": "start",
+      "text": "Nástup ideálně od 1. 11. 2026, inzerát připravíme po schválení rozpočtu."
+    },
+    "candidates": {
+      "new": 3,
+      "unassessed": 6,
+      "inProgress": 2,
+      "total": 11
+    },
+    "ads": []
+  },
+  {
+    "id": "job-026",
+    "title": "Technolog/ička mlékárenské výroby JH",
+    "recruiter": "Petr Svoboda",
+    "department": "Jindřichův Hradec",
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-21",
+    "ads": []
+  },
+  {
+    "id": "job-027",
+    "title": "Asistent/ka vedení",
+    "recruiter": "Jana Dvořáková",
+    "hiringManagers": [
+      "Klára Benešová"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-28",
+    "ads": []
   }
 ]
