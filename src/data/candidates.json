@@ -1,0 +1,296 @@
+[
+  {
+    "id": "cand-001",
+    "jobId": "job-001",
+    "fullName": "Petr Svoboda",
+    "phone": "+420 602 123 456",
+    "stars": 4,
+    "status": "preselected",
+    "lastContact": "2026-10-08",
+    "source": "jobs_cz",
+    "note": "Má profesní průkaz řidiče, může nastoupit od 1. 11."
+  },
+  {
+    "id": "cand-002",
+    "jobId": "job-001",
+    "fullName": "Marek Dvořák",
+    "phone": "+420 603 234 567",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "prace_cz"
+  },
+  {
+    "id": "cand-003",
+    "jobId": "job-001",
+    "fullName": "Jaroslav Kříž",
+    "phone": "+420 604 345 678",
+    "stars": 5,
+    "status": "round2",
+    "lastContact": "2026-10-10",
+    "source": "career_pages",
+    "note": "Zkušenost 12 let z mezinárodní dopravy, domluvena prohlídka provozu."
+  },
+  {
+    "id": "cand-004",
+    "jobId": "job-001",
+    "fullName": "Tomáš Beneš",
+    "phone": "+420 605 456 789",
+    "stars": 2,
+    "status": "rejected",
+    "lastContact": "2026-10-02",
+    "source": "jobs_cz",
+    "note": "Nevyhovuje turnusový režim."
+  },
+  {
+    "id": "cand-005",
+    "jobId": "job-001",
+    "fullName": "Radek Horák",
+    "phone": "+420 606 567 890",
+    "stars": 3,
+    "status": "round1",
+    "lastContact": "2026-10-09",
+    "source": "prace_cz"
+  },
+  {
+    "id": "cand-006",
+    "jobId": "job-002",
+    "fullName": "Lucie Marešová",
+    "phone": "+420 607 678 901",
+    "stars": 4,
+    "status": "offer",
+    "lastContact": "2026-10-11",
+    "source": "jobs_cz",
+    "note": "Nabídka odeslána, čekáme na odpověď do pátku."
+  },
+  {
+    "id": "cand-007",
+    "jobId": "job-002",
+    "fullName": "Karel Němec",
+    "phone": "+420 608 789 012",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "career_pages"
+  },
+  {
+    "id": "cand-008",
+    "jobId": "job-002",
+    "fullName": "Ondřej Pospíšil",
+    "phone": "+420 721 890 123",
+    "stars": 3,
+    "status": "preselected",
+    "lastContact": "2026-10-07",
+    "source": "prace_cz"
+  },
+  {
+    "id": "cand-009",
+    "jobId": "job-002",
+    "fullName": "Zdeněk Veselý",
+    "phone": "+420 722 901 234",
+    "stars": 5,
+    "status": "hired",
+    "lastContact": "2026-10-05",
+    "source": "jobs_cz",
+    "note": "Nástup 1. 11. 2026."
+  },
+  {
+    "id": "cand-010",
+    "jobId": "job-004",
+    "fullName": "Martin Kolář",
+    "phone": "+420 723 012 345",
+    "stars": 4,
+    "status": "round1",
+    "lastContact": "2026-10-09",
+    "source": "jobs_cz",
+    "note": "Vyhláška 50/1978 § 6, zkušenost s rozvaděči."
+  },
+  {
+    "id": "cand-011",
+    "jobId": "job-004",
+    "fullName": "Filip Urban",
+    "phone": "+420 724 123 456",
+    "stars": 2,
+    "status": "rejected",
+    "lastContact": "2026-09-29",
+    "source": "prace_cz"
+  },
+  {
+    "id": "cand-012",
+    "jobId": "job-004",
+    "fullName": "David Sedláček",
+    "phone": "+420 725 234 567",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "career_pages"
+  },
+  {
+    "id": "cand-013",
+    "jobId": "job-004",
+    "fullName": "Jan Černý",
+    "phone": "+420 726 345 678",
+    "stars": 3,
+    "status": "preselected",
+    "lastContact": "2026-10-06",
+    "source": "jobs_cz",
+    "note": "Preferuje ranní směny."
+  },
+  {
+    "id": "cand-014",
+    "jobId": "job-006",
+    "fullName": "Eva Procházková",
+    "phone": "+420 727 456 789",
+    "stars": 5,
+    "status": "round2",
+    "lastContact": "2026-10-10",
+    "source": "career_pages",
+    "note": "Zkušenost s plánováním v SAP, platové očekávání 62 000 Kč."
+  },
+  {
+    "id": "cand-015",
+    "jobId": "job-006",
+    "fullName": "Barbora Králová",
+    "phone": "+420 728 567 890",
+    "stars": 4,
+    "status": "round1",
+    "lastContact": "2026-10-08",
+    "source": "jobs_cz"
+  },
+  {
+    "id": "cand-016",
+    "jobId": "job-006",
+    "fullName": "Michal Fiala",
+    "phone": "+420 729 678 901",
+    "stars": 1,
+    "status": "rejected",
+    "lastContact": "2026-10-01",
+    "source": "prace_cz",
+    "note": "Bez zkušeností s výrobním plánováním."
+  },
+  {
+    "id": "cand-017",
+    "jobId": "job-006",
+    "fullName": "Hana Jelínková",
+    "phone": "+420 730 789 012",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "jobs_cz"
+  },
+  {
+    "id": "cand-018",
+    "jobId": "job-010",
+    "fullName": "Alena Bartošová",
+    "phone": "+420 731 890 123",
+    "stars": 4,
+    "status": "offer",
+    "lastContact": "2026-10-11",
+    "source": "prace_cz",
+    "note": "Zdravotní průkaz v pořádku, nástup možný ihned."
+  },
+  {
+    "id": "cand-019",
+    "jobId": "job-010",
+    "fullName": "Jiří Navrátil",
+    "phone": "+420 732 901 234",
+    "stars": 3,
+    "status": "preselected",
+    "lastContact": "2026-10-07",
+    "source": "career_pages"
+  },
+  {
+    "id": "cand-020",
+    "jobId": "job-010",
+    "fullName": "Monika Slaná",
+    "phone": "+420 733 012 345",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "jobs_cz"
+  },
+  {
+    "id": "cand-021",
+    "jobId": "job-010",
+    "fullName": "Vladimír Kopecký",
+    "phone": "+420 734 123 456",
+    "stars": 2,
+    "status": "rejected",
+    "lastContact": "2026-10-03",
+    "source": "prace_cz"
+  },
+  {
+    "id": "cand-022",
+    "jobId": "job-014",
+    "fullName": "Pavel Říha",
+    "phone": "+420 735 234 567",
+    "stars": 5,
+    "status": "hired",
+    "lastContact": "2026-10-04",
+    "source": "career_pages",
+    "note": "Interní doporučení, nástup od 1. 11."
+  },
+  {
+    "id": "cand-023",
+    "jobId": "job-014",
+    "fullName": "Renata Štěpánková",
+    "phone": "+420 736 345 678",
+    "stars": 4,
+    "status": "round2",
+    "lastContact": "2026-10-09",
+    "source": "jobs_cz"
+  },
+  {
+    "id": "cand-024",
+    "jobId": "job-014",
+    "fullName": "Libor Matoušek",
+    "phone": "+420 737 456 789",
+    "stars": 3,
+    "status": "round1",
+    "lastContact": "2026-10-08",
+    "source": "prace_cz",
+    "note": "Zkušenost s vedením týmu 15 lidí."
+  },
+  {
+    "id": "cand-025",
+    "jobId": "job-024",
+    "fullName": "Kateřina Vlčková",
+    "phone": "+420 738 567 890",
+    "stars": 4,
+    "status": "preselected",
+    "lastContact": "2026-10-10",
+    "source": "jobs_cz"
+  },
+  {
+    "id": "cand-026",
+    "jobId": "job-024",
+    "fullName": "Roman Zeman",
+    "phone": "+420 739 678 901",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "career_pages"
+  },
+  {
+    "id": "cand-027",
+    "jobId": "job-024",
+    "fullName": "Šárka Holubová",
+    "phone": "+420 770 789 012",
+    "stars": 2,
+    "status": "rejected",
+    "lastContact": "2026-10-05",
+    "source": "prace_cz",
+    "note": "Nechce pracovat o víkendech."
+  },
+  {
+    "id": "cand-028",
+    "jobId": "job-024",
+    "fullName": "Adam Pokorný",
+    "phone": "+420 771 890 123",
+    "stars": 3,
+    "status": "round1",
+    "lastContact": "2026-10-11",
+    "source": "jobs_cz",
+    "note": "Pohovor domluven na úterý 13. 10."
+  }
+]

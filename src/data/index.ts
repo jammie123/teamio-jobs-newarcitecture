@@ -1,11 +1,16 @@
+import candidatesJson from './candidates.json'
 import jobsJson from './jobs.json'
-import type { Job } from './types'
+import type { Candidate, Job } from './types'
 
 export const jobs = jobsJson as Job[]
+export const candidates = candidatesJson as Candidate[]
 
 export type {
   Ad,
   AdStatus,
+  Candidate,
+  CandidateSource,
+  CandidateStatus,
   Highlight,
   HighlightType,
   Job,
@@ -38,6 +43,8 @@ export {
 } from './portals'
 
 export { NOTE_LABELS, noteLabel } from './notes'
+
+export { CANDIDATE_STATUS_LABELS, candidateStatusLabel } from './candidateStatus'
 
 export {
   addDaysIso,

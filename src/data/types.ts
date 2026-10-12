@@ -63,6 +63,32 @@ export type Note = {
   text: string
 }
 
+export type CandidateStatus =
+  | 'unassessed'
+  | 'preselected'
+  | 'round1'
+  | 'round2'
+  | 'offer'
+  | 'rejected'
+  | 'hired'
+
+export type CandidateSource = Extract<PortalId, 'jobs_cz' | 'prace_cz' | 'career_pages'>
+
+export type Candidate = {
+  id: string
+  /** References `Job.id` in jobs.json. */
+  jobId: string
+  fullName: string
+  phone: string
+  /** Star rating 0–5 (0 = not rated). */
+  stars: number
+  status: CandidateStatus
+  /** ISO date `YYYY-MM-DD`, or `null` when there was no contact yet. */
+  lastContact: string | null
+  source: CandidateSource
+  note?: string
+}
+
 export type Job = {
   id: string
   title: string
