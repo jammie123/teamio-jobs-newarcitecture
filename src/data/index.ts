@@ -68,8 +68,12 @@ export {
 
 export { toJobCard } from './toJobCard'
 
+export { candidateListPath, pipelineStatusFromSearch } from './candidateListLink'
+
 export {
+  CANDIDATE_MOVE_TO_OPTIONS,
   CANDIDATE_STATUS_OPTIONS,
+  matchesCandidateSearch,
   matchesPipelineStatus,
   pipelineCounts,
   toCandidateItem,

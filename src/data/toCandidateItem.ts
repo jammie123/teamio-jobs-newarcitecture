@@ -7,7 +7,7 @@ import type { Candidate, CandidateStatus } from './types'
 /** Id of the pipeline cell that clears the status filter. Mirrors the starter's "Celkem" cell. */
 const PIPELINE_ALL_ID = 'total'
 
-/** Maps a candidate status onto a pipeline cell. `rejected` has no cell and counts only in total. */
+/** Maps a candidate status onto a pipeline cell. Every candidate also counts in total. */
 const PIPELINE_STATUS_BY_CANDIDATE_STATUS: Record<CandidateStatus, string | undefined> = {
   unassessed: 'unassessed',
   preselected: 'preselected',
@@ -15,7 +15,7 @@ const PIPELINE_STATUS_BY_CANDIDATE_STATUS: Record<CandidateStatus, string | unde
   round1: 'invited',
   round2: 'invited',
   hired: 'hired',
-  rejected: undefined,
+  rejected: 'rejected',
 }
 
 const STATUS_COLORS: Record<CandidateStatus, CandidateStatusOption['color']> = {
@@ -44,6 +44,11 @@ export const CANDIDATE_STATUS_OPTIONS: CandidateStatusOption[] = STATUS_ORDER.ma
   color: STATUS_COLORS[status],
 }))
 
+/** Targets of "Posunout do" in the row menu and the bulk bar; rejecting is a separate action. */
+export const CANDIDATE_MOVE_TO_OPTIONS: CandidateStatusOption[] = CANDIDATE_STATUS_OPTIONS.filter(
+  (option) => option.id !== 'rejected',
+)
+
 export function toCandidateItem(candidate: Candidate): CandidateItemData {
   return {
     id: candidate.id,
@@ -68,6 +73,19 @@ export function pipelineCounts(candidates: Candidate[]): Record<string, number> 
   }
 
   return counts
+}
+
+function normalizeForSearch(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .toLowerCase()
+}
+
+/** Case- and diacritics-insensitive match of the candidate's name; an empty query matches all. */
+export function matchesCandidateSearch(candidate: Candidate, query: string): boolean {
+  const normalized = normalizeForSearch(query.trim())
+  return normalized === '' || normalizeForSearch(candidate.fullName).includes(normalized)
 }
 
 export function matchesPipelineStatus(candidate: Candidate, statusId: string | undefined): boolean {

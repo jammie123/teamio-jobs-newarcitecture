@@ -22,6 +22,7 @@ import {
 import {
   DEFAULT_JOB_SORT,
   EMPTY_JOBS_FILTER,
+  candidateListPath,
   JOB_SORT_OPTIONS,
   filterOptionsFromJobs,
   jobMatchesFilter,
@@ -152,7 +153,7 @@ function JobCardList({
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
-        onCandidatesClick={() => navigate(`/nabory/${job.id}/uchazeci`)}
+        onCandidatesClick={(stat) => navigate(candidateListPath(job.id, stat))}
         {...(job.ads.length > 0
           ? {
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
