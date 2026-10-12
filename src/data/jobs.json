@@ -3,47 +3,76 @@
     "id": "job-001",
     "title": "Řidič/ka sk. C ČB turnusový režim PO–NE",
     "recruiter": "Martina Nováková",
-    "department": "České Budějovice",
+    "department": null,
     "hiringManagers": [
       "Lukáš Procházka"
     ],
     "status": "open",
     "createdAt": "2026-05-01",
-    "candidates": {
-      "new": 5,
-      "unassessed": 18,
-      "inProgress": 9,
-      "total": 57
-    },
     "ads": [
       {
         "id": "ad-001-1",
         "title": "Řidič/ka sk. C – České Budějovice, turnus PO–NE",
+        "department": "České Budějovice",
         "placements": [
           {
             "portal": "jobs_cz",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 1840,
               "clicks": 276,
               "applications": 34
-            }
+            },
+            "highlights": [
+              {
+                "type": "jobstip",
+                "publishedFrom": "2026-06-08",
+                "publishedTo": "2026-09-25",
+                "stats": {
+                  "views": 699,
+                  "clicks": 105,
+                  "applications": 13
+                }
+              },
+              {
+                "type": "top",
+                "publishedFrom": "2026-06-22",
+                "publishedTo": "2026-09-25",
+                "stats": {
+                  "views": 331,
+                  "clicks": 50,
+                  "applications": 6
+                }
+              }
+            ]
           },
           {
             "portal": "prace_cz",
             "publishedFrom": "2026-06-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 920,
               "clicks": 118,
               "applications": 15
-            }
+            },
+            "highlights": [
+              {
+                "type": "supermax",
+                "publishedFrom": "2026-06-08",
+                "publishedTo": "2026-09-25",
+                "stats": {
+                  "views": 331,
+                  "clicks": 42,
+                  "applications": 5
+                }
+              }
+            ]
           },
           {
             "portal": "career_pages",
             "publishedFrom": "2026-05-15",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 410,
               "clicks": 62,
@@ -55,22 +84,35 @@
       },
       {
         "id": "ad-001-2",
-        "title": "Hledáme řidiče sk. C na turnusy – ČB",
+        "title": "Hledáme řidiče sk. C na turnusy – Český Krumlov",
+        "department": "Český Krumlov",
         "placements": [
           {
             "portal": "prace_za_rohem",
             "publishedFrom": "2026-07-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 560,
               "clicks": 84,
               "applications": 11
-            }
+            },
+            "highlights": [
+              {
+                "type": "pzr_highlight",
+                "publishedFrom": "2026-07-04",
+                "publishedTo": "2026-09-25",
+                "stats": {
+                  "views": 157,
+                  "clicks": 24,
+                  "applications": 3
+                }
+              }
+            ]
           },
           {
             "portal": "atmoskop",
             "publishedFrom": "2026-07-01",
-            "publishedTo": "2026-09-30",
+            "publishedTo": "2026-09-25",
             "stats": {
               "views": 190,
               "clicks": 28,
@@ -92,12 +134,6 @@
     ],
     "status": "open",
     "createdAt": "2026-05-18",
-    "candidates": {
-      "new": 0,
-      "unassessed": 7,
-      "inProgress": 11,
-      "total": 44
-    },
     "ads": [
       {
         "id": "ad-002-1",
@@ -111,7 +147,19 @@
               "views": 1520,
               "clicks": 210,
               "applications": 27
-            }
+            },
+            "highlights": [
+              {
+                "type": "jobstip",
+                "publishedFrom": "2026-06-15",
+                "publishedTo": "2026-10-31",
+                "stats": {
+                  "views": 486,
+                  "clicks": 67,
+                  "applications": 9
+                }
+              }
+            ]
           },
           {
             "portal": "prace_cz",
@@ -121,7 +169,29 @@
               "views": 780,
               "clicks": 95,
               "applications": 12
-            }
+            },
+            "highlights": [
+              {
+                "type": "supermax",
+                "publishedFrom": "2026-06-14",
+                "publishedTo": "2026-10-31",
+                "stats": {
+                  "views": 265,
+                  "clicks": 32,
+                  "applications": 4
+                }
+              },
+              {
+                "type": "top",
+                "publishedFrom": "2026-06-28",
+                "publishedTo": "2026-10-31",
+                "stats": {
+                  "views": 133,
+                  "clicks": 16,
+                  "applications": 2
+                }
+              }
+            ]
           },
           {
             "portal": "career_pages",
@@ -149,11 +219,9 @@
     ],
     "status": "open",
     "createdAt": "2026-04-17",
-    "candidates": {
-      "new": 12,
-      "unassessed": 23,
-      "inProgress": 4,
-      "total": 81
+    "note": {
+      "type": "start",
+      "text": "Nástup ideálně od 1. 9. 2026, po zaškolení kolegyně."
     },
     "ads": [
       {
@@ -215,11 +283,6 @@
     ],
     "status": "open",
     "createdAt": "2026-06-01",
-    "candidates": {
-      "unassessed": 3,
-      "inProgress": 14,
-      "total": 36
-    },
     "ads": [
       {
         "id": "ad-004-1",
@@ -269,12 +332,6 @@
     ],
     "status": "archive",
     "createdAt": "2025-10-01",
-    "candidates": {
-      "new": 0,
-      "unassessed": 2,
-      "inProgress": 1,
-      "total": 29
-    },
     "ads": [
       {
         "id": "ad-005-1",
@@ -345,11 +402,9 @@
     ],
     "status": "open",
     "createdAt": "2026-06-01",
-    "candidates": {
-      "new": 3,
-      "unassessed": 11,
-      "inProgress": 6,
-      "total": 22
+    "note": {
+      "type": "replacement",
+      "text": "Náhrada za Martina Šimka – odchází k 31. 8. 2026."
     },
     "ads": [
       {
@@ -418,12 +473,6 @@
     ],
     "status": "open",
     "createdAt": "2026-06-17",
-    "candidates": {
-      "new": 0,
-      "unassessed": 0,
-      "inProgress": 8,
-      "total": 19
-    },
     "ads": [
       {
         "id": "ad-007-1",
@@ -474,12 +523,6 @@
     ],
     "status": "archive",
     "createdAt": "2025-08-18",
-    "candidates": {
-      "new": 0,
-      "unassessed": 1,
-      "inProgress": 0,
-      "total": 12
-    },
     "ads": [
       {
         "id": "ad-008-1",
@@ -520,11 +563,9 @@
     ],
     "status": "open",
     "createdAt": "2026-05-18",
-    "candidates": {
-      "new": 8,
-      "unassessed": 15,
-      "inProgress": 7,
-      "total": 48
+    "note": {
+      "type": "salary",
+      "text": "Nabízíme 38–42 000 Kč hrubého + směnné příplatky."
     },
     "ads": [
       {
@@ -576,12 +617,6 @@
     ],
     "status": "open",
     "createdAt": "2026-06-17",
-    "candidates": {
-      "new": 2,
-      "unassessed": 9,
-      "inProgress": 13,
-      "total": 63
-    },
     "ads": [
       {
         "id": "ad-010-1",
@@ -642,11 +677,6 @@
     ],
     "status": "open",
     "createdAt": "2026-05-18",
-    "candidates": {
-      "unassessed": 4,
-      "inProgress": 2,
-      "total": 8
-    },
     "ads": [
       {
         "id": "ad-011-1",
@@ -687,11 +717,9 @@
     ],
     "status": "archive",
     "createdAt": "2025-09-17",
-    "candidates": {
-      "new": 0,
-      "unassessed": 0,
-      "inProgress": 0,
-      "total": 17
+    "note": {
+      "type": "start",
+      "text": "Nástup byl plánovaný na leden 2026, nábor je uzavřený."
     },
     "ads": [
       {
@@ -743,12 +771,6 @@
     ],
     "status": "open",
     "createdAt": "2026-06-17",
-    "candidates": {
-      "new": 1,
-      "unassessed": 6,
-      "inProgress": 5,
-      "total": 21
-    },
     "ads": [
       {
         "id": "ad-013-1",
@@ -800,12 +822,6 @@
     ],
     "status": "open",
     "createdAt": "2026-04-17",
-    "candidates": {
-      "new": 4,
-      "unassessed": 12,
-      "inProgress": 16,
-      "total": 59
-    },
     "ads": [
       {
         "id": "ad-014-1",
@@ -856,11 +872,9 @@
     ],
     "status": "open",
     "createdAt": "2026-06-21",
-    "candidates": {
-      "new": 0,
-      "unassessed": 5,
-      "inProgress": 3,
-      "total": 14
+    "note": {
+      "type": "replacement",
+      "text": "Náhrada za odcházejícího elektrikáře na směně v JH."
     },
     "ads": [
       {
@@ -902,12 +916,6 @@
     ],
     "status": "open",
     "createdAt": "2026-05-18",
-    "candidates": {
-      "new": 0,
-      "unassessed": 8,
-      "inProgress": 1,
-      "total": 10
-    },
     "ads": [
       {
         "id": "ad-016-1",
@@ -968,12 +976,6 @@
     ],
     "status": "archive",
     "createdAt": "2025-07-18",
-    "candidates": {
-      "new": 0,
-      "unassessed": 0,
-      "inProgress": 2,
-      "total": 25
-    },
     "ads": [
       {
         "id": "ad-017-1",
@@ -1024,11 +1026,9 @@
     ],
     "status": "open",
     "createdAt": "2026-06-01",
-    "candidates": {
-      "new": 7,
-      "unassessed": 21,
-      "inProgress": 10,
-      "total": 72
+    "note": {
+      "type": "salary",
+      "text": "Zkrácený úvazek 0,5, nabízíme 22 000 Kč hrubého."
     },
     "ads": [
       {
@@ -1070,12 +1070,6 @@
     ],
     "status": "archive",
     "createdAt": "2025-11-01",
-    "candidates": {
-      "new": 0,
-      "unassessed": 3,
-      "inProgress": 0,
-      "total": 41
-    },
     "ads": [
       {
         "id": "ad-019-1",
@@ -1136,12 +1130,6 @@
     ],
     "status": "archive",
     "createdAt": "2025-06-17",
-    "candidates": {
-      "new": 0,
-      "unassessed": 1,
-      "inProgress": 4,
-      "total": 33
-    },
     "ads": [
       {
         "id": "ad-020-1",
@@ -1192,6 +1180,10 @@
     ],
     "status": "draft",
     "createdAt": "2026-08-22",
+    "note": {
+      "type": "start",
+      "text": "Nástup na noční směnu od října 2026, mzdu ještě doladit s vedoucím."
+    },
     "ads": []
   },
   {
@@ -1215,6 +1207,106 @@
     ],
     "status": "draft",
     "createdAt": "2026-08-12",
+    "ads": []
+  },
+  {
+    "id": "job-024",
+    "title": "Disponent dopravy – ČB",
+    "recruiter": "Jana Dvořáková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-08-18",
+    "ads": [
+      {
+        "id": "ad-024-1",
+        "title": "Disponent dopravy – České Budějovice",
+        "placements": [
+          {
+            "portal": "jobs_cz",
+            "publishedFrom": "2026-08-20",
+            "publishedTo": "2026-08-31",
+            "stats": {
+              "views": 410,
+              "clicks": 58,
+              "applications": 7
+            }
+          },
+          {
+            "portal": "prace_cz",
+            "publishedFrom": "2026-08-20",
+            "publishedTo": "2026-09-24",
+            "stats": {
+              "views": 260,
+              "clicks": 34,
+              "applications": 4
+            }
+          },
+          {
+            "portal": "career_pages",
+            "publishedFrom": "2026-06-02",
+            "publishedTo": "2026-08-10",
+            "stats": {
+              "views": 95,
+              "clicks": 12,
+              "applications": 1
+            }
+          },
+          {
+            "portal": "atmoskop",
+            "publishedFrom": "2026-06-02",
+            "publishedTo": "2026-08-10",
+            "stats": {
+              "views": 48,
+              "clicks": 6,
+              "applications": 0
+            }
+          }
+        ],
+        "status": "published"
+      }
+    ]
+  },
+  {
+    "id": "job-025",
+    "title": "Skladník/skladnice – expediční sklad ČB",
+    "recruiter": "Martina Nováková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Lukáš Procházka",
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-14",
+    "note": {
+      "type": "start",
+      "text": "Nástup ideálně od 1. 11. 2026, inzerát připravíme po schválení rozpočtu."
+    },
+    "ads": []
+  },
+  {
+    "id": "job-026",
+    "title": "Technolog/ička mlékárenské výroby JH",
+    "recruiter": "Petr Svoboda",
+    "department": "Jindřichův Hradec",
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-21",
+    "ads": []
+  },
+  {
+    "id": "job-027",
+    "title": "Asistent/ka vedení",
+    "recruiter": "Jana Dvořáková",
+    "hiringManagers": [
+      "Klára Benešová"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-28",
     "ads": []
   }
 ]
