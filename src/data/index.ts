@@ -69,6 +69,13 @@ export {
 export { toJobCard } from './toJobCard'
 
 export {
+  CANDIDATE_STATUS_OPTIONS,
+  matchesPipelineStatus,
+  pipelineCounts,
+  toCandidateItem,
+} from './toCandidateItem'
+
+export {
   toModalAdvertisements,
   toModalAdvertisementSections,
   toModalPlaces,

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   JobCardSimplify3,
   JobModalChooseAds,
@@ -134,6 +135,7 @@ function JobCardList({
   sort: JobSortKey
   onAdAction: (job: Job, action: JobAdAction) => void
 }) {
+  const navigate = useNavigate()
   const items = sortJobs(jobsOnTab(tab, filter), sort)
 
   if (items.length === 0) {
@@ -150,6 +152,7 @@ function JobCardList({
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
+        onCandidatesClick={() => navigate(`/nabory/${job.id}/uchazeci`)}
         {...(job.ads.length > 0
           ? {
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
