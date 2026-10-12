@@ -1,14 +1,14 @@
-import type { JobCandidateStat } from '@teamio/starter/components'
+import type { JobCardSimplify3Props } from '@teamio/starter/components'
+
+/** Stat of the job card as emitted by `onCandidatesClick` (the starter's root export names a different card's stats). */
+type JobCandidateStat = Parameters<NonNullable<JobCardSimplify3Props['onCandidatesClick']>>[0]
 
 /** Query parameter of the candidate list that preselects a pipeline status. */
 const STATUS_PARAM = 'status'
 
-/**
- * Pipeline cell opened by a click on a stat of the job card. `new` has no cell of its own, so it
- * opens the whole list.
- */
+/** Pipeline cell opened by a click on a stat of the job card (`total` opens the whole list). */
 const PIPELINE_STATUS_BY_STAT: Record<JobCandidateStat, string | undefined> = {
-  new: undefined,
+  total: undefined,
   unassessed: 'unassessed',
   preselected: 'preselected',
   opalcovani: 'opalcovani',

@@ -1,3 +1,4 @@
+import { newCandidateCount } from './jobCandidates'
 import type { Job } from './types'
 
 export type JobSortKey = 'latestAd' | 'oldestAd' | 'newestJob' | 'mostNewCandidates' | 'titleAz'
@@ -128,7 +129,7 @@ export function sortJobs(jobs: Job[], key: JobSortKey): Job[] {
         primary = compareDesc(a.createdAt, b.createdAt)
         break
       case 'mostNewCandidates':
-        primary = compareDesc(a.candidates?.new ?? 0, b.candidates?.new ?? 0)
+        primary = compareDesc(newCandidateCount(a.id), newCandidateCount(b.id))
         break
       case 'titleAz':
         primary = a.title.localeCompare(b.title, 'cs')

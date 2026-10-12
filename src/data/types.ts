@@ -46,15 +46,6 @@ export type Ad = {
   department?: JobDepartment
 }
 
-export type JobCandidates = {
-  new?: number
-  /** Pink notification on Opalcovaný. */
-  newOpalcovani?: number
-  unassessed: number
-  inProgress: number
-  total: number
-}
-
 /** Recruiter note on a nábor: start date, replacement, or salary. */
 export type NoteType = 'start' | 'replacement' | 'salary'
 
@@ -87,6 +78,11 @@ export type Candidate = {
   lastContact: string | null
   source: CandidateSource
   note?: string
+  /**
+   * Not yet seen by the recruiter. Counts as "Nový" on the job card when `unassessed`, and as the
+   * pink "new Opalcovaný" notification when in `offer`.
+   */
+  isNew?: boolean
 }
 
 export type Job = {
@@ -98,7 +94,6 @@ export type Job = {
   status: JobStatus
   createdAt: string
   note?: Note
-  candidates?: JobCandidates
   ads: Ad[]
 }
 

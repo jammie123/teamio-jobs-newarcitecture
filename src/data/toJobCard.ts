@@ -1,27 +1,22 @@
 import type { JobCardSimplify3Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
-import { departmentsOf, type Ad, type Highlight, type Job, type JobCandidates, type Placement } from './types'
+import { candidatesOfJob, countJobCandidates } from './jobCandidates'
+import { departmentsOf, type Ad, type Candidate, type Highlight, type Job, type Placement } from './types'
 
 type JobCardSimplify3Data = Pick<
   JobCardSimplify3Props,
   'title' | 'owner' | 'hiringManagers' | 'branches' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSimplify3Candidates = NonNullable<JobCardSimplify3Props['candidates']>
 type JobCardSimplify3Advertisement = NonNullable<JobCardSimplify3Props['advertisements']>[number]
 type JobCardSimplify3Publication = NonNullable<JobCardSimplify3Advertisement['publications']>[number]
 
-const EMPTY_CANDIDATES: JobCardSimplify3Candidates = {
-  new: 0,
-  unassessed: 0,
-  preselected: 0,
-  opalcovani: 0,
-  invited: 0,
-  hired: 0,
-}
-
-export function toJobCard(job: Job, today = todayIso()): JobCardSimplify3Data {
+export function toJobCard(
+  job: Job,
+  today = todayIso(),
+  jobCandidates: Candidate[] = candidatesOfJob(job.id),
+): JobCardSimplify3Data {
   const tab = listingTab(job, today)
 
   return {
@@ -32,45 +27,12 @@ export function toJobCard(job: Job, today = todayIso()): JobCardSimplify3Data {
       id: name,
       name,
     })),
-    candidates: toSyntezaCandidates(job.candidates) ?? (tab === 'draft' ? EMPTY_CANDIDATES : undefined),
+    candidates: countJobCandidates(jobCandidates),
     advertisements:
       tab === 'draft' && (job.status === 'draft' || job.ads.length > 0)
         ? toDraftAdvertisements(job)
         : job.ads.map((ad) => toAdvertisement(ad, today)),
     note: toNote(job),
-  }
-}
-
-function toSyntezaCandidates(candidates?: JobCandidates): JobCardSimplify3Candidates | undefined {
-  if (!candidates) {
-    return undefined
-  }
-
-  const inProgress = candidates.inProgress
-  const preselected = Math.ceil(inProgress / 2)
-  const remaining = inProgress - preselected
-  const opalcovani = Math.ceil(remaining / 2)
-  const invited = remaining - opalcovani
-  const leftover = Math.max(
-    0,
-    candidates.total - (candidates.new ?? 0) - candidates.unassessed - inProgress,
-  )
-  const hired =
-    leftover === 0 ? 0 : Math.min(leftover, Math.max(1, Math.round(leftover * 0.08)))
-  const newOpalcovani =
-    candidates.newOpalcovani && opalcovani > 0
-      ? Math.min(candidates.newOpalcovani, opalcovani)
-      : undefined
-
-  return {
-    new: candidates.new ?? 0,
-    unassessed: candidates.unassessed,
-    preselected,
-    opalcovani,
-    ...(newOpalcovani ? { newOpalcovani } : {}),
-    invited,
-    hired,
-    total: candidates.total,
   }
 }
 

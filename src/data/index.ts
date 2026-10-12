@@ -14,7 +14,6 @@ export type {
   Highlight,
   HighlightType,
   Job,
-  JobCandidates,
   JobDepartment,
   JobStatus,
   Note,
@@ -65,6 +64,8 @@ export {
   partitionUnpublishedByEndedAge,
   shouldGroupUnpublishedByEndedAge,
 } from './unpublishedGroups'
+
+export { candidatesOfJob, countJobCandidates, newCandidateCount } from './jobCandidates'
 
 export { toJobCard } from './toJobCard'
 
