@@ -56,6 +56,8 @@ export function toCandidateItem(candidate: Candidate): CandidateItemData {
     phone: candidate.phone,
     rating: { value: candidate.stars },
     statusId: candidate.status,
+    isNew: candidate.isNew && candidate.status === 'unassessed' ? true : undefined,
+    isNewlyOpalcovani: candidate.isNew && candidate.status === 'offer' ? true : undefined,
     lastContact: candidate.lastContact ? formatCzechDate(candidate.lastContact) : undefined,
     source: { name: portalLabel(candidate.source) },
     note: candidate.note ? { text: candidate.note } : undefined,
@@ -67,6 +69,26 @@ export function pipelineCounts(candidates: Candidate[]): Record<string, number> 
 
   for (const candidate of candidates) {
     const cell = PIPELINE_STATUS_BY_CANDIDATE_STATUS[candidate.status]
+    if (cell) {
+      counts[cell] = (counts[cell] ?? 0) + 1
+    }
+  }
+
+  return counts
+}
+
+/**
+ * Counts of new candidates for the pipeline pill: unassessed candidates flagged `isNew` and offers
+ * flagged `isNew` ("nově opalcovaní"). Other pipeline cells never show a pill.
+ */
+export function newPipelineCounts(candidates: Candidate[]): Record<string, number> {
+  const counts: Record<string, number> = {}
+
+  for (const candidate of candidates) {
+    if (!candidate.isNew) continue
+    const cell = candidate.status === 'unassessed' || candidate.status === 'offer'
+      ? PIPELINE_STATUS_BY_CANDIDATE_STATUS[candidate.status]
+      : undefined
     if (cell) {
       counts[cell] = (counts[cell] ?? 0) + 1
     }

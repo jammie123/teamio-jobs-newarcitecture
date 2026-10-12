@@ -76,6 +76,7 @@ export {
   CANDIDATE_STATUS_OPTIONS,
   matchesCandidateSearch,
   matchesPipelineStatus,
+  newPipelineCounts,
   pipelineCounts,
   toCandidateItem,
 } from './toCandidateItem'

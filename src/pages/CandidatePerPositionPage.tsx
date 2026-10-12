@@ -22,6 +22,7 @@ import {
   jobs,
   matchesCandidateSearch,
   matchesPipelineStatus,
+  newPipelineCounts,
   pipelineCounts,
   pipelineStatusFromSearch,
   toCandidateItem,
@@ -64,7 +65,12 @@ export function CandidatePerPositionPage() {
 
   const jobCandidates = candidates
     .filter((candidate) => candidate.jobId === job.id)
-    .map((candidate) => ({ ...candidate, status: statusOverrides[candidate.id] ?? candidate.status }))
+    .map((candidate) => {
+      const override = statusOverrides[candidate.id]
+
+      // A candidate the recruiter has just moved is no longer new.
+      return override ? { ...candidate, status: override, isNew: false } : candidate
+    })
   const visibleCandidates = jobCandidates.filter(
     (candidate) =>
       matchesPipelineStatus(candidate, statusFilter) && matchesCandidateSearch(candidate, search),
@@ -135,6 +141,7 @@ export function CandidatePerPositionPage() {
     >
       <CandidateListPanel
         statusCounts={pipelineCounts(jobCandidates)}
+        newCounts={newPipelineCounts(jobCandidates)}
         statusValue={statusFilter}
         onStatusChange={setStatusFilter}
         searchValue={search}
