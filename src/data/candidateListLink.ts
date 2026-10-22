@@ -1,7 +1,7 @@
-import type { JobCardSimplify7Props } from '@teamio/starter/components'
+import type { JobCardSimplify4Props } from '@teamio/starter/components'
 
 /** Stat of the job card as emitted by `onCandidatesClick` (the starter's root export names a different card's stats). */
-type JobCandidateStat = Parameters<NonNullable<JobCardSimplify7Props['onCandidatesClick']>>[0]
+type JobCandidateStat = Parameters<NonNullable<JobCardSimplify4Props['onCandidatesClick']>>[0]
 
 /** Query parameter of the candidate list that preselects a pipeline status. */
 const STATUS_PARAM = 'status'
