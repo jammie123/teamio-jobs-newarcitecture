@@ -1,8 +1,8 @@
-import type { JobCardSimplify4Props } from '@teamio/starter/components'
+import type { JobCardSimplify13Props } from '@teamio/starter/components'
 import candidatesJson from './candidates.json'
 import type { Candidate } from './types'
 
-type JobCardCandidates = NonNullable<JobCardSimplify4Props['candidates']>
+type JobCardCandidates = NonNullable<JobCardSimplify13Props['candidates']>
 
 const allCandidates = candidatesJson as Candidate[]
 

@@ -82,8 +82,42 @@ function windowForProfile(profile: OpenPlacementProfile, today: string): DateWin
       return expiredOldWindow(today)
     case 'live':
     case 'splitExpiredLive':
+    case 'simplify11Partial':
+    case 'simplify11RunningDisabled':
+    case 'simplify11ExpiredDisabled':
+    case 'simplify11AllDisabled':
+    case 'simplify11MixedPeriods':
     default:
       return liveWindow(today)
+  }
+}
+
+function mixedPeriodWindows(today: string): [DateWindow, DateWindow] {
+  const sharedFrom = addDaysIso(today, DEFAULT_PUBLISHED_START_OFFSET_DAYS)
+  return [
+    {
+      publishedFrom: sharedFrom,
+      publishedTo: addDaysIso(today, 30),
+    },
+    {
+      publishedFrom: sharedFrom,
+      publishedTo: addDaysIso(today, DEFAULT_PUBLISHED_RUN_DAYS),
+    },
+  ]
+}
+
+function placementFromWindow(
+  jobId: string,
+  portal: PortalId,
+  window: DateWindow,
+  channelDisabled = false,
+): Placement {
+  return {
+    portal,
+    publishedFrom: window.publishedFrom,
+    publishedTo: window.publishedTo,
+    stats: statsFor(jobId, portal),
+    ...(channelDisabled ? { channelDisabled: true } : {}),
   }
 }
 
@@ -108,33 +142,70 @@ function buildPlacements(
   if (profile === 'splitExpiredLive') {
     const expired = expiredRecentWindow(today)
     const live = liveWindow(today)
+    return portals.map((portal, index) =>
+      placementFromWindow(jobId, portal, index === 0 ? expired : live),
+    )
+  }
+
+  if (profile === 'simplify11Partial' && portals.length >= 3) {
+    const expired = expiredRecentWindow(today)
+    const live = liveWindow(today)
     return portals.map((portal, index) => {
-      const window = index === 0 ? expired : live
-      return {
-        portal,
-        publishedFrom: window.publishedFrom,
-        publishedTo: window.publishedTo,
-        stats: statsFor(jobId, portal),
+      if (index === 0) {
+        return placementFromWindow(jobId, portal, expired)
       }
+      if (index === portals.length - 1) {
+        return placementFromWindow(jobId, portal, live, true)
+      }
+      return placementFromWindow(jobId, portal, live)
     })
   }
 
+  if (profile === 'simplify11RunningDisabled') {
+    const window = windowForProfile(profile, today)
+    return portals.map((portal, index) =>
+      placementFromWindow(jobId, portal, window, index === portals.length - 1),
+    )
+  }
+
+  if (profile === 'simplify11ExpiredDisabled') {
+    const expired = expiredRecentWindow(today)
+    return portals.map((portal, index) =>
+      placementFromWindow(jobId, portal, expired, index === portals.length - 1),
+    )
+  }
+
+  if (profile === 'simplify11AllDisabled') {
+    const window = liveWindow(today)
+    return portals.map((portal) => placementFromWindow(jobId, portal, window, true))
+  }
+
+  if (profile === 'simplify11MixedPeriods' && portals.length >= 2) {
+    const [shorterRun, longerRun] = mixedPeriodWindows(today)
+    return portals.map((portal, index) =>
+      placementFromWindow(jobId, portal, index === 0 ? shorterRun : longerRun),
+    )
+  }
+
   const window = windowForProfile(profile, today)
-  return portals.map((portal) => ({
-    portal,
-    publishedFrom: window.publishedFrom,
-    publishedTo: window.publishedTo,
-    stats: statsFor(jobId, portal),
-  }))
+  return portals.map((portal) => placementFromWindow(jobId, portal, window))
 }
 
+/** Nábor consciously not advertising (Simplify 11 „Neinzeruje se“). */
+const NOT_ADVERTISING_JOB_IDS = new Set(['job-004'])
+
 function buildAd(meta: JobMeta, portals: readonly PortalId[], today: string): Ad {
+  const declinedAt = NOT_ADVERTISING_JOB_IDS.has(meta.id)
+    ? addDaysIso(today, EXPIRED_RECENT_END_OFFSET_DAYS)
+    : undefined
+
   return {
     id: `${meta.id}-ad-1`,
     title: meta.title,
     status: 'published',
     department: meta.department,
     placements: buildPlacements(meta.id, portals, meta.status, today),
+    ...(declinedAt ? { notAdvertising: true, advertisingDeclinedAt: declinedAt } : {}),
   }
 }
 

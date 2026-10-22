@@ -1,22 +1,22 @@
-import type { JobCardSimplify4Props } from '@teamio/starter/components'
+import type { JobCardSimplify13Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
 import { departmentsOf, type Ad, type Candidate, type Highlight, type Job, type Placement } from './types'
 
-type JobCardSimplify4Data = Pick<
-  JobCardSimplify4Props,
+type JobCardSimplify13Data = Pick<
+  JobCardSimplify13Props,
   'title' | 'owner' | 'hiringManagers' | 'branches' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSimplify4Advertisement = NonNullable<JobCardSimplify4Props['advertisements']>[number]
-type JobCardSimplify4Publication = NonNullable<JobCardSimplify4Advertisement['publications']>[number]
+type JobCardSimplify13Advertisement = NonNullable<JobCardSimplify13Props['advertisements']>[number]
+type JobCardSimplify13Publication = NonNullable<JobCardSimplify13Advertisement['publications']>[number]
 
 export function toJobCard(
   job: Job,
   today = todayIso(),
   jobCandidates: Candidate[] = candidatesOfJob(job.id),
-): JobCardSimplify4Data {
+): JobCardSimplify13Data {
   const tab = listingTab(job, today)
 
   return {
@@ -36,7 +36,7 @@ export function toJobCard(
   }
 }
 
-function toNote(job: Job): JobCardSimplify4Props['note'] {
+function toNote(job: Job): JobCardSimplify13Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -48,7 +48,7 @@ function toNote(job: Job): JobCardSimplify4Props['note'] {
   }
 }
 
-function toDraftAdvertisements(job: Job): JobCardSimplify4Advertisement[] {
+function toDraftAdvertisements(job: Job): JobCardSimplify13Advertisement[] {
   if (job.ads.length === 0) {
     return [{ id: `${job.id}-draft`, title: job.title, status: 'draft' }]
   }
@@ -60,19 +60,33 @@ function toDraftAdvertisements(job: Job): JobCardSimplify4Advertisement[] {
   }))
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardSimplify4Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardSimplify13Advertisement {
+  const publications = ad.placements.map((placement) => toPublication(ad.id, placement, today))
+
+  if (ad.notAdvertising) {
+    return {
+      id: ad.id,
+      title: ad.title,
+      status: 'notAdvertising',
+      ...(ad.advertisingDeclinedAt
+        ? { advertisingDeclinedAt: formatCzechDate(ad.advertisingDeclinedAt) }
+        : {}),
+      publications,
+    }
+  }
+
   return {
     id: ad.id,
     title: ad.title,
-    publications: ad.placements.map((placement) => toPublication(ad.id, placement, today)),
+    publications,
   }
 }
 
-function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify4Publication {
+function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify13Publication {
   const highlights = (placement.highlights ?? []).map((highlight) =>
     toHighlight(adId, placement, highlight, today),
   )
-  const publication: JobCardSimplify4Publication = {
+  const publication: JobCardSimplify13Publication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
     startDate: formatCzechDate(placement.publishedFrom),
@@ -82,7 +96,9 @@ function toPublication(adId: string, placement: Placement, today: string): JobCa
     ...(highlights.length > 0 ? { highlights } : {}),
   }
 
-  if (placement.publishedTo < today) {
+  if (placement.channelDisabled) {
+    publication.status = 'disabled'
+  } else if (placement.publishedTo < today) {
     publication.status = 'expired'
   }
 
@@ -94,7 +110,7 @@ function toHighlight(
   placement: Placement,
   highlight: Highlight,
   today: string,
-): NonNullable<JobCardSimplify4Publication['highlights']>[number] {
+): NonNullable<JobCardSimplify13Publication['highlights']>[number] {
   const mapped = {
     id: `${adId}-${placement.portal}-${highlight.type}`,
     name: highlightDisplayName(highlight.type, placement.portal),

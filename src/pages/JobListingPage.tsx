@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  JobCardSimplify4,
+  JobCardSimplify13,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -98,6 +98,7 @@ const jobCardNoops = {
   onPreviewPublication: noop,
   onExtendPublication: noop,
   onCompleteAdvertisement: noop,
+  onRepublishAdvertisement: noop,
 }
 
 type JobModalStep = 'chooseAd' | 'places'
@@ -149,7 +150,7 @@ function JobCardList({
 
   function renderCard(job: Job) {
     return (
-      <JobCardSimplify4
+      <JobCardSimplify13
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
@@ -159,6 +160,7 @@ function JobCardList({
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
               onEndPublication: () => onAdAction(job, 'unpublish'),
               onTopAdvertisement: () => onAdAction(job, 'top'),
+              onRepublishAdvertisement: () => onAdAction(job, 'prolong'),
             }
           : {})}
       />
