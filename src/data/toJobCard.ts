@@ -1,22 +1,22 @@
-import type { JobCardSimplify3Props } from '@teamio/starter/components'
+import type { JobCardSimplify7Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
 import { departmentsOf, type Ad, type Candidate, type Highlight, type Job, type Placement } from './types'
 
-type JobCardSimplify3Data = Pick<
-  JobCardSimplify3Props,
+type JobCardSimplify7Data = Pick<
+  JobCardSimplify7Props,
   'title' | 'owner' | 'hiringManagers' | 'branches' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSimplify3Advertisement = NonNullable<JobCardSimplify3Props['advertisements']>[number]
-type JobCardSimplify3Publication = NonNullable<JobCardSimplify3Advertisement['publications']>[number]
+type JobCardSimplify7Advertisement = NonNullable<JobCardSimplify7Props['advertisements']>[number]
+type JobCardSimplify7Publication = NonNullable<JobCardSimplify7Advertisement['publications']>[number]
 
 export function toJobCard(
   job: Job,
   today = todayIso(),
   jobCandidates: Candidate[] = candidatesOfJob(job.id),
-): JobCardSimplify3Data {
+): JobCardSimplify7Data {
   const tab = listingTab(job, today)
 
   return {
@@ -36,7 +36,7 @@ export function toJobCard(
   }
 }
 
-function toNote(job: Job): JobCardSimplify3Props['note'] {
+function toNote(job: Job): JobCardSimplify7Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -48,7 +48,7 @@ function toNote(job: Job): JobCardSimplify3Props['note'] {
   }
 }
 
-function toDraftAdvertisements(job: Job): JobCardSimplify3Advertisement[] {
+function toDraftAdvertisements(job: Job): JobCardSimplify7Advertisement[] {
   if (job.ads.length === 0) {
     return [{ id: `${job.id}-draft`, title: job.title, status: 'draft' }]
   }
@@ -60,7 +60,7 @@ function toDraftAdvertisements(job: Job): JobCardSimplify3Advertisement[] {
   }))
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardSimplify3Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardSimplify7Advertisement {
   return {
     id: ad.id,
     title: ad.title,
@@ -68,11 +68,11 @@ function toAdvertisement(ad: Ad, today: string): JobCardSimplify3Advertisement {
   }
 }
 
-function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify3Publication {
+function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify7Publication {
   const highlights = (placement.highlights ?? []).map((highlight) =>
     toHighlight(adId, placement, highlight, today),
   )
-  const publication: JobCardSimplify3Publication = {
+  const publication: JobCardSimplify7Publication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
     startDate: formatCzechDate(placement.publishedFrom),
@@ -94,7 +94,7 @@ function toHighlight(
   placement: Placement,
   highlight: Highlight,
   today: string,
-): NonNullable<JobCardSimplify3Publication['highlights']>[number] {
+): NonNullable<JobCardSimplify7Publication['highlights']>[number] {
   const mapped = {
     id: `${adId}-${placement.portal}-${highlight.type}`,
     name: highlightDisplayName(highlight.type, placement.portal),

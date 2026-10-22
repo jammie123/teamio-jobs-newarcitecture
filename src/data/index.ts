@@ -1,8 +1,8 @@
 import candidatesJson from './candidates.json'
-import jobsJson from './jobs.json'
-import type { Candidate, Job } from './types'
+import { buildJobsFromSimplyData } from './simply/buildJobsFromSimplyData'
+import type { Candidate } from './types'
 
-export const jobs = jobsJson as Job[]
+export const jobs = buildJobsFromSimplyData()
 export const candidates = candidatesJson as Candidate[]
 
 export type {

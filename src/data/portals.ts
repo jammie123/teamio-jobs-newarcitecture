@@ -6,6 +6,8 @@ export const PORTAL_LABELS: Record<PortalId, string> = {
   prace_za_rohem: 'Práce za rohem',
   atmoskop: 'Atmoskop',
   career_pages: 'Kariérní stránky',
+  referral: 'Doporučení',
+  export: 'Export',
 }
 
 export const HIGHLIGHT_LABELS: Record<HighlightType, string> = {
@@ -21,6 +23,8 @@ export const HIGHLIGHTS_BY_PORTAL: Record<PortalId, readonly HighlightType[]> = 
   prace_za_rohem: ['pzr_highlight'],
   atmoskop: [],
   career_pages: [],
+  referral: [],
+  export: [],
 }
 
 export function portalLabel(portal: PortalId): string {

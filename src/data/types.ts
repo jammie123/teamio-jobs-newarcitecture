@@ -8,6 +8,8 @@ export type PortalId =
   | 'prace_za_rohem'
   | 'atmoskop'
   | 'career_pages'
+  | 'referral'
+  | 'export'
 
 export type PlacementStats = {
   views: number
@@ -67,7 +69,7 @@ export type CandidateSource = Extract<PortalId, 'jobs_cz' | 'prace_cz' | 'career
 
 export type Candidate = {
   id: string
-  /** References `Job.id` in jobs.json. */
+  /** References `Job.id` in jobsMeta / built jobs. */
   jobId: string
   fullName: string
   phone: string
