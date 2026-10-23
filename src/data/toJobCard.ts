@@ -1,5 +1,5 @@
 import type { JobCardSimplify17Props } from '@teamio/starter/components'
-import { formatCzechDate, listingTab, todayIso } from './adStatus'
+import { formatCzechDate, listingTab, todayIso, type JobCardListingStatus } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
 import { departmentsOf, type Ad, type Candidate, type Highlight, type Job, type Placement } from './types'
@@ -28,10 +28,7 @@ export function toJobCard(
       name,
     })),
     candidates: countJobCandidates(jobCandidates),
-    advertisements:
-      tab === 'draft' && (job.status === 'draft' || job.ads.length > 0)
-        ? toDraftAdvertisements(job)
-        : job.ads.map((ad) => toAdvertisement(ad, today)),
+    advertisements: toAdvertisements(job, today, tab),
     note: toNote(job),
   }
 }
@@ -48,11 +45,28 @@ function toNote(job: Job): JobCardSimplify17Props['note'] {
   }
 }
 
-function toDraftAdvertisements(job: Job): JobCardSimplify17Advertisement[] {
+function toAdvertisements(job: Job, today: string, tab: JobCardListingStatus): JobCardSimplify17Advertisement[] {
   if (job.ads.length === 0) {
-    return [{ id: `${job.id}-draft`, title: job.title, status: 'draft' }]
+    return [toNotAdvertisingAdvertisement(job)]
   }
 
+  if (tab === 'draft' && (job.status === 'draft' || job.ads.length > 0)) {
+    return toDraftAdvertisements(job)
+  }
+
+  return job.ads.map((ad) => toAdvertisement(ad, today))
+}
+
+function toNotAdvertisingAdvertisement(job: Job): JobCardSimplify17Advertisement {
+  return {
+    id: `${job.id}-not-advertising`,
+    title: job.title,
+    status: 'notAdvertising',
+    publications: [],
+  }
+}
+
+function toDraftAdvertisements(job: Job): JobCardSimplify17Advertisement[] {
   return job.ads.map((ad) => ({
     id: ad.id,
     title: ad.title,
