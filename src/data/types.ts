@@ -34,7 +34,7 @@ export type Placement = {
   stats: PlacementStats
   /** Paid highlights on this vystavení. Omitted when the ad is only published. */
   highlights?: Highlight[]
-  /** Consciously turned-off channel (JobCardSimplify13). */
+  /** Consciously turned-off channel (JobCardSimplify17). */
   channelDisabled?: boolean
 }
 
@@ -48,7 +48,7 @@ export type Ad = {
   placements: Placement[]
   /** Branch for this advertisement. `0`, `null`, or omitted = no branch. */
   department?: JobDepartment
-  /** User stopped advertising on this nábor (JobCardSimplify13). */
+  /** User stopped advertising on this nábor (JobCardSimplify17). */
   notAdvertising?: boolean
   /** ISO date when advertising was declined; shown in card meta. */
   advertisingDeclinedAt?: string

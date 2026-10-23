@@ -17,8 +17,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-030",
@@ -90,8 +89,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-037",
@@ -111,8 +109,7 @@
     "stars": 5,
     "status": "offer",
     "lastContact": "2026-06-09",
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-039",
@@ -174,7 +171,6 @@
     "status": "offer",
     "lastContact": "2026-05-07",
     "source": "career_pages",
-    "isNew": true,
     "note": "Nabídka odeslána, čekáme na odpověď."
   },
   {
@@ -329,8 +325,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-058",
@@ -413,8 +408,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-066",
@@ -424,8 +418,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-067",
@@ -1060,8 +1053,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-123",
@@ -1224,8 +1216,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-139",
@@ -1245,8 +1236,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-141",
@@ -1276,8 +1266,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-144",
@@ -1297,8 +1286,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-146",
@@ -1431,8 +1419,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-159",
@@ -1493,8 +1480,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-165",
@@ -1535,8 +1521,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-169",
@@ -1670,8 +1655,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-182",
@@ -1682,7 +1666,6 @@
     "status": "offer",
     "lastContact": "2026-07-14",
     "source": "prace_cz",
-    "isNew": true,
     "note": "Nabídka odeslána, čekáme na odpověď."
   },
   {
@@ -1693,8 +1676,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-184",
@@ -1777,8 +1759,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-192",
@@ -1798,8 +1779,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-194",
@@ -2118,8 +2098,7 @@
     "stars": 5,
     "status": "offer",
     "lastContact": "2026-09-12",
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-222",
@@ -2223,7 +2202,6 @@
     "status": "offer",
     "lastContact": "2026-06-30",
     "source": "jobs_cz",
-    "isNew": true,
     "note": "Nabídka schválena, čeká na potvrzení."
   },
   {
@@ -2648,8 +2626,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-270",
@@ -2700,8 +2677,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-274",
@@ -2784,8 +2760,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-281",
@@ -2969,8 +2944,7 @@
     "stars": 4,
     "status": "offer",
     "lastContact": "2026-06-30",
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-299",
@@ -3174,8 +3148,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-319",
@@ -3236,8 +3209,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-325",
@@ -3247,8 +3219,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-326",
@@ -3258,8 +3229,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-327",
@@ -3269,8 +3239,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-328",
@@ -3322,8 +3291,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-333",
@@ -3343,8 +3311,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-335",
@@ -3404,8 +3371,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-341",
@@ -3510,7 +3476,6 @@
     "status": "offer",
     "lastContact": "2026-10-05",
     "source": "prace_cz",
-    "isNew": true,
     "note": "Vyjednáváme nástupní termín."
   },
   {
@@ -3727,8 +3692,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-370",
@@ -3994,8 +3958,7 @@
     "stars": 4,
     "status": "offer",
     "lastContact": "2026-10-10",
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-395",
@@ -4119,7 +4082,6 @@
     "status": "offer",
     "lastContact": "2026-09-01",
     "source": "prace_cz",
-    "isNew": true,
     "note": "Vyjednáváme nástupní termín."
   },
   {
@@ -4182,8 +4144,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-413",
@@ -4564,8 +4525,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-449",
@@ -4794,8 +4754,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-471",
@@ -4805,8 +4764,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-472",
@@ -4837,8 +4795,7 @@
     "stars": 4,
     "status": "offer",
     "lastContact": "2026-08-26",
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-475",
@@ -4940,8 +4897,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-485",
@@ -5296,7 +5252,6 @@
     "status": "offer",
     "lastContact": "2026-07-29",
     "source": "jobs_cz",
-    "isNew": true,
     "note": "Vyjednáváme nástupní termín."
   },
   {
@@ -5328,8 +5283,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-519",
@@ -5441,7 +5395,8 @@
     "status": "offer",
     "lastContact": "2026-07-10",
     "source": "jobs_cz",
-    "note": "Nabídka odeslána, čekáme na odpověď."
+    "note": "Nabídka odeslána, čekáme na odpověď.",
+    "isNew": true
   },
   {
     "id": "cand-530",
@@ -5870,8 +5825,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-572",
@@ -6095,8 +6049,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-594",
@@ -6117,8 +6070,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-596",
@@ -6138,8 +6090,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-598",
@@ -6252,8 +6203,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-609",
@@ -6316,8 +6266,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-615",
@@ -6429,8 +6378,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-626",
@@ -6471,8 +6419,7 @@
     "stars": 4,
     "status": "offer",
     "lastContact": "2026-06-15",
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-630",
@@ -6482,8 +6429,7 @@
     "stars": 4,
     "status": "offer",
     "lastContact": "2026-07-28",
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-631",
@@ -7371,8 +7317,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-718",
@@ -7382,8 +7327,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "prace_cz",
-    "isNew": true
+    "source": "prace_cz"
   },
   {
     "id": "cand-719",
@@ -7444,8 +7388,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "jobs_cz",
-    "isNew": true
+    "source": "jobs_cz"
   },
   {
     "id": "cand-725",
@@ -7549,8 +7492,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-731",
@@ -7633,8 +7575,7 @@
     "stars": 0,
     "status": "unassessed",
     "lastContact": null,
-    "source": "career_pages",
-    "isNew": true
+    "source": "career_pages"
   },
   {
     "id": "cand-739",
@@ -7695,5 +7636,16 @@
     "status": "rejected",
     "lastContact": "2026-10-11",
     "source": "career_pages"
+  },
+  {
+    "id": "cand-745",
+    "jobId": "job-027",
+    "fullName": "Petra Nováková",
+    "phone": "+420 777 123 456",
+    "stars": 0,
+    "status": "unassessed",
+    "lastContact": null,
+    "source": "jobs_cz",
+    "isNew": true
   }
 ]
