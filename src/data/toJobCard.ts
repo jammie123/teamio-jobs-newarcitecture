@@ -1,22 +1,22 @@
-import type { JobCardSimplify22Props } from '@teamio/starter/components'
+import type { JobCardSimplify25Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso, type JobCardListingStatus } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
 import { departmentsOf, type Ad, type Candidate, type Highlight, type Job, type Placement } from './types'
 
-type JobCardSimplify22Data = Pick<
-  JobCardSimplify22Props,
+type JobCardSimplify25Data = Pick<
+  JobCardSimplify25Props,
   'title' | 'owner' | 'hiringManagers' | 'branches' | 'candidates' | 'advertisements' | 'note'
 >
 
-type JobCardSimplify22Advertisement = NonNullable<JobCardSimplify22Props['advertisements']>[number]
-type JobCardSimplify22Publication = NonNullable<JobCardSimplify22Advertisement['publications']>[number]
+type JobCardSimplify25Advertisement = NonNullable<JobCardSimplify25Props['advertisements']>[number]
+type JobCardSimplify25Publication = NonNullable<JobCardSimplify25Advertisement['publications']>[number]
 
 export function toJobCard(
   job: Job,
   today = todayIso(),
   jobCandidates: Candidate[] = candidatesOfJob(job.id),
-): JobCardSimplify22Data {
+): JobCardSimplify25Data {
   const tab = listingTab(job, today)
 
   return {
@@ -33,7 +33,7 @@ export function toJobCard(
   }
 }
 
-function toNote(job: Job): JobCardSimplify22Props['note'] {
+function toNote(job: Job): JobCardSimplify25Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -45,7 +45,7 @@ function toNote(job: Job): JobCardSimplify22Props['note'] {
   }
 }
 
-function toAdvertisements(job: Job, today: string, tab: JobCardListingStatus): JobCardSimplify22Advertisement[] {
+function toAdvertisements(job: Job, today: string, tab: JobCardListingStatus): JobCardSimplify25Advertisement[] {
   if (job.ads.length === 0) {
     return [toNotAdvertisingAdvertisement(job)]
   }
@@ -57,7 +57,7 @@ function toAdvertisements(job: Job, today: string, tab: JobCardListingStatus): J
   return job.ads.map((ad) => toAdvertisement(ad, today))
 }
 
-function toNotAdvertisingAdvertisement(job: Job): JobCardSimplify22Advertisement {
+function toNotAdvertisingAdvertisement(job: Job): JobCardSimplify25Advertisement {
   return {
     id: `${job.id}-not-advertising`,
     title: job.title,
@@ -66,7 +66,7 @@ function toNotAdvertisingAdvertisement(job: Job): JobCardSimplify22Advertisement
   }
 }
 
-function toDraftAdvertisements(job: Job): JobCardSimplify22Advertisement[] {
+function toDraftAdvertisements(job: Job): JobCardSimplify25Advertisement[] {
   return job.ads.map((ad) => ({
     id: ad.id,
     title: ad.title,
@@ -74,7 +74,7 @@ function toDraftAdvertisements(job: Job): JobCardSimplify22Advertisement[] {
   }))
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardSimplify22Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardSimplify25Advertisement {
   const publications = ad.placements.map((placement) => toPublication(ad.id, placement, today))
 
   if (ad.notAdvertising) {
@@ -96,11 +96,11 @@ function toAdvertisement(ad: Ad, today: string): JobCardSimplify22Advertisement 
   }
 }
 
-function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify22Publication {
+function toPublication(adId: string, placement: Placement, today: string): JobCardSimplify25Publication {
   const highlights = (placement.highlights ?? []).map((highlight) =>
     toHighlight(adId, placement, highlight, today),
   )
-  const publication: JobCardSimplify22Publication = {
+  const publication: JobCardSimplify25Publication = {
     id: `${adId}-${placement.portal}`,
     channel: portalLabel(placement.portal),
     startDate: formatCzechDate(placement.publishedFrom),
@@ -124,7 +124,7 @@ function toHighlight(
   placement: Placement,
   highlight: Highlight,
   today: string,
-): NonNullable<JobCardSimplify22Publication['highlights']>[number] {
+): NonNullable<JobCardSimplify25Publication['highlights']>[number] {
   const mapped = {
     id: `${adId}-${placement.portal}-${highlight.type}`,
     name: highlightDisplayName(highlight.type, placement.portal),

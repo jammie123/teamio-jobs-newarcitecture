@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  JobCardSimplify22,
+  JobCardSimplify25,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -150,7 +150,7 @@ function JobCardList({
 
   function renderCard(job: Job) {
     return (
-      <JobCardSimplify22
+      <JobCardSimplify25
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}

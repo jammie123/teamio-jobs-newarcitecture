@@ -1,5 +1,5 @@
 [build]
-  command = "rm -rf teamio-prototype-starter && git clone --depth 1 --branch JobCardSimplify22 https://github.com/jammie123/teamio-prototype-starter.git teamio-prototype-starter && npm run build"
+  command = "rm -rf teamio-prototype-starter && git clone --depth 1 --branch JobCardSimplify25 https://github.com/jammie123/teamio-prototype-starter.git teamio-prototype-starter && npm run build"
   publish = "dist"
 
 [build.environment]
