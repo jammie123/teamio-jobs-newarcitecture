@@ -10,7 +10,7 @@ Feature prototype for Teamio **job listing** (výpis náboru). UI components and
 
 - Node.js 22 (see `.nvmrc`)
 - Sibling folder `../teamio-prototype-starter` must exist on disk
-- Netlify clones the public catalog into `./teamio-prototype-starter` during build: https://github.com/jammie123/teamio-prototype-starter
+- Netlify clones the public catalog (`feature/candidate-filter-modal` branch, includes JobCardSimplify7) into `./teamio-prototype-starter` during build: https://github.com/jammie123/teamio-prototype-starter
 
 ### Install and run
 
@@ -57,7 +57,7 @@ New UI components and tokens belong in **teamio-prototype-starter**, not here.
 
 - Node.js 22 (viz `.nvmrc`)
 - Na disku musí existovat sourozenecká složka `../teamio-prototype-starter`
-- Netlify při buildu klonuje veřejný katalog do `./teamio-prototype-starter`: https://github.com/jammie123/teamio-prototype-starter
+- Netlify při buildu klonuje veřejný katalog (větev `feature/candidate-filter-modal`, vč. JobCardSimplify7) do `./teamio-prototype-starter`: https://github.com/jammie123/teamio-prototype-starter
 
 ### Instalace a spuštění
 
