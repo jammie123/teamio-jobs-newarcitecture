@@ -1,12 +1,13 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
-  Dropdown,
-  DropdownBody,
-  DropdownToggle,
-  JobCard,
-  JobsFilter,
+  JobCardSimplify17,
+  JobModalChooseAds,
+  JobModalProlong,
+  JobModalTop,
+  JobModalUnpublish,
+  JobsFilterV2,
   Option,
-  OptionList,
   PageHeader,
   PageTemplate,
   SplitButton,
@@ -21,15 +22,21 @@ import {
 import {
   DEFAULT_JOB_SORT,
   EMPTY_JOBS_FILTER,
+  candidateListPath,
   JOB_SORT_OPTIONS,
   filterOptionsFromJobs,
-  formatJobCount,
   jobMatchesFilter,
-  jobSortLabel,
   jobs,
   jobsForTab,
+  partitionUnpublishedByEndedAge,
+  shouldGroupUnpublishedByEndedAge,
   sortJobs,
   toJobCard,
+  toModalAdvertisementSections,
+  toModalAdvertisements,
+  toModalPlacesForAction,
+  type Job,
+  type JobAdAction,
   type JobListingTab,
   type JobSortKey,
 } from '../data'
@@ -41,15 +48,37 @@ const leftMenuItems: LeftMenuItemData[] = [
   { id: 'reporty', label: 'Reporty', icon: 'bar-chart', href: '#reporty' },
 ]
 
-const TABS: Array<{ value: JobListingTab; label: string }> = [
-  { value: 'active', label: 'Aktivní' },
-  { value: 'published', label: 'Zveřejněný' },
-  { value: 'unpublished', label: 'Nezveřejněný' },
+const TABS: Array<{ value: JobListingTab; label: string; info?: string }> = [
+  {
+    value: 'open',
+    label: 'Otevřený',
+    info: 'Otevřený nábor, který má alespoň jeden inzerát',
+  },
+  {
+    value: 'published',
+    label: 'Zveřejněný',
+    info: 'Otevřený nábor, na kterém běží vystavená inzerce',
+  },
+  {
+    value: 'unpublished',
+    label: 'Nezveřejněný',
+    info: 'Otevřený nábor s ukončenou nebo vypršelou inzercí',
+  },
+  {
+    value: 'endingSoon',
+    label: 'Brzy končí',
+    info: 'Otevřený nábor s inzercí, která končí do 7 dní',
+  },
   { value: 'draft', label: 'Rozpracovaný' },
   { value: 'archived', label: 'Archivní' },
 ]
 
 const filterOptions = filterOptionsFromJobs(jobs)
+const sortOptions = JOB_SORT_OPTIONS.map((option) => ({
+  value: option.key,
+  label: option.label,
+  description: option.description,
+}))
 
 const noop = () => undefined
 
@@ -59,151 +88,296 @@ const jobCardNoops = {
   onInviteColleagues: noop,
   onTransferJob: noop,
   onArchiveJob: noop,
+  onAddNote: noop,
   onEditAdvertisement: noop,
-  onExtendAndRepublish: noop,
-  onEndPublication: noop,
   onCreateAdvertisement: noop,
   onCandidatesClick: noop,
-  onStatusChange: noop,
-  onCompleteDraft: noop,
-  onGoToPublish: noop,
-  onRestoreFromArchive: noop,
+  onExpandNote: noop,
+  onViewStatisticsClick: noop,
+  onPreviewAdvertisement: noop,
+  onPreviewPublication: noop,
+  onExtendPublication: noop,
+  onCompleteAdvertisement: noop,
+  onRepublishAdvertisement: noop,
+}
+
+type JobModalStep = 'chooseAd' | 'places'
+
+type JobModalState = {
+  job: Job
+  action: JobAdAction
+  step: JobModalStep
+  advertisementIds?: string[]
 }
 
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
   return jobsForTab(jobs, tab).filter((job) => jobMatchesFilter(job, filter))
 }
 
-function JobListToolbar({
-  count,
-  sort,
-  onSortChange,
-}: {
-  count: number
-  sort: JobSortKey
-  onSortChange: (sort: JobSortKey) => void
-}) {
-  return (
-    <div className="tm-flex tm-items-center tm-justify-between tm-gap-4">
-      <Typography variant="body" className="tm-my-0 tm-text-secondary-default">
-        {formatJobCount(count)}
-      </Typography>
-      <Dropdown placement="bottom-end">
-        <DropdownToggle
-          variant="custom"
-          showIndicator
-          aria-label={`Řazení: ${jobSortLabel(sort)}`}
-          className="tm-text-action-link-default hover:tm-text-action-link-hover hover:tm-underline focus:tm-text-action-link-hover focus:tm-underline active:tm-text-action-link-active"
-        >
-          {jobSortLabel(sort)}
-        </DropdownToggle>
-        <DropdownBody>
-          <OptionList aria-label="Řazení">
-            {JOB_SORT_OPTIONS.map((option) => (
-              <Option
-                key={option.key}
-                isSelected={option.key === sort}
-                onClick={() => onSortChange(option.key)}
-              >
-                {option.label}
-              </Option>
-            ))}
-          </OptionList>
-        </DropdownBody>
-      </Dropdown>
-    </div>
-  )
+function openAdAction(job: Job, action: JobAdAction): JobModalState | null {
+  if (job.ads.length === 0) {
+    return null
+  }
+
+  if (job.ads.length === 1) {
+    return { job, action, step: 'places', advertisementIds: [job.ads[0].id] }
+  }
+
+  return { job, action, step: 'chooseAd' }
 }
 
 function JobCardList({
   tab,
   filter,
   sort,
-  onSortChange,
+  onAdAction,
 }: {
   tab: JobListingTab
   filter: JobsFilterValue
   sort: JobSortKey
-  onSortChange: (sort: JobSortKey) => void
+  onAdAction: (job: Job, action: JobAdAction) => void
 }) {
+  const navigate = useNavigate()
   const items = sortJobs(jobsOnTab(tab, filter), sort)
 
-  return (
-    <div className="tm-flex tm-flex-col">
-      <JobListToolbar count={items.length} sort={sort} onSortChange={onSortChange} />
-      <div className="tm-mt-2 tm-flex tm-flex-col tm-gap-4">
-        {items.length === 0 ? (
-          <Typography variant="body" className="tm-text-secondary-default">
-            Žádné nábory v tomto filtru.
-          </Typography>
-        ) : (
-          items.map((job) => <JobCard key={job.id} {...toJobCard(job)} {...jobCardNoops} />)
-        )}
+  if (items.length === 0) {
+    return (
+      <Typography variant="body" className="tm-text-secondary-default">
+        Žádné nábory v tomto filtru.
+      </Typography>
+    )
+  }
+
+  function renderCard(job: Job) {
+    return (
+      <JobCardSimplify17
+        key={job.id}
+        {...toJobCard(job)}
+        {...jobCardNoops}
+        onCandidatesClick={(stat) => navigate(candidateListPath(job.id, stat))}
+        {...(job.ads.length > 0
+          ? {
+              onExtendAndRepublish: () => onAdAction(job, 'prolong'),
+              onEndPublication: () => onAdAction(job, 'unpublish'),
+              onTopAdvertisement: () => onAdAction(job, 'top'),
+              onRepublishAdvertisement: () => onAdAction(job, 'prolong'),
+            }
+          : {})}
+      />
+    )
+  }
+
+  if (shouldGroupUnpublishedByEndedAge(tab, sort)) {
+    const { recent, older } = partitionUnpublishedByEndedAge(items)
+
+    return (
+      <div className="tm-flex tm-flex-col tm-gap-6">
+        {recent.length > 0 ? (
+          <section className="tm-flex tm-flex-col tm-gap-4">
+            <Typography as="h2" variant="h4">
+              Nedávno ukončené
+            </Typography>
+            {recent.map(renderCard)}
+          </section>
+        ) : null}
+        {older.length > 0 ? (
+          <section className="tm-flex tm-flex-col tm-gap-4">
+            <Typography as="h2" variant="h4">
+              Starší než 30 dnů
+            </Typography>
+            {older.map(renderCard)}
+          </section>
+        ) : null}
       </div>
-    </div>
+    )
+  }
+
+  return <div className="tm-flex tm-flex-col tm-gap-4">{items.map(renderCard)}</div>
+}
+
+function JobListingAdModals({
+  modal,
+  onClose,
+  onDismissChooseAd,
+  onSelectAd,
+}: {
+  modal: JobModalState | null
+  onClose: () => void
+  onDismissChooseAd: () => void
+  onSelectAd: (advertisementIds: string[]) => void
+}) {
+  const selectedAds =
+    modal?.advertisementIds?.flatMap((advertisementId) => {
+      const ad = modal.job.ads.find((item) => item.id === advertisementId)
+      return ad ? [ad] : []
+    }) ?? []
+  const advertisementSections =
+    modal && selectedAds.length > 1
+      ? toModalAdvertisementSections(modal.job, selectedAds, modal.action)
+      : undefined
+  const places = modal
+    ? selectedAds.flatMap((ad) => toModalPlacesForAction(ad, modal.action))
+    : []
+  const placesKey = `${modal?.action ?? ''}-${modal?.advertisementIds?.join(',') ?? ''}`
+
+  return (
+    <>
+      <JobModalChooseAds
+        open={modal?.step === 'chooseAd'}
+        advertisements={modal ? toModalAdvertisements(modal.job) : []}
+        onOpenChange={(open) => {
+          if (!open) {
+            onDismissChooseAd()
+          }
+        }}
+        onConfirm={onSelectAd}
+      />
+      <JobModalUnpublish
+        key={`unpublish-${placesKey}`}
+        open={modal?.step === 'places' && modal.action === 'unpublish'}
+        places={places}
+        advertisementSections={advertisementSections}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose()
+          }
+        }}
+        onConfirm={onClose}
+      />
+      <JobModalProlong
+        key={`prolong-${placesKey}`}
+        open={modal?.step === 'places' && modal.action === 'prolong'}
+        places={places}
+        advertisementSections={advertisementSections}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose()
+          }
+        }}
+        onConfirm={onClose}
+      />
+      <JobModalTop
+        key={`top-${placesKey}`}
+        open={modal?.step === 'places' && modal.action === 'top'}
+        places={places}
+        advertisementSections={advertisementSections}
+        onOpenChange={(open) => {
+          if (!open) {
+            onClose()
+          }
+        }}
+        onConfirm={onClose}
+      />
+    </>
   )
 }
 
 export function JobListingPage() {
   const [filter, setFilter] = useState<JobsFilterValue>(EMPTY_JOBS_FILTER)
   const [sort, setSort] = useState<JobSortKey>(DEFAULT_JOB_SORT)
+  const [tab, setTab] = useState<JobListingTab>('published')
+  const [modal, setModal] = useState<JobModalState | null>(null)
+  const visibleCount = jobsOnTab(tab, filter).length
+
+  function handleAdAction(job: Job, action: JobAdAction) {
+    setModal(openAdAction(job, action))
+  }
+
+  function closeModal() {
+    setModal(null)
+  }
+
+  function selectAdvertisement(advertisementIds: string[]) {
+    setModal((current) =>
+      current ? { ...current, step: 'places', advertisementIds } : null,
+    )
+  }
+
+  function dismissChooseAd() {
+    setModal((current) => (current?.step === 'chooseAd' ? null : current))
+  }
 
   return (
-    <Tabs defaultValue="published" className="tm-contents">
-      <PageTemplate
-        leftMenu={{
-          items: leftMenuItems,
-          activeItemId: 'nabory',
-        }}
-        headerTop={{
-          user: {
-            name: 'Jan Fuxa',
-            company: 'LMCTEST_Teamio s.r.o.',
-          },
-        }}
-        pageHeader={
-          <PageHeader
-            title="Nábory"
-            tabs={
-              <TabsList aria-label="Filtry náborů">
-                {TABS.map((tab) => (
-                  <TabsTrigger
-                    key={tab.value}
-                    value={tab.value}
-                    count={jobsOnTab(tab.value, filter).length}
-                  >
-                    {tab.label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-            }
-            actions={
-              <SplitButton label="Přidat nábor" menuLabel="Další možnosti přidání">
-                <Option>Přidat brigádu</Option>
-              </SplitButton>
-            }
-          />
-        }
+    <>
+      <Tabs
+        value={tab}
+        onValueChange={(value) => setTab(value as JobListingTab)}
+        className="tm-contents"
       >
-        <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
-          <div className="tm-mx-auto tm-w-full tm-max-w-[1200px]">
-            <JobsFilter
+        <PageTemplate
+          leftMenu={{
+            items: leftMenuItems,
+            activeItemId: 'nabory',
+          }}
+          headerTop={{
+            user: {
+              name: 'Jan Fuxa',
+              company: 'LMCTEST_Teamio s.r.o.',
+            },
+          }}
+          pageHeader={
+            <PageHeader
+              title={
+                <>
+                  Nábory{' '}
+                  <span className="tm-font-normal tm-text-secondary-default">({visibleCount})</span>
+                </>
+              }
+              aria-label="Nábory"
+              tabs={
+                <TabsList aria-label="Filtry náborů">
+                  {TABS.map((item) => (
+                    <TabsTrigger
+                      key={item.value}
+                      value={item.value}
+                      count={jobsOnTab(item.value, filter).length}
+                      info={item.info}
+                    >
+                      {item.label}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              }
+              actions={
+                <SplitButton label="Přidat nábor" menuLabel="Další možnosti přidání">
+                  <Option>Přidat brigádu</Option>
+                </SplitButton>
+              }
+            />
+          }
+        >
+          <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
+            <JobsFilterV2
               value={filter}
               onChange={setFilter}
               recruiters={filterOptions.recruiters}
               managers={filterOptions.managers}
               departments={filterOptions.departments}
+              sortValue={sort}
+              sortOptions={sortOptions}
+              onSortChange={(next) => setSort(next as JobSortKey)}
             />
           </div>
-        </div>
-        <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1200px] tm-flex-col tm-gap-4 tm-pt-6">
-          {TABS.map((tab) => (
-            <TabsContent key={tab.value} value={tab.value} className="tm-mt-0">
-              <JobCardList tab={tab.value} filter={filter} sort={sort} onSortChange={setSort} />
-            </TabsContent>
-          ))}
-        </div>
-      </PageTemplate>
-    </Tabs>
+          <div className="tm-flex tm-w-full tm-flex-col tm-gap-4 tm-pt-6">
+            {TABS.map((item) => (
+              <TabsContent key={item.value} value={item.value} className="tm-mt-0">
+                <JobCardList
+                  tab={item.value}
+                  filter={filter}
+                  sort={sort}
+                  onAdAction={handleAdAction}
+                />
+              </TabsContent>
+            ))}
+          </div>
+        </PageTemplate>
+      </Tabs>
+      <JobListingAdModals
+        modal={modal}
+        onClose={closeModal}
+        onDismissChooseAd={dismissChooseAd}
+        onSelectAd={selectAdvertisement}
+      />
+    </>
   )
 }
