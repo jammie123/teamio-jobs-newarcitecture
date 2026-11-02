@@ -1,4 +1,4 @@
-import type { PortalId } from './types'
+import type { HighlightType, PortalId } from './types'
 
 export const PORTAL_LABELS: Record<PortalId, string> = {
   jobs_cz: 'jobs.cz',
@@ -8,6 +8,25 @@ export const PORTAL_LABELS: Record<PortalId, string> = {
   career_pages: 'Kariérní stránky',
 }
 
+export const HIGHLIGHT_LABELS: Record<HighlightType, string> = {
+  jobstip: 'Jobstip',
+  supermax: 'Supermax',
+  pzr_highlight: 'Zvýraznění inzerátu na Práce za rohem',
+  top: 'Topováno',
+}
+
+export const HIGHLIGHTS_BY_PORTAL: Record<PortalId, readonly HighlightType[]> = {
+  jobs_cz: ['jobstip', 'top'],
+  prace_cz: ['supermax', 'top'],
+  prace_za_rohem: ['pzr_highlight'],
+  atmoskop: [],
+  career_pages: [],
+}
+
 export function portalLabel(portal: PortalId): string {
   return PORTAL_LABELS[portal]
+}
+
+export function highlightLabel(type: HighlightType): string {
+  return HIGHLIGHT_LABELS[type]
 }

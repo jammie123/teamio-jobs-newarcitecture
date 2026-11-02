@@ -6,12 +6,17 @@ export type JobSortKey = 'latestAd' | 'newestJob' | 'endingSoon' | 'mostCandidat
 export type JobSortOption = {
   key: JobSortKey
   label: string
+  description?: string
 }
 
 export const DEFAULT_JOB_SORT: JobSortKey = 'latestAd'
 
 export const JOB_SORT_OPTIONS: JobSortOption[] = [
-  { key: 'latestAd', label: 'Nejnověji vystavený inzerát' },
+  {
+    key: 'latestAd',
+    label: 'Nejnověji vystavený inzerát',
+    description: 'Vystavení inzerátu, topování a zvýraznění',
+  },
   { key: 'newestJob', label: 'Nejnovější nábor' },
   { key: 'endingSoon', label: 'Nejdřív končí inzerát' },
   { key: 'mostCandidates', label: 'Nejvíc uchazečů' },
@@ -58,7 +63,14 @@ function minIso(dates: string[]): string | null {
 }
 
 function latestAdDate(job: Job): string | null {
-  return maxIso(job.ads.flatMap((ad) => ad.placements.map((placement) => placement.publishedFrom)))
+  return maxIso(
+    job.ads.flatMap((ad) =>
+      ad.placements.flatMap((placement) => [
+        placement.publishedFrom,
+        ...(placement.highlights ?? []).map((highlight) => highlight.publishedFrom),
+      ]),
+    ),
+  )
 }
 
 function soonestLiveAdEnd(job: Job, today: string): string | null {
