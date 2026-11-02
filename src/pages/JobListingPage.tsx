@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  JobCardSimplify13,
+  JobCardV6,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -88,17 +88,8 @@ const jobCardNoops = {
   onInviteColleagues: noop,
   onTransferJob: noop,
   onArchiveJob: noop,
-  onAddNote: noop,
   onEditAdvertisement: noop,
   onCreateAdvertisement: noop,
-  onCandidatesClick: noop,
-  onExpandNote: noop,
-  onViewStatisticsClick: noop,
-  onPreviewAdvertisement: noop,
-  onPreviewPublication: noop,
-  onExtendPublication: noop,
-  onCompleteAdvertisement: noop,
-  onRepublishAdvertisement: noop,
 }
 
 type JobModalStep = 'chooseAd' | 'places'
@@ -150,7 +141,7 @@ function JobCardList({
 
   function renderCard(job: Job) {
     return (
-      <JobCardSimplify13
+      <JobCardV6
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
@@ -160,7 +151,6 @@ function JobCardList({
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
               onEndPublication: () => onAdAction(job, 'unpublish'),
               onTopAdvertisement: () => onAdAction(job, 'top'),
-              onRepublishAdvertisement: () => onAdAction(job, 'prolong'),
             }
           : {})}
       />
@@ -358,7 +348,7 @@ export function JobListingPage() {
               onSortChange={(next) => setSort(next as JobSortKey)}
             />
           </div>
-          <div className="tm-flex tm-w-full tm-flex-col tm-gap-4 tm-pt-6">
+          <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1100px] tm-flex-col tm-gap-4 tm-pt-6">
             {TABS.map((item) => (
               <TabsContent key={item.value} value={item.value} className="tm-mt-0">
                 <JobCardList

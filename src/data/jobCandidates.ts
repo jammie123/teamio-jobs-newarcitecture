@@ -1,8 +1,8 @@
-import type { JobCardSimplify13Props } from '@teamio/starter/components'
+import type { JobCardV6Props } from '@teamio/starter/components'
 import candidatesJson from './candidates.json'
 import type { Candidate } from './types'
 
-type JobCardCandidates = NonNullable<JobCardSimplify13Props['candidates']>
+type JobCardCandidates = NonNullable<JobCardV6Props['candidates']>
 
 const allCandidates = candidatesJson as Candidate[]
 
@@ -22,19 +22,15 @@ export function candidatesOfJob(jobId: string): Candidate[] {
 }
 
 /**
- * Stats of the job card. The pipeline cells match the candidate list (see `pipelineCounts`):
- * Pozvaný = 1. + 2. kolo, Opalcovaný = nabídka. "Nový" counts unassessed candidates flagged `isNew`,
- * `newOpalcovani` the flagged candidates with an offer.
+ * Stats of JobCard V6. "Ve hře" is everyone still in process: předvybraný, kola, and nabídka.
+ * "Nový" counts unassessed candidates flagged `isNew`, `newOpalcovani` the flagged offers.
  */
 export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
   const counts = {
     new: 0,
     unassessed: 0,
-    preselected: 0,
-    opalcovani: 0,
+    inProgress: 0,
     newOpalcovani: 0,
-    invited: 0,
-    hired: 0,
     total: candidates.length,
   }
 
@@ -45,27 +41,27 @@ export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
         if (candidate.isNew) counts.new += 1
         break
       case 'preselected':
-        counts.preselected += 1
-        break
-      case 'offer':
-        counts.opalcovani += 1
-        if (candidate.isNew) counts.newOpalcovani += 1
-        break
       case 'round1':
       case 'round2':
-        counts.invited += 1
+        counts.inProgress += 1
+        break
+      case 'offer':
+        counts.inProgress += 1
+        if (candidate.isNew) counts.newOpalcovani += 1
         break
       case 'hired':
-        counts.hired += 1
-        break
       case 'rejected':
         break
     }
   }
 
-  const { newOpalcovani, ...rest } = counts
+  const { new: newly, newOpalcovani, ...rest } = counts
 
-  return newOpalcovani > 0 ? { ...rest, newOpalcovani } : rest
+  return {
+    ...rest,
+    ...(newly > 0 ? { new: newly } : {}),
+    ...(newOpalcovani > 0 ? { newOpalcovani } : {}),
+  }
 }
 
 export function newCandidateCount(jobId: string): number {
