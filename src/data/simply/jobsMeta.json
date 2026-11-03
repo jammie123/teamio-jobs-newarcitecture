@@ -1,0 +1,331 @@
+[
+  {
+    "id": "job-001",
+    "title": "Řidič/ka sk. C ČB turnusový režim PO–NE",
+    "recruiter": "Martina Nováková",
+    "department": null,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
+    "status": "open",
+    "createdAt": "2026-05-01"
+  },
+  {
+    "id": "job-002",
+    "title": "Řidič/ka sk. C ČB PO–PÁ",
+    "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
+    "status": "open",
+    "createdAt": "2026-05-18"
+  },
+  {
+    "id": "job-003",
+    "title": "Marketingový servis a komunikace",
+    "recruiter": "Jana Dvořáková",
+    "department": 0,
+    "hiringManagers": [
+      "Klára Benešová",
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-04-17",
+    "note": {
+      "type": "start",
+      "text": "Nástup ideálně od 1. 9. 2026, po zaškolení kolegyně."
+    }
+  },
+  {
+    "id": "job-004",
+    "title": "Provozní elektrikář ČK II.",
+    "recruiter": "Petr Svoboda",
+    "department": "Český Krumlov",
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-01"
+  },
+  {
+    "id": "job-005",
+    "title": "Obchodní zástupce/zástupkyně - severovýchodní  Čechy",
+    "recruiter": "Eva Černá",
+    "hiringManagers": [
+      "Alena Pokorná"
+    ],
+    "status": "archive",
+    "createdAt": "2025-10-01"
+  },
+  {
+    "id": "job-006",
+    "title": "Specialista plánování výroby II.",
+    "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-01",
+    "note": {
+      "type": "replacement",
+      "text": "Náhrada za Martina Šimka – odchází k 31. 8. 2026."
+    }
+  },
+  {
+    "id": "job-007",
+    "title": "Expedient mlékárenských výrobků JH",
+    "recruiter": "Petr Svoboda",
+    "department": "Jindřichův Hradec",
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-17"
+  },
+  {
+    "id": "job-008",
+    "title": "Expedient mlékárenských výrobků JH",
+    "recruiter": "Petr Svoboda",
+    "department": 0,
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "archive",
+    "createdAt": "2025-08-18"
+  },
+  {
+    "id": "job-009",
+    "title": "Seřizovač výrobního zařízení JH",
+    "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
+    "status": "open",
+    "createdAt": "2026-05-18",
+    "note": {
+      "type": "salary",
+      "text": "Nabízíme 38–42 000 Kč hrubého + směnné příplatky."
+    }
+  },
+  {
+    "id": "job-010",
+    "title": "KUCHAŘ/KA",
+    "recruiter": "Jana Dvořáková",
+    "department": 0,
+    "hiringManagers": [
+      "Hana Veselá"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-17"
+  },
+  {
+    "id": "job-011",
+    "title": "Údržbář – elektrikář JE (pouze ranní směna)",
+    "recruiter": "Petr Svoboda",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "open",
+    "createdAt": "2026-05-18"
+  },
+  {
+    "id": "job-012",
+    "title": "Provozní elektrikář ČK",
+    "recruiter": "Petr Svoboda",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "archive",
+    "createdAt": "2025-09-17",
+    "note": {
+      "type": "start",
+      "text": "Nástup byl plánovaný na leden 2026, nábor je uzavřený."
+    }
+  },
+  {
+    "id": "job-013",
+    "title": "Příjem mléka JH",
+    "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-17"
+  },
+  {
+    "id": "job-014",
+    "title": "Mistr/Mistrová výrobního střediska",
+    "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek",
+      "Hana Veselá"
+    ],
+    "status": "open",
+    "createdAt": "2026-04-17"
+  },
+  {
+    "id": "job-015",
+    "title": "Provozní elektrikář JH",
+    "recruiter": "Petr Svoboda",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-21",
+    "note": {
+      "type": "replacement",
+      "text": "Náhrada za odcházejícího elektrikáře na směně v JH."
+    }
+  },
+  {
+    "id": "job-016",
+    "title": "Dělník /dělnice porcovny – Český Krumlov",
+    "recruiter": "Eva Černá",
+    "department": "Český Krumlov",
+    "hiringManagers": [
+      "Alena Pokorná"
+    ],
+    "status": "open",
+    "createdAt": "2026-05-18"
+  },
+  {
+    "id": "job-017",
+    "title": "Expedient mlékárenských výrobků (PE)",
+    "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
+    "status": "archive",
+    "createdAt": "2025-07-18"
+  },
+  {
+    "id": "job-018",
+    "title": "Operátor/ka přepisu „stazek\" záznamů o provozu vozidel (zkrácený úvazek) JE",
+    "recruiter": "Jana Dvořáková",
+    "department": 0,
+    "hiringManagers": [
+      "Klára Benešová"
+    ],
+    "status": "open",
+    "createdAt": "2026-06-01",
+    "note": {
+      "type": "salary",
+      "text": "Zkrácený úvazek 0,5, nabízíme 22 000 Kč hrubého."
+    }
+  },
+  {
+    "id": "job-019",
+    "title": "Průmyslový programátor II.",
+    "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
+    "status": "archive",
+    "createdAt": "2025-11-01"
+  },
+  {
+    "id": "job-020",
+    "title": "Provozní elektrikář JH",
+    "recruiter": "Eva Černá",
+    "department": 0,
+    "hiringManagers": [
+      "Jiří Malý"
+    ],
+    "status": "archive",
+    "createdAt": "2025-06-17"
+  },
+  {
+    "id": "job-021",
+    "title": "Operátor výroby – noční směna ČB",
+    "recruiter": "Martina Nováková",
+    "department": 0,
+    "hiringManagers": [
+      "Lukáš Procházka"
+    ],
+    "status": "draft",
+    "createdAt": "2026-08-22",
+    "note": {
+      "type": "start",
+      "text": "Nástup na noční směnu od října 2026, mzdu ještě doladit s vedoucím."
+    }
+  },
+  {
+    "id": "job-022",
+    "title": "Personalista/ka – zkrácený úvazek",
+    "recruiter": "Eva Černá",
+    "hiringManagers": [
+      "Alena Pokorná"
+    ],
+    "status": "draft",
+    "createdAt": "2026-08-19"
+  },
+  {
+    "id": "job-023",
+    "title": "Technik údržby – rozpracovaný nábor",
+    "recruiter": "Tomáš Horák",
+    "department": 0,
+    "hiringManagers": [
+      "Martin Šimek"
+    ],
+    "status": "draft",
+    "createdAt": "2026-08-12"
+  },
+  {
+    "id": "job-024",
+    "title": "Disponent dopravy – ČB",
+    "recruiter": "Jana Dvořáková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-08-18"
+  },
+  {
+    "id": "job-025",
+    "title": "Skladník/skladnice – expediční sklad ČB",
+    "recruiter": "Martina Nováková",
+    "department": "České Budějovice",
+    "hiringManagers": [
+      "Lukáš Procházka",
+      "Michal Král"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-14",
+    "note": {
+      "type": "start",
+      "text": "Nástup ideálně od 1. 11. 2026, inzerát připravíme po schválení rozpočtu."
+    }
+  },
+  {
+    "id": "job-026",
+    "title": "Technolog/ička mlékárenské výroby JH",
+    "recruiter": "Petr Svoboda",
+    "department": "Jindřichův Hradec",
+    "hiringManagers": [
+      "Pavel Růžička"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-21"
+  },
+  {
+    "id": "job-027",
+    "title": "Asistent/ka vedení",
+    "recruiter": "Jana Dvořáková",
+    "hiringManagers": [
+      "Klára Benešová"
+    ],
+    "status": "open",
+    "createdAt": "2026-09-28"
+  }
+]
