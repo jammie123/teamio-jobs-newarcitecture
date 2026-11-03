@@ -1,7 +1,7 @@
-import type { JobCardV6Props } from '@teamio/starter/components'
+import type { JobCardV8Props } from '@teamio/starter/components'
 
-/** Stat of JobCard V6 as emitted by `onCandidatesClick`. */
-type JobCandidateStat = Parameters<NonNullable<JobCardV6Props['onCandidatesClick']>>[0]
+/** Stat of JobCard V8 as emitted by `onCandidatesClick`. */
+type JobCandidateStat = Parameters<NonNullable<JobCardV8Props['onCandidatesClick']>>[0]
 
 /** Query parameter of the candidate list that preselects a pipeline status. */
 const STATUS_PARAM = 'status'

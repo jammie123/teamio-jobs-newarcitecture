@@ -1,23 +1,23 @@
-import type { JobCardV6Props } from '@teamio/starter/components'
+import type { JobCardV8Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
 import type { Ad, Candidate, Highlight, Job, Placement } from './types'
 
-type JobCardV6Data = Pick<
-  JobCardV6Props,
+type JobCardV8Data = Pick<
+  JobCardV8Props,
   'title' | 'owner' | 'hiringManagers' | 'status' | 'candidates' | 'advertisements' | 'note' | 'showAdvertisementTitle'
 >
 
-type JobCardV6Advertisement = NonNullable<JobCardV6Props['advertisements']>[number]
-type JobCardV6Publication = NonNullable<JobCardV6Advertisement['publications']>[number]
-type CardStatus = NonNullable<JobCardV6Props['status']>
+type JobCardV8Advertisement = NonNullable<JobCardV8Props['advertisements']>[number]
+type JobCardV8Publication = NonNullable<JobCardV8Advertisement['publications']>[number]
+type CardStatus = NonNullable<JobCardV8Props['status']>
 
 export function toJobCard(
   job: Job,
   today = todayIso(),
   jobCandidates: Candidate[] = candidatesOfJob(job.id),
-): JobCardV6Data {
+): JobCardV8Data {
   const advertisements = job.ads.map((ad) => toAdvertisement(ad, today))
 
   return {
@@ -32,7 +32,7 @@ export function toJobCard(
   }
 }
 
-function toNote(job: Job): JobCardV6Props['note'] {
+function toNote(job: Job): JobCardV8Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -44,7 +44,7 @@ function toNote(job: Job): JobCardV6Props['note'] {
   }
 }
 
-/** V6 renders the ad block for published and unpublished. Archive stays visible as ended ads. */
+/** V8 renders the ad block for published and unpublished. Archive stays visible as ended ads. */
 function toCardStatus(job: Job, today: string): CardStatus {
   const tab = listingTab(job, today)
 
@@ -55,13 +55,13 @@ function toCardStatus(job: Job, today: string): CardStatus {
   return 'published'
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardV6Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardV8Advertisement {
   return {
     id: ad.id,
     title: ad.title,
     publications: ad.placements.flatMap((placement) => {
       const dateEnded = placement.publishedTo < today
-      // V6 has no turned-off channel. A still-dated disabled channel is not an ended run.
+      // V8 has no turned-off channel. A still-dated disabled channel is not an ended run.
       if (placement.channelDisabled && !dateEnded) {
         return []
       }
@@ -76,7 +76,7 @@ function toPublication(
   placement: Placement,
   today: string,
   dateEnded: boolean,
-): JobCardV6Publication {
+): JobCardV8Publication {
   const highlights = (placement.highlights ?? []).map((highlight) =>
     toHighlight(adId, placement, highlight, today, dateEnded),
   )
@@ -99,7 +99,7 @@ function toHighlight(
   highlight: Highlight,
   today: string,
   publicationEnded: boolean,
-): NonNullable<JobCardV6Publication['highlights']>[number] {
+): NonNullable<JobCardV8Publication['highlights']>[number] {
   const ended = publicationEnded || highlight.publishedTo < today
 
   return {
