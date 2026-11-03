@@ -1,20 +1,25 @@
-import { todayIso } from './adStatus'
+import { newCandidateCount } from './jobCandidates'
 import type { Job } from './types'
 
-export type JobSortKey = 'latestAd' | 'newestJob' | 'endingSoon' | 'mostCandidates' | 'titleAz'
+export type JobSortKey = 'latestAd' | 'oldestAd' | 'newestJob' | 'mostNewCandidates' | 'titleAz'
 
 export type JobSortOption = {
   key: JobSortKey
   label: string
+  description?: string
 }
 
 export const DEFAULT_JOB_SORT: JobSortKey = 'latestAd'
 
 export const JOB_SORT_OPTIONS: JobSortOption[] = [
-  { key: 'latestAd', label: 'Nejnověji vystavený inzerát' },
+  {
+    key: 'latestAd',
+    label: 'Nejnovější inzeráty',
+    description: 'Vystavení inzerátu, topování a zvýraznění',
+  },
+  { key: 'oldestAd', label: 'Nejstarší inzeráty' },
   { key: 'newestJob', label: 'Nejnovější nábor' },
-  { key: 'endingSoon', label: 'Nejdřív končí inzerát' },
-  { key: 'mostCandidates', label: 'Nejvíc uchazečů' },
+  { key: 'mostNewCandidates', label: 'Nejvíce nových uchazečů' },
   { key: 'titleAz', label: 'Název A–Z' },
 ]
 
@@ -49,24 +54,13 @@ function maxIso(dates: string[]): string | null {
   return dates.reduce((latest, date) => (date > latest ? date : latest))
 }
 
-function minIso(dates: string[]): string | null {
-  if (dates.length === 0) {
-    return null
-  }
-
-  return dates.reduce((soonest, date) => (date < soonest ? date : soonest))
-}
-
 function latestAdDate(job: Job): string | null {
-  return maxIso(job.ads.flatMap((ad) => ad.placements.map((placement) => placement.publishedFrom)))
-}
-
-function soonestLiveAdEnd(job: Job, today: string): string | null {
-  return minIso(
+  return maxIso(
     job.ads.flatMap((ad) =>
-      ad.placements
-        .filter((placement) => placement.publishedTo >= today)
-        .map((placement) => placement.publishedTo),
+      ad.placements.flatMap((placement) => [
+        placement.publishedFrom,
+        ...(placement.highlights ?? []).map((highlight) => highlight.publishedFrom),
+      ]),
     ),
   )
 }
@@ -120,7 +114,7 @@ function compareTieBreak(a: Job, b: Job): number {
   return a.title.localeCompare(b.title, 'cs')
 }
 
-export function sortJobs(jobs: Job[], key: JobSortKey, today = todayIso()): Job[] {
+export function sortJobs(jobs: Job[], key: JobSortKey): Job[] {
   return [...jobs].sort((a, b) => {
     let primary = 0
 
@@ -128,14 +122,14 @@ export function sortJobs(jobs: Job[], key: JobSortKey, today = todayIso()): Job[
       case 'latestAd':
         primary = compareDesc(latestAdDate(a), latestAdDate(b))
         break
+      case 'oldestAd':
+        primary = compareAsc(latestAdDate(a), latestAdDate(b))
+        break
       case 'newestJob':
         primary = compareDesc(a.createdAt, b.createdAt)
         break
-      case 'endingSoon':
-        primary = compareAsc(soonestLiveAdEnd(a, today), soonestLiveAdEnd(b, today))
-        break
-      case 'mostCandidates':
-        primary = compareDesc(a.candidates?.total ?? 0, b.candidates?.total ?? 0)
+      case 'mostNewCandidates':
+        primary = compareDesc(newCandidateCount(a.id), newCandidateCount(b.id))
         break
       case 'titleAz':
         primary = a.title.localeCompare(b.title, 'cs')
