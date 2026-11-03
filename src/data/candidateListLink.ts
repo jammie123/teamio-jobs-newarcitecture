@@ -1,7 +1,7 @@
-import type { JobCardSimplify14v2Props } from '@teamio/starter/components'
+import type { JobCardV12Props } from '@teamio/starter/components'
 
-/** Stat of the job card as emitted by `onCandidatesClick` (the starter's root export names a different card's stats). */
-type JobCandidateStat = Parameters<NonNullable<JobCardSimplify14v2Props['onCandidatesClick']>>[0]
+/** Stat of JobCard V12 as emitted by `onCandidatesClick`. */
+type JobCandidateStat = Parameters<NonNullable<JobCardV12Props['onCandidatesClick']>>[0]
 
 /** Query parameter of the candidate list that preselects a pipeline status. */
 const STATUS_PARAM = 'status'
@@ -10,11 +10,8 @@ const STATUS_PARAM = 'status'
 const PIPELINE_STATUS_BY_STAT: Record<JobCandidateStat, string | undefined> = {
   total: undefined,
   unassessed: 'unassessed',
-  preselected: 'preselected',
-  opalcovani: 'opalcovani',
-  invited: 'invited',
-  nabidka: 'offer',
-  hired: 'hired',
+  // "Ve hře" spans several pipeline cells, so the list opens without a single status.
+  inProgress: undefined,
 }
 
 const KNOWN_PIPELINE_STATUSES = new Set(Object.values(PIPELINE_STATUS_BY_STAT))
