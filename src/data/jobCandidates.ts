@@ -1,8 +1,8 @@
-import type { JobCardV6Props } from '@teamio/starter/components'
+import type { JobCardV11Props } from '@teamio/starter/components'
 import candidatesJson from './candidates.json'
 import type { Candidate } from './types'
 
-type JobCardCandidates = NonNullable<JobCardV6Props['candidates']>
+type JobCardCandidates = NonNullable<JobCardV11Props['candidates']>
 
 const allCandidates = candidatesJson as Candidate[]
 
@@ -22,7 +22,7 @@ export function candidatesOfJob(jobId: string): Candidate[] {
 }
 
 /**
- * Stats of JobCard V6. "Ve hře" is everyone still in process: předvybraný, kola, and nabídka.
+ * Stats of JobCard V11. "Ve hře" is everyone still in process: předvybraný, kola, and nabídka.
  * "Nový" counts unassessed candidates flagged `isNew`, `newOpalcovani` the flagged offers.
  */
 export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
