@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   JobCardV14,
+  JobDetailStatsModal,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -16,6 +17,8 @@ import {
   TabsList,
   TabsTrigger,
   Typography,
+  jobDetailStatsFixtureForPeriod,
+  type JobDetailStatsPeriod,
   type JobsFilterValue,
   type LeftMenuItemData,
 } from '@teamio/starter/components'
@@ -101,6 +104,20 @@ type JobModalState = {
   advertisementIds?: string[]
 }
 
+type DetailStatsModalState = {
+  job: Job
+  period: JobDetailStatsPeriod
+}
+
+function jobPublishedAt(job: Job): string {
+  const dates = job.ads.flatMap((ad) => ad.placements.map((placement) => placement.publishedFrom))
+  if (dates.length === 0) {
+    return job.createdAt
+  }
+
+  return dates.reduce((earliest, date) => (date < earliest ? date : earliest))
+}
+
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
   return jobsForTab(jobs, tab).filter((job) => jobMatchesFilter(job, filter))
 }
@@ -122,11 +139,13 @@ function JobCardList({
   filter,
   sort,
   onAdAction,
+  onAdvertisementDetail,
 }: {
   tab: JobListingTab
   filter: JobsFilterValue
   sort: JobSortKey
   onAdAction: (job: Job, action: JobAdAction) => void
+  onAdvertisementDetail: (job: Job) => void
 }) {
   const navigate = useNavigate()
   const items = sortJobs(jobsOnTab(tab, filter), sort)
@@ -146,6 +165,7 @@ function JobCardList({
         {...toJobCard(job)}
         {...jobCardNoops}
         onCandidatesClick={(stat) => navigate(candidateListPath(job.id, stat))}
+        onAdvertisementDetailClick={() => onAdvertisementDetail(job)}
         {...(job.ads.length > 0
           ? {
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
@@ -262,15 +282,52 @@ function JobListingAdModals({
   )
 }
 
+function JobListingDetailStatsModal({
+  modal,
+  onClose,
+  onPeriodChange,
+}: {
+  modal: DetailStatsModalState | null
+  onClose: () => void
+  onPeriodChange: (period: JobDetailStatsPeriod) => void
+}) {
+  const fixture = modal
+    ? jobDetailStatsFixtureForPeriod(modal.period, jobPublishedAt(modal.job))
+    : { series: [], summary: undefined }
+
+  return (
+    <JobDetailStatsModal
+      jobId={modal?.job.id ?? ''}
+      jobTitle={modal?.job.title}
+      open={modal !== null}
+      period={modal?.period ?? 'sincePublication'}
+      status="ready"
+      series={fixture.series}
+      summary={fixture.summary}
+      onPeriodChange={onPeriodChange}
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose()
+        }
+      }}
+    />
+  )
+}
+
 export function JobListingPage() {
   const [filter, setFilter] = useState<JobsFilterValue>(EMPTY_JOBS_FILTER)
   const [sort, setSort] = useState<JobSortKey>(DEFAULT_JOB_SORT)
   const [tab, setTab] = useState<JobListingTab>('published')
   const [modal, setModal] = useState<JobModalState | null>(null)
+  const [detailStats, setDetailStats] = useState<DetailStatsModalState | null>(null)
   const visibleCount = jobsOnTab(tab, filter).length
 
   function handleAdAction(job: Job, action: JobAdAction) {
     setModal(openAdAction(job, action))
+  }
+
+  function openDetailStats(job: Job) {
+    setDetailStats({ job, period: 'sincePublication' })
   }
 
   function closeModal() {
@@ -356,6 +413,7 @@ export function JobListingPage() {
                   filter={filter}
                   sort={sort}
                   onAdAction={handleAdAction}
+                  onAdvertisementDetail={openDetailStats}
                 />
               </TabsContent>
             ))}
@@ -367,6 +425,13 @@ export function JobListingPage() {
         onClose={closeModal}
         onDismissChooseAd={dismissChooseAd}
         onSelectAd={selectAdvertisement}
+      />
+      <JobListingDetailStatsModal
+        modal={detailStats}
+        onClose={() => setDetailStats(null)}
+        onPeriodChange={(period) =>
+          setDetailStats((current) => (current ? { ...current, period } : null))
+        }
       />
     </>
   )
