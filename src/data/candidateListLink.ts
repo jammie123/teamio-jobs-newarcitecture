@@ -1,7 +1,7 @@
-import type { JobCardV14CandidateStat } from '@teamio/starter/components'
+import type { JobCardV20CandidateStat } from '@teamio/starter/components'
 
-/** Stat of JobCard V14 as emitted by `onCandidatesClick`. */
-type JobCandidateStat = JobCardV14CandidateStat
+/** Stat of JobCard V20 as emitted by `onCandidatesClick`. */
+type JobCandidateStat = JobCardV20CandidateStat
 
 /** Query parameter of the candidate list that preselects a pipeline status. */
 const STATUS_PARAM = 'status'

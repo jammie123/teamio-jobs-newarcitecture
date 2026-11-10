@@ -1,8 +1,8 @@
-import type { JobCardV14Candidates } from '@teamio/starter/components'
+import type { JobCardV20Candidates } from '@teamio/starter/components'
 import candidatesJson from './candidates.json'
 import type { Candidate } from './types'
 
-type JobCardCandidates = JobCardV14Candidates
+type JobCardCandidates = JobCardV20Candidates
 
 const allCandidates = candidatesJson as Candidate[]
 
@@ -22,7 +22,7 @@ export function candidatesOfJob(jobId: string): Candidate[] {
 }
 
 /**
- * Stats of JobCard V14. "Ve hře" is everyone still in process: předvybraný, kola, and nabídka.
+ * Stats of JobCard V20. "Ve hře" is everyone still in process: předvybraný, kola, and nabídka.
  * "Nový" counts unassessed candidates flagged `isNew`, `newOpalcovani` the flagged offers.
  */
 export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
