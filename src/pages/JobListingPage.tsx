@@ -348,7 +348,7 @@ export function JobListingPage() {
               onSortChange={(next) => setSort(next as JobSortKey)}
             />
           </div>
-          <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1100px] tm-flex-col tm-gap-4 tm-pt-6">
+          <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1300px] tm-flex-col tm-gap-4 tm-pt-6">
             {TABS.map((item) => (
               <TabsContent key={item.value} value={item.value} className="tm-mt-0">
                 <JobCardList
