@@ -1,6 +1,6 @@
 import type { JobsFilterOption, JobsFilterValue } from '@teamio/starter/components'
 import { computeAdStatus, todayIso } from './adStatus'
-import { visibleDepartment, type Job } from './types'
+import { departmentsOf, type Job } from './types'
 
 export const EMPTY_JOBS_FILTER: JobsFilterValue = {
   query: '',
@@ -9,6 +9,20 @@ export const EMPTY_JOBS_FILTER: JobsFilterValue = {
   departmentId: '',
   employmentType: '',
   advertisementStatus: '',
+}
+
+export function hasJobFacetFilters(filter: JobsFilterValue): boolean {
+  return Boolean(
+    filter.recruiterId ||
+      filter.managerId ||
+      filter.departmentId ||
+      filter.employmentType ||
+      filter.advertisementStatus,
+  )
+}
+
+export function hasJobSearchOrFilter(filter: JobsFilterValue): boolean {
+  return Boolean(filter.query.trim()) || hasJobFacetFilters(filter)
 }
 
 function uniqueSortedOptions(labels: string[]): JobsFilterOption[] {
@@ -21,12 +35,7 @@ export function filterOptionsFromJobs(jobs: Job[]) {
   return {
     recruiters: uniqueSortedOptions(jobs.map((job) => job.recruiter)),
     managers: uniqueSortedOptions(jobs.flatMap((job) => job.hiringManagers ?? [])),
-    departments: uniqueSortedOptions(
-      jobs.flatMap((job) => {
-        const department = visibleDepartment(job.department)
-        return department ? [department] : []
-      }),
-    ),
+    departments: uniqueSortedOptions(jobs.flatMap((job) => departmentsOf(job))),
   }
 }
 
@@ -56,7 +65,7 @@ export function jobMatchesFilter(
     return false
   }
 
-  if (filter.departmentId && visibleDepartment(job.department) !== filter.departmentId) {
+  if (filter.departmentId && !departmentsOf(job).includes(filter.departmentId)) {
     return false
   }
 
