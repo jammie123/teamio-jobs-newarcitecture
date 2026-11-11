@@ -93,6 +93,8 @@ export {
 export {
   EMPTY_JOBS_FILTER,
   filterOptionsFromJobs,
+  hasJobFacetFilters,
+  hasJobSearchOrFilter,
   jobMatchesFilter,
 } from './jobsFilter'
 

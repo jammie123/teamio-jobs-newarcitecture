@@ -6,7 +6,15 @@ import type { Ad, Candidate, Highlight, Job, Placement } from './types'
 
 type JobCardV20Data = Pick<
   JobCardV20Props,
-  'title' | 'owner' | 'hiringManagers' | 'status' | 'candidates' | 'advertisements' | 'note' | 'showAdvertisementTitle'
+  | 'title'
+  | 'owner'
+  | 'hiringManagers'
+  | 'status'
+  | 'candidates'
+  | 'advertisements'
+  | 'note'
+  | 'showAdvertisementTitle'
+  | 'lastChanged'
 >
 
 type JobCardV20Advertisement = NonNullable<JobCardV20Props['advertisements']>[number]
@@ -29,6 +37,7 @@ export function toJobCard(
     advertisements,
     showAdvertisementTitle: advertisements.length > 1,
     note: toNote(job),
+    lastChanged: formatCzechDate(job.createdAt),
   }
 }
 
@@ -47,6 +56,10 @@ function toNote(job: Job): JobCardV20Props['note'] {
 /** V20 renders the ad block for published and unpublished. Archive stays visible as ended ads. */
 function toCardStatus(job: Job, today: string): CardStatus {
   const tab = listingTab(job, today)
+
+  if (tab === 'draft') {
+    return 'draft'
+  }
 
   if (tab === 'unpublished' || tab === 'archived') {
     return 'unpublished'

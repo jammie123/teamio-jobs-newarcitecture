@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
+  EmptyJobSearch,
   JobCardV20,
+  JobDetailStatsModal,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
@@ -16,6 +18,8 @@ import {
   TabsList,
   TabsTrigger,
   Typography,
+  jobDetailStatsFixtureForPeriod,
+  type JobDetailStatsPeriod,
   type JobsFilterValue,
   type LeftMenuItemData,
 } from '@teamio/starter/components'
@@ -25,6 +29,8 @@ import {
   candidateListPath,
   JOB_SORT_OPTIONS,
   filterOptionsFromJobs,
+  hasJobFacetFilters,
+  hasJobSearchOrFilter,
   jobMatchesFilter,
   jobs,
   jobsForTab,
@@ -90,6 +96,8 @@ const jobCardNoops = {
   onArchiveJob: noop,
   onEditAdvertisement: noop,
   onCreateAdvertisement: noop,
+  onAdvertisementPreviewClick: noop,
+  onCompleteDraft: noop,
 }
 
 type JobModalStep = 'chooseAd' | 'places'
@@ -99,6 +107,20 @@ type JobModalState = {
   action: JobAdAction
   step: JobModalStep
   advertisementIds?: string[]
+}
+
+type DetailStatsModalState = {
+  job: Job
+  period: JobDetailStatsPeriod
+}
+
+function jobPublishedAt(job: Job): string {
+  const dates = job.ads.flatMap((ad) => ad.placements.map((placement) => placement.publishedFrom))
+  if (dates.length === 0) {
+    return job.createdAt
+  }
+
+  return dates.reduce((earliest, date) => (date < earliest ? date : earliest))
 }
 
 function jobsOnTab(tab: JobListingTab, filter: JobsFilterValue) {
@@ -122,16 +144,30 @@ function JobCardList({
   filter,
   sort,
   onAdAction,
+  onAdvertisementDetail,
+  onResetFilters,
 }: {
   tab: JobListingTab
   filter: JobsFilterValue
   sort: JobSortKey
   onAdAction: (job: Job, action: JobAdAction) => void
+  onAdvertisementDetail: (job: Job) => void
+  onResetFilters: () => void
 }) {
   const navigate = useNavigate()
   const items = sortJobs(jobsOnTab(tab, filter), sort)
 
   if (items.length === 0) {
+    if (hasJobSearchOrFilter(filter)) {
+      return (
+        <EmptyJobSearch
+          query={filter.query.trim()}
+          hasFilters={hasJobFacetFilters(filter)}
+          onResetFilters={onResetFilters}
+        />
+      )
+    }
+
     return (
       <Typography variant="body" className="tm-text-secondary-default">
         Žádné nábory v tomto filtru.
@@ -146,6 +182,8 @@ function JobCardList({
         {...toJobCard(job)}
         {...jobCardNoops}
         onCandidatesClick={(stat) => navigate(candidateListPath(job.id, stat))}
+        onViewStatisticsClick={() => onAdvertisementDetail(job)}
+        onAdvertisementDetailClick={() => onAdvertisementDetail(job)}
         {...(job.ads.length > 0
           ? {
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
@@ -262,15 +300,52 @@ function JobListingAdModals({
   )
 }
 
+function JobListingDetailStatsModal({
+  modal,
+  onClose,
+  onPeriodChange,
+}: {
+  modal: DetailStatsModalState | null
+  onClose: () => void
+  onPeriodChange: (period: JobDetailStatsPeriod) => void
+}) {
+  const fixture = modal
+    ? jobDetailStatsFixtureForPeriod(modal.period, jobPublishedAt(modal.job))
+    : { series: [], summary: undefined }
+
+  return (
+    <JobDetailStatsModal
+      jobId={modal?.job.id ?? ''}
+      jobTitle={modal?.job.title}
+      open={modal !== null}
+      period={modal?.period ?? 'sincePublication'}
+      status="ready"
+      series={fixture.series}
+      summary={fixture.summary}
+      onPeriodChange={onPeriodChange}
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose()
+        }
+      }}
+    />
+  )
+}
+
 export function JobListingPage() {
   const [filter, setFilter] = useState<JobsFilterValue>(EMPTY_JOBS_FILTER)
   const [sort, setSort] = useState<JobSortKey>(DEFAULT_JOB_SORT)
   const [tab, setTab] = useState<JobListingTab>('published')
   const [modal, setModal] = useState<JobModalState | null>(null)
+  const [detailStats, setDetailStats] = useState<DetailStatsModalState | null>(null)
   const visibleCount = jobsOnTab(tab, filter).length
 
   function handleAdAction(job: Job, action: JobAdAction) {
     setModal(openAdAction(job, action))
+  }
+
+  function openDetailStats(job: Job) {
+    setDetailStats({ job, period: 'sincePublication' })
   }
 
   function closeModal() {
@@ -337,16 +412,18 @@ export function JobListingPage() {
           }
         >
           <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
-            <JobsFilterV2
-              value={filter}
-              onChange={setFilter}
-              recruiters={filterOptions.recruiters}
-              managers={filterOptions.managers}
-              departments={filterOptions.departments}
-              sortValue={sort}
-              sortOptions={sortOptions}
-              onSortChange={(next) => setSort(next as JobSortKey)}
-            />
+            <div className="tm-mx-auto tm-w-full tm-max-w-[1300px]">
+              <JobsFilterV2
+                value={filter}
+                onChange={setFilter}
+                recruiters={filterOptions.recruiters}
+                managers={filterOptions.managers}
+                departments={filterOptions.departments}
+                sortValue={sort}
+                sortOptions={sortOptions}
+                onSortChange={(next) => setSort(next as JobSortKey)}
+              />
+            </div>
           </div>
           <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1300px] tm-flex-col tm-gap-4 tm-pt-6">
             {TABS.map((item) => (
@@ -356,6 +433,8 @@ export function JobListingPage() {
                   filter={filter}
                   sort={sort}
                   onAdAction={handleAdAction}
+                  onAdvertisementDetail={openDetailStats}
+                  onResetFilters={() => setFilter(EMPTY_JOBS_FILTER)}
                 />
               </TabsContent>
             ))}
@@ -367,6 +446,13 @@ export function JobListingPage() {
         onClose={closeModal}
         onDismissChooseAd={dismissChooseAd}
         onSelectAd={selectAdvertisement}
+      />
+      <JobListingDetailStatsModal
+        modal={detailStats}
+        onClose={() => setDetailStats(null)}
+        onPeriodChange={(period) =>
+          setDetailStats((current) => (current ? { ...current, period } : null))
+        }
       />
     </>
   )

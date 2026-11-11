@@ -11,6 +11,20 @@ export const EMPTY_JOBS_FILTER: JobsFilterValue = {
   advertisementStatus: '',
 }
 
+export function hasJobFacetFilters(filter: JobsFilterValue): boolean {
+  return Boolean(
+    filter.recruiterId ||
+      filter.managerId ||
+      filter.departmentId ||
+      filter.employmentType ||
+      filter.advertisementStatus,
+  )
+}
+
+export function hasJobSearchOrFilter(filter: JobsFilterValue): boolean {
+  return Boolean(filter.query.trim()) || hasJobFacetFilters(filter)
+}
+
 function uniqueSortedOptions(labels: string[]): JobsFilterOption[] {
   return [...new Set(labels)]
     .sort((a, b) => a.localeCompare(b, 'cs'))
