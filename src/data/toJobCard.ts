@@ -1,11 +1,11 @@
-import type { JobCardV20Props } from '@teamio/starter/components'
+import type { JobCardV30Props } from '@teamio/starter/components'
 import { formatCzechDate, listingTab, todayIso } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
 import type { Ad, Candidate, Highlight, Job, Placement } from './types'
 
-type JobCardV20Data = Pick<
-  JobCardV20Props,
+type JobCardV30Data = Pick<
+  JobCardV30Props,
   | 'title'
   | 'owner'
   | 'hiringManagers'
@@ -13,19 +13,18 @@ type JobCardV20Data = Pick<
   | 'candidates'
   | 'advertisements'
   | 'note'
-  | 'showAdvertisementTitle'
   | 'lastChanged'
 >
 
-type JobCardV20Advertisement = NonNullable<JobCardV20Props['advertisements']>[number]
-type JobCardV20Publication = NonNullable<JobCardV20Advertisement['publications']>[number]
-type CardStatus = NonNullable<JobCardV20Props['status']>
+type JobCardV30Advertisement = NonNullable<JobCardV30Props['advertisements']>[number]
+type JobCardV30Publication = NonNullable<JobCardV30Advertisement['publications']>[number]
+type CardStatus = NonNullable<JobCardV30Props['status']>
 
 export function toJobCard(
   job: Job,
   today = todayIso(),
   jobCandidates: Candidate[] = candidatesOfJob(job.id),
-): JobCardV20Data {
+): JobCardV30Data {
   const advertisements = job.ads.map((ad) => toAdvertisement(ad, today))
 
   return {
@@ -35,13 +34,12 @@ export function toJobCard(
     status: toCardStatus(job, today),
     candidates: countJobCandidates(jobCandidates),
     advertisements,
-    showAdvertisementTitle: advertisements.length > 1,
     note: toNote(job),
     lastChanged: formatCzechDate(job.createdAt),
   }
 }
 
-function toNote(job: Job): JobCardV20Props['note'] {
+function toNote(job: Job): JobCardV30Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -53,7 +51,7 @@ function toNote(job: Job): JobCardV20Props['note'] {
   }
 }
 
-/** V20 renders the ad block for published and unpublished. Archive stays visible as ended ads. */
+/** V30 renders the ad block for published and unpublished. Archive stays visible as ended ads. */
 function toCardStatus(job: Job, today: string): CardStatus {
   const tab = listingTab(job, today)
 
@@ -68,13 +66,12 @@ function toCardStatus(job: Job, today: string): CardStatus {
   return 'published'
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardV20Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardV30Advertisement {
   return {
     id: ad.id,
-    title: ad.title,
     publications: ad.placements.flatMap((placement) => {
       const dateEnded = placement.publishedTo < today
-      // V20 has no turned-off channel. A still-dated disabled channel is not an ended run.
+      // V30 has no turned-off channel. A still-dated disabled channel is not an ended run.
       if (placement.channelDisabled && !dateEnded) {
         return []
       }
@@ -89,7 +86,7 @@ function toPublication(
   placement: Placement,
   today: string,
   dateEnded: boolean,
-): JobCardV20Publication {
+): JobCardV30Publication {
   const highlights = (placement.highlights ?? []).map((highlight) =>
     toHighlight(adId, placement, highlight, today, dateEnded),
   )
@@ -112,7 +109,7 @@ function toHighlight(
   highlight: Highlight,
   today: string,
   publicationEnded: boolean,
-): NonNullable<JobCardV20Publication['highlights']>[number] {
+): NonNullable<JobCardV30Publication['highlights']>[number] {
   const ended = publicationEnded || highlight.publishedTo < today
 
   return {

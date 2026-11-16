@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   EmptyJobSearch,
-  JobCardV20,
+  JobCardV30,
   JobDetailStatsModal,
   JobModalChooseAds,
   JobModalProlong,
@@ -95,9 +95,10 @@ const jobCardNoops = {
   onTransferJob: noop,
   onArchiveJob: noop,
   onEditAdvertisement: noop,
+  onHighlightAdvertisement: noop,
   onCreateAdvertisement: noop,
   onAdvertisementPreviewClick: noop,
-  onCompleteDraft: noop,
+  onContinueDraft: noop,
 }
 
 type JobModalStep = 'chooseAd' | 'places'
@@ -177,7 +178,7 @@ function JobCardList({
 
   function renderCard(job: Job) {
     return (
-      <JobCardV20
+      <JobCardV30
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
