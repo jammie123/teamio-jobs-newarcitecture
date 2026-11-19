@@ -49,10 +49,18 @@ export {
   addDaysIso,
   computeAdStatus,
   formatCzechDate,
+  isRecentlyExpired,
   jobBelongsToTab,
+  jobUnpublishedByRecruiter,
   jobsForTab,
+  latestPlacementEnd,
   listingTab,
+  recentlyExpiredWindow,
   todayIso,
+  RECENTLY_EXPIRED_END_OFFSET_DAYS,
+  RECENTLY_EXPIRED_HIGHLIGHT_DAYS,
+  RECENTLY_EXPIRED_MAX_DAYS,
+  RECENTLY_EXPIRED_START_OFFSET_DAYS,
   type JobCardListingStatus,
   type JobListingTab,
 } from './adStatus'
@@ -89,6 +97,8 @@ export {
   toTopPlaces,
   type JobAdAction,
 } from './toJobModal'
+
+export { toJobPreviewPublications } from './toJobPreview'
 
 export {
   EMPTY_JOBS_FILTER,

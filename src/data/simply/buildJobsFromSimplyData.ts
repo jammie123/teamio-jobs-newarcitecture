@@ -1,5 +1,5 @@
 import jobsMetaJson from './jobsMeta.json'
-import { addDaysIso, todayIso } from '../adStatus'
+import { addDaysIso, recentlyExpiredWindow, todayIso } from '../adStatus'
 import type { Ad, Job, JobStatus, Placement, PlacementStats, PortalId } from '../types'
 import {
   ARCHIVE_END_OFFSET_DAYS,
@@ -10,7 +10,6 @@ import {
   EXPIRED_OLD_END_OFFSET_DAYS,
   EXPIRED_OLD_START_OFFSET_DAYS,
   EXPIRED_RECENT_END_OFFSET_DAYS,
-  EXPIRED_RECENT_START_OFFSET_DAYS,
 } from './defaults'
 import { type OpenPlacementProfile, openPlacementProfile } from './openPlacementProfiles'
 import { OPEN_JOB_PORTAL_MIX } from './openPortalMix'
@@ -51,13 +50,6 @@ function endingSoonWindow(today: string): DateWindow {
   }
 }
 
-function expiredRecentWindow(today: string): DateWindow {
-  return {
-    publishedFrom: addDaysIso(today, EXPIRED_RECENT_START_OFFSET_DAYS),
-    publishedTo: addDaysIso(today, EXPIRED_RECENT_END_OFFSET_DAYS),
-  }
-}
-
 function expiredOldWindow(today: string): DateWindow {
   return {
     publishedFrom: addDaysIso(today, EXPIRED_OLD_START_OFFSET_DAYS),
@@ -77,7 +69,7 @@ function windowForProfile(profile: OpenPlacementProfile, today: string): DateWin
     case 'endingSoon':
       return endingSoonWindow(today)
     case 'allExpiredRecent':
-      return expiredRecentWindow(today)
+      return recentlyExpiredWindow(today)
     case 'allExpiredOld':
       return expiredOldWindow(today)
     case 'live':
@@ -140,7 +132,7 @@ function buildPlacements(
   const profile = openPlacementProfile(jobId)
 
   if (profile === 'splitExpiredLive') {
-    const expired = expiredRecentWindow(today)
+    const expired = recentlyExpiredWindow(today)
     const live = liveWindow(today)
     return portals.map((portal, index) =>
       placementFromWindow(jobId, portal, index === 0 ? expired : live),
@@ -148,7 +140,7 @@ function buildPlacements(
   }
 
   if (profile === 'simplify11Partial' && portals.length >= 3) {
-    const expired = expiredRecentWindow(today)
+    const expired = recentlyExpiredWindow(today)
     const live = liveWindow(today)
     return portals.map((portal, index) => {
       if (index === 0) {
@@ -169,7 +161,7 @@ function buildPlacements(
   }
 
   if (profile === 'simplify11ExpiredDisabled') {
-    const expired = expiredRecentWindow(today)
+    const expired = recentlyExpiredWindow(today)
     return portals.map((portal, index) =>
       placementFromWindow(jobId, portal, expired, index === portals.length - 1),
     )

@@ -1,7 +1,6 @@
-import { newCandidateCount } from './jobCandidates'
 import type { Job } from './types'
 
-export type JobSortKey = 'latestAd' | 'oldestAd' | 'newestJob' | 'mostNewCandidates' | 'titleAz'
+export type JobSortKey = 'latestAd' | 'oldestAd' | 'titleAz'
 
 export type JobSortOption = {
   key: JobSortKey
@@ -12,14 +11,8 @@ export type JobSortOption = {
 export const DEFAULT_JOB_SORT: JobSortKey = 'latestAd'
 
 export const JOB_SORT_OPTIONS: JobSortOption[] = [
-  {
-    key: 'latestAd',
-    label: 'Nejnovější inzeráty',
-    description: 'Vystavení inzerátu, topování a zvýraznění',
-  },
+  { key: 'latestAd', label: 'Nejnovější inzeráty' },
   { key: 'oldestAd', label: 'Nejstarší inzeráty' },
-  { key: 'newestJob', label: 'Nejnovější nábor' },
-  { key: 'mostNewCandidates', label: 'Nejvíce nových uchazečů' },
   { key: 'titleAz', label: 'Název A–Z' },
 ]
 
@@ -124,12 +117,6 @@ export function sortJobs(jobs: Job[], key: JobSortKey): Job[] {
         break
       case 'oldestAd':
         primary = compareAsc(latestAdDate(a), latestAdDate(b))
-        break
-      case 'newestJob':
-        primary = compareDesc(a.createdAt, b.createdAt)
-        break
-      case 'mostNewCandidates':
-        primary = compareDesc(newCandidateCount(a.id), newCandidateCount(b.id))
         break
       case 'titleAz':
         primary = a.title.localeCompare(b.title, 'cs')

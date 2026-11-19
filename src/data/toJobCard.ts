@@ -1,12 +1,13 @@
-import type { JobCardV30Props } from '@teamio/starter/components'
-import { formatCzechDate, listingTab, todayIso } from './adStatus'
+import type { JobCardV40Props } from '@teamio/starter/components'
+import { formatCzechDate, jobUnpublishedByRecruiter, listingTab, todayIso } from './adStatus'
 import { highlightDisplayName, portalLabel } from './portals'
 import { candidatesOfJob, countJobCandidates } from './jobCandidates'
-import type { Ad, Candidate, Highlight, Job, Placement } from './types'
+import { departmentsOf, type Ad, type Candidate, type Highlight, type Job, type Placement } from './types'
 
-type JobCardV30Data = Pick<
-  JobCardV30Props,
+type JobCardV40Data = Pick<
+  JobCardV40Props,
   | 'title'
+  | 'department'
   | 'owner'
   | 'hiringManagers'
   | 'status'
@@ -16,19 +17,20 @@ type JobCardV30Data = Pick<
   | 'lastChanged'
 >
 
-type JobCardV30Advertisement = NonNullable<JobCardV30Props['advertisements']>[number]
-type JobCardV30Publication = NonNullable<JobCardV30Advertisement['publications']>[number]
-type CardStatus = NonNullable<JobCardV30Props['status']>
+type JobCardV40Advertisement = NonNullable<JobCardV40Props['advertisements']>[number]
+type JobCardV40Publication = NonNullable<JobCardV40Advertisement['publications']>[number]
+type CardStatus = NonNullable<JobCardV40Props['status']>
 
 export function toJobCard(
   job: Job,
   today = todayIso(),
   jobCandidates: Candidate[] = candidatesOfJob(job.id),
-): JobCardV30Data {
+): JobCardV40Data {
   const advertisements = job.ads.map((ad) => toAdvertisement(ad, today))
 
   return {
     title: job.title,
+    department: departmentsOf(job)[0],
     owner: job.recruiter,
     hiringManagers: job.hiringManagers,
     status: toCardStatus(job, today),
@@ -39,7 +41,7 @@ export function toJobCard(
   }
 }
 
-function toNote(job: Job): JobCardV30Props['note'] {
+function toNote(job: Job): JobCardV40Props['note'] {
   if (!job.note) {
     return undefined
   }
@@ -51,7 +53,10 @@ function toNote(job: Job): JobCardV30Props['note'] {
   }
 }
 
-/** V30 renders the ad block for published and unpublished. Archive stays visible as ended ads. */
+/**
+ * V40: unpublished = recruiter ended („Ukončené vystavování“). Date-expired ads stay
+ * published so the card can show „Expirováno nedávno“ / „Expirováno“ from the end dates.
+ */
 function toCardStatus(job: Job, today: string): CardStatus {
   const tab = listingTab(job, today)
 
@@ -59,19 +64,23 @@ function toCardStatus(job: Job, today: string): CardStatus {
     return 'draft'
   }
 
-  if (tab === 'unpublished' || tab === 'archived') {
+  if (tab === 'archived') {
+    return 'archived'
+  }
+
+  if (tab === 'unpublished' && jobUnpublishedByRecruiter(job)) {
     return 'unpublished'
   }
 
   return 'published'
 }
 
-function toAdvertisement(ad: Ad, today: string): JobCardV30Advertisement {
+function toAdvertisement(ad: Ad, today: string): JobCardV40Advertisement {
   return {
     id: ad.id,
     publications: ad.placements.flatMap((placement) => {
       const dateEnded = placement.publishedTo < today
-      // V30 has no turned-off channel. A still-dated disabled channel is not an ended run.
+      // V40 has no turned-off channel. A still-dated disabled channel is not an ended run.
       if (placement.channelDisabled && !dateEnded) {
         return []
       }
@@ -86,7 +95,7 @@ function toPublication(
   placement: Placement,
   today: string,
   dateEnded: boolean,
-): JobCardV30Publication {
+): JobCardV40Publication {
   const highlights = (placement.highlights ?? []).map((highlight) =>
     toHighlight(adId, placement, highlight, today, dateEnded),
   )
@@ -109,7 +118,7 @@ function toHighlight(
   highlight: Highlight,
   today: string,
   publicationEnded: boolean,
-): NonNullable<JobCardV30Publication['highlights']>[number] {
+): NonNullable<JobCardV40Publication['highlights']>[number] {
   const ended = publicationEnded || highlight.publishedTo < today
 
   return {

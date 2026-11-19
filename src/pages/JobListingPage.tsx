@@ -2,17 +2,18 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
   EmptyJobSearch,
-  JobCardV30,
+  JobBulkAction,
+  JobCardV40,
   JobDetailStatsModal,
   JobModalChooseAds,
   JobModalProlong,
   JobModalTop,
   JobModalUnpublish,
+  JobPageHeader,
+  JobPreviewModal,
   JobsFilterV2,
-  Option,
-  PageHeader,
+  SampleJobPreviewAdvertisement,
   PageTemplate,
-  SplitButton,
   Tabs,
   TabsContent,
   TabsList,
@@ -38,6 +39,7 @@ import {
   shouldGroupUnpublishedByEndedAge,
   sortJobs,
   toJobCard,
+  toJobPreviewPublications,
   toModalAdvertisementSections,
   toModalAdvertisements,
   toModalPlacesForAction,
@@ -70,11 +72,6 @@ const TABS: Array<{ value: JobListingTab; label: string; info?: string }> = [
     label: 'Nezveřejněný',
     info: 'Otevřený nábor s ukončenou nebo vypršelou inzercí',
   },
-  {
-    value: 'endingSoon',
-    label: 'Brzy končí',
-    info: 'Otevřený nábor s inzercí, která končí do 7 dní',
-  },
   { value: 'draft', label: 'Rozpracovaný' },
   { value: 'archived', label: 'Archivní' },
 ]
@@ -97,8 +94,6 @@ const jobCardNoops = {
   onEditAdvertisement: noop,
   onHighlightAdvertisement: noop,
   onCreateAdvertisement: noop,
-  onAdvertisementPreviewClick: noop,
-  onContinueDraft: noop,
 }
 
 type JobModalStep = 'chooseAd' | 'places'
@@ -113,6 +108,10 @@ type JobModalState = {
 type DetailStatsModalState = {
   job: Job
   period: JobDetailStatsPeriod
+}
+
+type PreviewModalState = {
+  job: Job
 }
 
 function jobPublishedAt(job: Job): string {
@@ -144,15 +143,23 @@ function JobCardList({
   tab,
   filter,
   sort,
+  bulkActive,
+  selectedIds,
+  onBulkSelectChange,
   onAdAction,
   onAdvertisementDetail,
+  onAdvertisementPreview,
   onResetFilters,
 }: {
   tab: JobListingTab
   filter: JobsFilterValue
   sort: JobSortKey
+  bulkActive: boolean
+  selectedIds: string[]
+  onBulkSelectChange: (jobId: string, selected: boolean) => void
   onAdAction: (job: Job, action: JobAdAction) => void
   onAdvertisementDetail: (job: Job) => void
+  onAdvertisementPreview: (job: Job) => void
   onResetFilters: () => void
 }) {
   const navigate = useNavigate()
@@ -178,13 +185,17 @@ function JobCardList({
 
   function renderCard(job: Job) {
     return (
-      <JobCardV30
+      <JobCardV40
         key={job.id}
         {...toJobCard(job)}
         {...jobCardNoops}
+        isBulkAction={bulkActive}
+        isSelected={selectedIds.includes(job.id)}
+        onBulkSelectChange={(selected) => onBulkSelectChange(job.id, selected)}
         onCandidatesClick={(stat) => navigate(candidateListPath(job.id, stat))}
         onViewStatisticsClick={() => onAdvertisementDetail(job)}
         onAdvertisementDetailClick={() => onAdvertisementDetail(job)}
+        onAdvertisementPreviewClick={() => onAdvertisementPreview(job)}
         {...(job.ads.length > 0
           ? {
               onExtendAndRepublish: () => onAdAction(job, 'prolong'),
@@ -333,13 +344,67 @@ function JobListingDetailStatsModal({
   )
 }
 
+function JobListingPreviewModal({
+  modal,
+  onClose,
+}: {
+  modal: PreviewModalState | null
+  onClose: () => void
+}) {
+  const publications = modal ? toJobPreviewPublications(modal.job) : []
+  const jobTitle = modal?.job.title ?? ''
+
+  return (
+    <JobPreviewModal
+      open={modal !== null}
+      jobTitle={jobTitle}
+      publications={publications}
+      onOpenChange={(open) => {
+        if (!open) {
+          onClose()
+        }
+      }}
+      renderPreview={(publication) => (
+        <SampleJobPreviewAdvertisement portalName={publication.name} />
+      )}
+    />
+  )
+}
+
 export function JobListingPage() {
   const [filter, setFilter] = useState<JobsFilterValue>(EMPTY_JOBS_FILTER)
   const [sort, setSort] = useState<JobSortKey>(DEFAULT_JOB_SORT)
   const [tab, setTab] = useState<JobListingTab>('published')
   const [modal, setModal] = useState<JobModalState | null>(null)
   const [detailStats, setDetailStats] = useState<DetailStatsModalState | null>(null)
-  const visibleCount = jobsOnTab(tab, filter).length
+  const [preview, setPreview] = useState<PreviewModalState | null>(null)
+  const [bulkActive, setBulkActive] = useState(false)
+  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const visibleJobs = jobsOnTab(tab, filter)
+  const visibleIds = visibleJobs.map((job) => job.id)
+  const visibleCount = visibleJobs.length
+  const visibleSelectedIds = selectedIds.filter((id) => visibleIds.includes(id))
+
+  function exitBulkMode() {
+    setBulkActive(false)
+    setSelectedIds([])
+  }
+
+  function handleBulkSelectChange(jobId: string, selected: boolean) {
+    setSelectedIds((current) => {
+      if (selected) {
+        return current.includes(jobId) ? current : [...current, jobId]
+      }
+      return current.filter((id) => id !== jobId)
+    })
+  }
+
+  function handleSelectAll(checked: boolean) {
+    setSelectedIds((current) => {
+      const others = current.filter((id) => !visibleIds.includes(id))
+      return checked ? [...others, ...visibleIds] : others
+    })
+  }
 
   function handleAdAction(job: Job, action: JobAdAction) {
     setModal(openAdAction(job, action))
@@ -347,6 +412,10 @@ export function JobListingPage() {
 
   function openDetailStats(job: Job) {
     setDetailStats({ job, period: 'sincePublication' })
+  }
+
+  function openPreview(job: Job) {
+    setPreview({ job })
   }
 
   function closeModal() {
@@ -382,7 +451,7 @@ export function JobListingPage() {
             },
           }}
           pageHeader={
-            <PageHeader
+            <JobPageHeader
               title={
                 <>
                   Nábory{' '}
@@ -404,15 +473,18 @@ export function JobListingPage() {
                   ))}
                 </TabsList>
               }
-              actions={
-                <SplitButton label="Přidat nábor" menuLabel="Další možnosti přidání">
-                  <Option>Přidat brigádu</Option>
-                </SplitButton>
-              }
+              bulkActionsActive={bulkActive}
+              onBulkActionsToggle={() => {
+                if (bulkActive) {
+                  exitBulkMode()
+                  return
+                }
+                setBulkActive(true)
+              }}
             />
           }
         >
-          <div className="tm--mx-6 tm--mt-6 tm-border-0 tm-border-b tm-border-solid tm-border-secondary tm-bg-basic tm-px-6 tm-py-4">
+          <div className="tm--mx-6 tm--mt-6 tm-px-6">
             <div className="tm-mx-auto tm-w-full tm-max-w-[1300px]">
               <JobsFilterV2
                 value={filter}
@@ -427,14 +499,28 @@ export function JobListingPage() {
             </div>
           </div>
           <div className="tm-mx-auto tm-flex tm-w-full tm-max-w-[1300px] tm-flex-col tm-gap-4 tm-pt-6">
+            {bulkActive ? (
+              <JobBulkAction
+                selectedCount={visibleSelectedIds.length}
+                totalCount={visibleCount}
+                onSelectAllChange={handleSelectAll}
+                onArchive={exitBulkMode}
+                onTransfer={exitBulkMode}
+                onTurnOff={exitBulkMode}
+              />
+            ) : null}
             {TABS.map((item) => (
               <TabsContent key={item.value} value={item.value} className="tm-mt-0">
                 <JobCardList
                   tab={item.value}
                   filter={filter}
                   sort={sort}
+                  bulkActive={bulkActive}
+                  selectedIds={selectedIds}
+                  onBulkSelectChange={handleBulkSelectChange}
                   onAdAction={handleAdAction}
                   onAdvertisementDetail={openDetailStats}
+                  onAdvertisementPreview={openPreview}
                   onResetFilters={() => setFilter(EMPTY_JOBS_FILTER)}
                 />
               </TabsContent>
@@ -455,6 +541,7 @@ export function JobListingPage() {
           setDetailStats((current) => (current ? { ...current, period } : null))
         }
       />
+      <JobListingPreviewModal modal={preview} onClose={() => setPreview(null)} />
     </>
   )
 }

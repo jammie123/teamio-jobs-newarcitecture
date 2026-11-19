@@ -1,8 +1,8 @@
-import type { JobCardV30Candidates } from '@teamio/starter/components'
+import type { JobCardV40Candidates } from '@teamio/starter/components'
 import candidatesJson from './candidates.json'
 import type { Candidate } from './types'
 
-type JobCardCandidates = JobCardV30Candidates
+type JobCardCandidates = JobCardV40Candidates
 
 const allCandidates = candidatesJson as Candidate[]
 
@@ -22,15 +22,15 @@ export function candidatesOfJob(jobId: string): Candidate[] {
 }
 
 /**
- * Stats of JobCard V30. "Ve hře" is everyone still in process: předvybraný, kola, and nabídka.
- * "Nový" counts unassessed candidates flagged `isNew`, `newOpalcovani` the flagged offers.
+ * Stats of JobCard V40. "Ve hře" is everyone in process before an offer: předvybraný and kola.
+ * "Opalcovaný" counts offers, "Nový" the unassessed candidates flagged `isNew`.
  */
 export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
   const counts = {
     new: 0,
     unassessed: 0,
     inProgress: 0,
-    newOpalcovani: 0,
+    opalcovani: 0,
     total: candidates.length,
   }
 
@@ -46,8 +46,7 @@ export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
         counts.inProgress += 1
         break
       case 'offer':
-        counts.inProgress += 1
-        if (candidate.isNew) counts.newOpalcovani += 1
+        counts.opalcovani += 1
         break
       case 'hired':
       case 'rejected':
@@ -55,12 +54,11 @@ export function countJobCandidates(candidates: Candidate[]): JobCardCandidates {
     }
   }
 
-  const { new: newly, newOpalcovani, ...rest } = counts
+  const { new: newly, ...rest } = counts
 
   return {
     ...rest,
     ...(newly > 0 ? { new: newly } : {}),
-    ...(newOpalcovani > 0 ? { newOpalcovani } : {}),
   }
 }
 

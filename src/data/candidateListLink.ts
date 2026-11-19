@@ -1,7 +1,7 @@
-import type { JobCardV30CandidateStat } from '@teamio/starter/components'
+import type { JobCardV40CandidateStat } from '@teamio/starter/components'
 
-/** Stat of JobCard V30 as emitted by `onCandidatesClick`. */
-type JobCandidateStat = JobCardV30CandidateStat
+/** Stat of JobCard V40 as emitted by `onCandidatesClick`. */
+type JobCandidateStat = JobCardV40CandidateStat
 
 /** Query parameter of the candidate list that preselects a pipeline status. */
 const STATUS_PARAM = 'status'
@@ -12,6 +12,9 @@ const PIPELINE_STATUS_BY_STAT: Record<JobCandidateStat, string | undefined> = {
   unassessed: 'unassessed',
   // "Ve hře" spans several pipeline cells, so the list opens without a single status.
   inProgress: undefined,
+  opalcovani: 'opalcovani',
+  // "K ohodnocení" is shown in the Hiring Manager view only, which the listing does not use.
+  toAssess: undefined,
 }
 
 const KNOWN_PIPELINE_STATUSES = new Set(Object.values(PIPELINE_STATUS_BY_STAT))
