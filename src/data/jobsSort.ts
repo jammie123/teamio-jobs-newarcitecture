@@ -11,9 +11,9 @@ export type JobSortOption = {
 export const DEFAULT_JOB_SORT: JobSortKey = 'latestAd'
 
 export const JOB_SORT_OPTIONS: JobSortOption[] = [
-  { key: 'latestAd', label: 'Nejnovější inzeráty' },
-  { key: 'oldestAd', label: 'Nejstarší inzeráty' },
-  { key: 'titleAz', label: 'Název A–Z' },
+  { key: 'latestAd', label: 'Od nejnovějších' },
+  { key: 'oldestAd', label: 'Od nejstarších' },
+  { key: 'titleAz', label: 'Podle názvu inzerátu (A-Z)' },
 ]
 
 const countFormat = new Intl.NumberFormat('cs-CZ')

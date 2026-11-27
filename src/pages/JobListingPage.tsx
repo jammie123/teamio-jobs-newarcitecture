@@ -16,8 +16,6 @@ import {
   PageTemplate,
   Tabs,
   TabsContent,
-  TabsList,
-  TabsTrigger,
   Typography,
   jobDetailStatsFixtureForPeriod,
   type JobDetailStatsPeriod,
@@ -452,27 +450,14 @@ export function JobListingPage() {
           }}
           pageHeader={
             <JobPageHeader
-              title={
-                <>
-                  Nábory{' '}
-                  <span className="tm-font-normal tm-text-secondary-default">({visibleCount})</span>
-                </>
-              }
-              aria-label="Nábory"
-              tabs={
-                <TabsList aria-label="Filtry náborů">
-                  {TABS.map((item) => (
-                    <TabsTrigger
-                      key={item.value}
-                      value={item.value}
-                      count={jobsOnTab(item.value, filter).length}
-                      info={item.info}
-                    >
-                      {item.label}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              }
+              jobCount={visibleCount}
+              tabCounts={{
+                open: jobsOnTab('open', filter).length,
+                published: jobsOnTab('published', filter).length,
+                unpublished: jobsOnTab('unpublished', filter).length,
+                draft: jobsOnTab('draft', filter).length,
+                archived: jobsOnTab('archived', filter).length,
+              }}
               bulkActionsActive={bulkActive}
               onBulkActionsToggle={() => {
                 if (bulkActive) {
